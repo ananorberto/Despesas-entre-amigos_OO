@@ -1,6 +1,8 @@
 package view;
 
 import model.*;
+import model_database.Database;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
@@ -47,7 +49,9 @@ public class Add_usuario extends JFrame implements ActionListener {
         Button_cadastrar.setBounds(260, 250, 180, 30);
         Button_cadastrar.setBackground(new Color(108, 112, 139));
         Button_cadastrar.setForeground(new Color(222, 222, 245));
-
+        Button_cadastrar.addActionListener(this);
+        
+        
         setLayout(null);
         add(titulo);
         add(labelNome);
@@ -74,5 +78,65 @@ public class Add_usuario extends JFrame implements ActionListener {
             Menu menu = new Menu();
             dispose();
         }
+        else if(e.getSource() == Button_cadastrar) {
+        	String nomeString = nome.getText();
+            String id_userString = id.getText();
+            String cpfString = cpf.getText();
+            String id_grupoString = id_grupo.getText();
+            boolean nao_repete = true;
+            
+            Database.pre_cadastrar_grupos();
+            
+            try {
+                int id_user = Integer.parseInt(id_userString);
+                int id_grupo = Integer.parseInt(id_grupoString);
+                
+                
+                //Repeticao de id de usuario
+                for(int i = 0; i < Database.getQtde_grupos(); i++) {
+                	for(int j = 0; j < Database.getGrupos().get(i).getQtde_pessoas(); j++) {
+                		if(Database.getGrupos().get(i).getUsuarios().get(j).getId() == id_user) {
+                			nao_repete = false;
+                			break;
+                		}              	
+                	}
+                	if(nao_repete == false) {
+                		break;
+                	}
+                }
+                
+               if(nao_repete == true) {
+	                for(int i = 0; i < Database.getQtde_grupos(); i++) {
+	                	if(Database.getGrupos().get(i).getId() == id_grupo) {
+	                		Usuario new_user = new Usuario(cpfString, nomeString, id_user);
+	                		
+	                		Database.getGrupos().get(i).setNovo_usuario(new_user);
+	                		Database.getGrupos().get(i).add_usuario();
+	                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
+     														"Cadastro", JOptionPane.PLAIN_MESSAGE);
+	                		
+	                		break;
+	                	}
+	                	else if(i == (Database.getQtde_grupos() - 1)) {
+	                        JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o ID inserido", 
+	                        								"Grupo nao encontrado", JOptionPane.PLAIN_MESSAGE);
+	                	}
+	                }
+                }
+                else {
+                	JOptionPane.showMessageDialog(null, "Ja existe um usuario com esse ID", 
+							"ID repetido", JOptionPane.PLAIN_MESSAGE);
+                }
+                
+            } catch(NumberFormatException exception){
+                JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
+                								"Erro", JOptionPane.PLAIN_MESSAGE);
+            }
+        }
     }
+    
+    public static void main(String[] args) {
+    	Add_usuario tela = new Add_usuario();
+    }
+    
 }

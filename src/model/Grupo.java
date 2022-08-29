@@ -25,6 +25,98 @@ public class Grupo {
 		this.nome = nome;
 		this.id = id;
 	}
+	
+	
+	
+	public ArrayList<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+
+
+	public void setUsuarios(ArrayList<Usuario> usuarios) {
+		this.usuarios = usuarios;
+	}
+
+
+
+	public ArrayList<Despesa> getDespesas() {
+		return despesas;
+	}
+
+
+
+	public void setDespesas(ArrayList<Despesa> despesas) {
+		this.despesas = despesas;
+	}
+
+
+
+	public Usuario getNovo_usuario() {
+		return novo_usuario;
+	}
+
+	public void setNovo_usuario(Usuario novo_usuario) {
+		this.novo_usuario = novo_usuario;
+	}
+
+	public Compras getNova_compra() {
+		return nova_compra;
+	}
+
+	public void setNova_compra(Compras nova_compra) {
+		this.nova_compra = nova_compra;
+	}
+
+	public Imovel getNovo_imovel() {
+		return novo_imovel;
+	}
+
+	public void setNovo_imovel(Imovel novo_imovel) {
+		this.novo_imovel = novo_imovel;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+
+
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+
+	public int getQtde_pessoas() {
+		return qtde_pessoas;
+	}
+
+
+
+
+	public void setQtde_pessoas(int qtde_pessoas) {
+		this.qtde_pessoas = qtde_pessoas;
+	}
+
+
+
 
 	public void add_usuario() {
 		if(i < qtde_pessoas){

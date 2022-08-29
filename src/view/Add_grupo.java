@@ -80,6 +80,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 
                 Grupo novo_grupo = new Grupo(qtde_pessoas, id, nomeString);
                 Database.getGrupos().add(novo_grupo);
+                Database.aumentar_contador_grupos();
 
                 JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro", JOptionPane.PLAIN_MESSAGE);
             } catch(NumberFormatException exception){

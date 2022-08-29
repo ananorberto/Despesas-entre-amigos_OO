@@ -8,7 +8,7 @@ public class Usuario {
 	private double total_despesa;
 	private double saldo;
 
-	public Usuario(String cpf, String nome, int id, int i) {
+	public Usuario(String cpf, String nome, int id) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.id = id;
