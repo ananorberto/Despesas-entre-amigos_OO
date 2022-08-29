@@ -9,8 +9,7 @@ public class Database {
     private static int qtde_grupos = 0;
     private static Grupo g1 = new Grupo(3, 100, "grupo1");
     private static Grupo g2 = new Grupo(3, 101, "grupo2");
-    private static Grupo g3 = new Grupo(3, 102, "grupo3");
-    
+    private static Grupo g3 = new Grupo(3, 102, "grupo3");    
     
     private Database(){
     }

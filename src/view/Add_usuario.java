@@ -91,11 +91,14 @@ public class Add_usuario extends JFrame implements ActionListener {
                 int id_user = Integer.parseInt(id_userString);
                 int id_grupo = Integer.parseInt(id_grupoString);
                 
-                
                 //Repeticao de id de usuario
-                for(int i = 0; i < Database.getQtde_grupos(); i++) {
-                	for(int j = 0; j < Database.getGrupos().get(i).getQtde_pessoas(); j++) {
-                		if(Database.getGrupos().get(i).getUsuarios().get(j).getId() == id_user) {
+               for(int j = 0; j < Database.getQtde_grupos(); j++) {
+            	   if(Database.getGrupos().get(j).getQtde_pessoas() == 0) {
+            		   continue;
+            	   }
+            	   
+            	   for(int k = 0; k < Database.getGrupos().get(j).getQtde_pessoas(); k++) {
+                		if(Database.getGrupos().get(j).getUsuarios().get(k).getId() == id_user) {
                 			nao_repete = false;
                 			break;
                 		}              	

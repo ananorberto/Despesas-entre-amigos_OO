@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import model.Grupo;
+import model.*;
 import model_database.Database;
 
 public class Add_grupo extends JFrame implements ActionListener {
@@ -21,7 +21,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 	private final JLabel labelId = new JLabel("ID: ");
 	private final JTextField id = new JTextField();
 	private final JLabel labelQtde = new JLabel("Quantidade de pessoas: ");
-	private final JTextField qtde_pessoas = new JTextField();
+	private final JTextField max_pessoas = new JTextField();
 	private final JButton Button_cadastrar = new JButton("Cadastrar");
 	private final JButton Button_voltar = new JButton("Voltar");
 
@@ -38,7 +38,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 		id.setBounds(80, 110, 420, 30);
 
 		labelQtde.setBounds(50, 150, 420, 30);
-		qtde_pessoas.setBounds(230, 150, 270, 30);
+		max_pessoas.setBounds(230, 150, 270, 30);
 
 		Button_voltar.setBounds(70, 220, 180, 30);
 		Button_voltar.setBackground(new Color(108, 112, 139));
@@ -57,7 +57,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 		add(labelId);
 		add(id);
 		add(labelQtde);
-		add(qtde_pessoas);
+		add(max_pessoas);
 		add(Button_cadastrar);
 		add(Button_voltar);
 
@@ -78,12 +78,13 @@ public class Add_grupo extends JFrame implements ActionListener {
 		} else if (e.getSource() == Button_cadastrar) {
 			String nomeString = nome.getText();
 			String idString = id.getText();
-			String qtde_pessoasString = qtde_pessoas.getText();
+			String max_pessoasString = max_pessoas.getText();
 			try {
 				int id = Integer.parseInt(idString);
-				int qtde_pessoas = Integer.parseInt(qtde_pessoasString);
+				int max_pessoas = Integer.parseInt(max_pessoasString);
 
-				Grupo novo_grupo = new Grupo(qtde_pessoas, id, nomeString);
+				Grupo novo_grupo = new Grupo(max_pessoas, id, nomeString);
+				
 				Database.getGrupos().add(novo_grupo);
 				Database.aumentar_contador_grupos();
 
