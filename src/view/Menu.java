@@ -13,7 +13,7 @@ public class Menu extends JFrame implements ActionListener {
 
 	private final JLabel label_titulo = new JLabel("Despesas entre amigos");
 	private final JButton add_grupo = new JButton("Grupo");
-	private final JButton add_usuario = new JButton("Pessoaa");
+	private final JButton add_usuario = new JButton("Pessoa");
 	private final JButton add_compra = new JButton("Compra");
 	private final JButton add_imovel = new JButton("Imovel");
 	private final JButton mostrar_divida = new JButton("Mostrar Divida");
