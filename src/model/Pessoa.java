@@ -1,14 +1,14 @@
 package model;
 
-public class Usuario {
+public class Pessoa {
 
 	private String cpf;
 	private String nome;
 	private int id;
-	private double total_despesa;
+	private double total_despesa = 0;
 	private double saldo;
 
-	public Usuario(String cpf, String nome, int id) {
+	public Pessoa(String cpf, String nome, int id) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.id = id;
@@ -43,9 +43,9 @@ public class Usuario {
 		this.id = id;
 	}
 
-	public void setTotal_despesa(double total_despesa) {
+	public void setTotal_despesa(double valor_despesa) {
 
-		this.total_despesa = total_despesa;
+		this.total_despesa = this.total_despesa + valor_despesa;
 	}
 
 	public void setSaldo(double saldo) {
