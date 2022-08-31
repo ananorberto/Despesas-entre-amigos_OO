@@ -139,7 +139,8 @@ public class Add_usuario extends JFrame implements ActionListener {
     }
     
     public static void main(String[] args) {
-    	Add_usuario tela = new Add_usuario();
+
+        Add_usuario tela = new Add_usuario();
     }
     
 }
