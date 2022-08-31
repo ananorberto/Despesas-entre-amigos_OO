@@ -108,6 +108,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 			} catch (NumberFormatException exception) {
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
 												"Erro", JOptionPane.PLAIN_MESSAGE);
+				System.out.println("...");
 			}
 		}
 	}
