@@ -1,12 +1,10 @@
 package model;
 
-import java.util.Scanner;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
 public class Grupo {
-	Scanner scan = new Scanner(System.in);
 
 	private String nome;
 	private int id;

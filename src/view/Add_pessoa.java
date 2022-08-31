@@ -84,9 +84,7 @@ public class Add_pessoa extends JFrame implements ActionListener {
             String cpfString = cpf.getText();
             String id_grupoString = id_grupo.getText();
             boolean nao_repete = true;
-            
-            Database.pre_cadastrar_grupos();
-            
+                        
             try {
                 int id_user = Integer.parseInt(id_userString);
                 int id_grupo = Integer.parseInt(id_grupoString);
@@ -139,7 +137,6 @@ public class Add_pessoa extends JFrame implements ActionListener {
     }
     
     public static void main(String[] args) {
-
         Add_pessoa tela = new Add_pessoa();
     }
     

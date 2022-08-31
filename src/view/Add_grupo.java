@@ -20,7 +20,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 	private final JTextField nome = new JTextField();
 	private final JLabel labelId = new JLabel("ID: ");
 	private final JTextField id = new JTextField();
-	private final JLabel labelQtde = new JLabel("Quantidade de pessoas: ");
+	private final JLabel labelQtde = new JLabel("Máximo de pessoas: ");
 	private final JTextField max_pessoas = new JTextField();
 	private final JButton Button_cadastrar = new JButton("Cadastrar");
 	private final JButton Button_voltar = new JButton("Voltar");
@@ -81,11 +81,11 @@ public class Add_grupo extends JFrame implements ActionListener {
 			String max_pessoasString = max_pessoas.getText();
 			boolean nao_repete = true;
 			try {
-				int id = Integer.parseInt(idString);
-				int max_pessoas = Integer.parseInt(max_pessoasString);
+				int idInt = Integer.parseInt(idString);
+				int max_pessoasInt = Integer.parseInt(max_pessoasString);
 
-				for(int i = 0; i < 50; i++) {
-					if(Database.getGrupos().get(i).getId() == id) {
+				for(int i = 0; i < Database.getQtde_grupos(); i++) {
+					if(Database.getGrupos().get(i).getId() == idInt) {
 						nao_repete = false;
 						break;
 					}
@@ -93,9 +93,10 @@ public class Add_grupo extends JFrame implements ActionListener {
 				
 				
 				if(nao_repete == true) {
-					Grupo novo_grupo = new Grupo(max_pessoas, id, nomeString);
+					Grupo novo_grupo = new Grupo(max_pessoasInt, idInt, nomeString);
 					
 					Database.getGrupos().add(novo_grupo);
+					Database.aumentar_contador_grupos();
 	
 					JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
 							JOptionPane.PLAIN_MESSAGE);
@@ -110,4 +111,8 @@ public class Add_grupo extends JFrame implements ActionListener {
 			}
 		}
 	}
+	public static void main(String[] args) {
+		Add_grupo tela = new Add_grupo();
+	}
+
 }

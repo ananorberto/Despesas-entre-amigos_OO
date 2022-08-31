@@ -90,7 +90,6 @@ public class Add_compra extends JFrame implements ActionListener {
             dispose();
         }
         else if(e.getSource() == cadastrar) {
-        	Database.pre_cadastrar_grupos();
         	
         	String nome_mercadoString = nome_mercado.getText();
             String id_pagadorString = id_pagador.getText();
@@ -99,8 +98,6 @@ public class Add_compra extends JFrame implements ActionListener {
             String valorString = valor.getText();
             String dataString = data.getText();
             boolean acabou = false;
-            int qtde_grupos = Database.getQtde_grupos();
-            int id_g1 = Database.getGrupos().get(0).getId();
             
             try {
                 int id_pagadorInt = Integer.parseInt(id_pagadorString);
@@ -117,8 +114,7 @@ public class Add_compra extends JFrame implements ActionListener {
 	                			Compra nova_compra = new Compra(nome_mercadoString, valorDouble, dataString, 
 		                											id_pagadorInt, id_grupoInt, itensString);
 		                		Database.getGrupos().get(i).getDespesas().add(nova_compra);
-		                		Database.getGrupos().get(i).aumentar_qtde_despesas();
-		                		
+		                		Database.getGrupos().get(i).aumentar_qtde_despesas();	                		
 		                		Database.getGrupos().get(i).getPessoas().get(j).setTotal_despesa(valorDouble);
 		                		
 		                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
@@ -128,8 +124,8 @@ public class Add_compra extends JFrame implements ActionListener {
 	                		}
                 			else if(j == (Database.getGrupos().get(i).getQtde_despesas() - 1)){
                 				//Nao achou a pessoa
-                				JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa com o ID inserido", 
-         								"Pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+                				JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
+         								"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 	                			acabou = true;
 	                		}
 	  
@@ -142,8 +138,8 @@ public class Add_compra extends JFrame implements ActionListener {
                 	}
                 	else if(i == (Database.getQtde_grupos() - 1)) {
                 		//Nao achou o grupo
-                		JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o ID inserido", 
-                        								"Grupo nao encontrado", JOptionPane.PLAIN_MESSAGE);
+                		JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou grupo com o ID inserido", 
+                        								"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
                 	}
                 }
 

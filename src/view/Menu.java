@@ -1,6 +1,5 @@
 package view;
 
-import controller.*;
 import model.model_database.Database;
 
 import java.awt.Color;
@@ -22,7 +21,7 @@ public class Menu extends JFrame implements ActionListener {
 	private final JButton mostrar_divida = new JButton("Mostrar Divida");
 	private final JButton mostrar_cadastros = new JButton("Mostrar cadastros");
 	private final JButton deletar_grupo = new JButton("Deletar Grupo");
-	public static ControleData database = new ControleData();
+	
 
 	public Menu() {
 		super("Divisão de Despesas entre amigos");
@@ -103,7 +102,7 @@ public class Menu extends JFrame implements ActionListener {
 			MostrarDividas mostrarDividas = new MostrarDividas();
 		}
 		if (e.getSource() == mostrar_cadastros) {
-			new MostrarCadastros().mostrarDados(database);
+			new MostrarCadastros().mostrarDados();
 		}
 		if (e.getSource() == deletar_grupo) {
 			DeletarGrupo deletarGrupo = new DeletarGrupo();
@@ -112,6 +111,7 @@ public class Menu extends JFrame implements ActionListener {
 	}
 
 	public static void main(String[] args) {
+		Database.pre_cadastrar_grupos();
 		Menu menu = new Menu();
 	}
 }
