@@ -1,13 +1,13 @@
 package view;
 
 import model.*;
-import model_database.Database;
+import model.model_database.Database;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-public class Add_usuario extends JFrame implements ActionListener {
+public class Add_pessoa extends JFrame implements ActionListener {
 
     private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
     private final JLabel labelNome = new JLabel("Nome: ");
@@ -22,7 +22,7 @@ public class Add_usuario extends JFrame implements ActionListener {
     private final JButton Button_voltar = new JButton("Voltar");
 
 
-    public Add_usuario() {
+    public Add_pessoa() {
         super("Cadastrar usuario");
 
         titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
@@ -98,7 +98,7 @@ public class Add_usuario extends JFrame implements ActionListener {
             	   }
             	   
             	   for(int k = 0; k < Database.getGrupos().get(j).getQtde_pessoas(); k++) {
-                		if(Database.getGrupos().get(j).getUsuarios().get(k).getId() == id_user) {
+                		if(Database.getGrupos().get(j).getPessoas().get(k).getId() == id_user) {
                 			nao_repete = false;
                 			break;
                 		}              	
@@ -111,10 +111,10 @@ public class Add_usuario extends JFrame implements ActionListener {
                if(nao_repete == true) {
 	                for(int i = 0; i < Database.getQtde_grupos(); i++) {
 	                	if(Database.getGrupos().get(i).getId() == id_grupo) {
-	                		Usuario new_user = new Usuario(cpfString, nomeString, id_user);
+	                		Pessoa new_user = new Pessoa(cpfString, nomeString, id_user);
 	                		
-	                		Database.getGrupos().get(i).setNovo_usuario(new_user);
-	                		Database.getGrupos().get(i).add_usuario();
+	                		Database.getGrupos().get(i).setNova_pessoa(new_user);
+	                		Database.getGrupos().get(i).add_pessoa();
 	                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
      														"Cadastro", JOptionPane.PLAIN_MESSAGE);
 	                		
@@ -140,7 +140,7 @@ public class Add_usuario extends JFrame implements ActionListener {
     
     public static void main(String[] args) {
 
-        Add_usuario tela = new Add_usuario();
+        Add_pessoa tela = new Add_pessoa();
     }
     
 }

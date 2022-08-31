@@ -1,4 +1,4 @@
-package model_database;
+package model.model_database;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Database {
 	private static Grupo g2 = new Grupo(3, 101, "grupo2");
 	private static Grupo g3 = new Grupo(3, 102, "grupo3");
 
-	private Database() {
+	public Database() {
 	}
 
 	public static int getQtde_grupos() {
@@ -24,6 +24,7 @@ public class Database {
 	}
 
 	public static List<Grupo> getGrupos() {
+
 		return GRUPOS;
 	}
 

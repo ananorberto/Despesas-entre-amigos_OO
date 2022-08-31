@@ -1,5 +1,8 @@
 package view;
 
+import controller.*;
+import model.model_database.Database;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -19,6 +22,7 @@ public class Menu extends JFrame implements ActionListener {
 	private final JButton mostrar_divida = new JButton("Mostrar Divida");
 	private final JButton mostrar_cadastros = new JButton("Mostrar cadastros");
 	private final JButton deletar_grupo = new JButton("Deletar Grupo");
+	public static ControleData database = new ControleData();
 
 	public Menu() {
 		super("Divisão de Despesas entre amigos");
@@ -72,11 +76,11 @@ public class Menu extends JFrame implements ActionListener {
 		add(deletar_grupo);
 		add(mostrar_cadastros);
 
-		setSize(520, 400);
+		setSize(520, 420);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		setResizable(true); // Centraliza
-		setLocationRelativeTo(null);
+		setResizable(true);
+		setLocationRelativeTo(null);// Centraliza o JFrame
 		getContentPane().setBackground(new Color(255, 255, 255));
 
 	}
@@ -99,10 +103,7 @@ public class Menu extends JFrame implements ActionListener {
 			MostrarDividas mostrarDividas = new MostrarDividas();
 		}
 		if (e.getSource() == mostrar_cadastros) {
-			MostrarCadastros mostrarCadastros = new MostrarCadastros();
-		}
-		if (e.getSource() == mostrar_cadastros) {
-			MostrarCadastros mostrarCadastros = new MostrarCadastros();
+			new MostrarCadastros().mostrarDados(database);
 		}
 		if (e.getSource() == deletar_grupo) {
 			DeletarGrupo deletarGrupo = new DeletarGrupo();

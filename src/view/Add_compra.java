@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import model.*;
-import model_database.Database;
+import model.model_database.Database;
 
 public class Add_compra extends JFrame implements ActionListener {
 
@@ -155,7 +155,8 @@ public class Add_compra extends JFrame implements ActionListener {
         }
     }
     public static void main(String[] args) {
-    	Add_compra tela = new Add_compra();
+
+        Add_compra tela = new Add_compra();
     }
 
 }

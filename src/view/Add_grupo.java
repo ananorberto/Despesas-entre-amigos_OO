@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import model.*;
-import model_database.Database;
+import model.model_database.Database;
 
 public class Add_grupo extends JFrame implements ActionListener {
 
@@ -84,7 +84,7 @@ public class Add_grupo extends JFrame implements ActionListener {
 				int id = Integer.parseInt(idString);
 				int max_pessoas = Integer.parseInt(max_pessoasString);
 
-				for(int i = 0; i < Database.getQtde_grupos(); i++) {
+				for(int i = 0; i < 50; i++) {
 					if(Database.getGrupos().get(i).getId() == id) {
 						nao_repete = false;
 						break;
@@ -96,7 +96,6 @@ public class Add_grupo extends JFrame implements ActionListener {
 					Grupo novo_grupo = new Grupo(max_pessoas, id, nomeString);
 					
 					Database.getGrupos().add(novo_grupo);
-					Database.aumentar_contador_grupos();
 	
 					JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
 							JOptionPane.PLAIN_MESSAGE);

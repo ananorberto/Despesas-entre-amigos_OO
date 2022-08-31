@@ -29,90 +29,101 @@ public class Grupo {
 	
 	
 	public int getQtde_despesas() {
+
 		return qtde_despesas;
 	}
 
 
 
 	public void aumentar_qtde_despesas() {
+
 		this.qtde_despesas++;
 	}
 
 
 
 	public int getQtde_pessoas() {
+
 		return qtde_pessoas;
 	}
 
 
 
 	public void setQtde_pessoas(int qtde_pessoas) {
+
 		this.qtde_pessoas = qtde_pessoas;
 	}
 
 	public ArrayList<Pessoa> getPessoas() {
+
 		return pessoas;
 	}
 
 
 
 	public void setPessoas(ArrayList<Pessoa> pessoas) {
+
 		this.pessoas = pessoas;
 	}
 
 
 
 	public ArrayList<Despesa> getDespesas() {
+
 		return despesas;
 	}
 
 
 
 	public void setDespesas(ArrayList<Despesa> despesas) {
+
 		this.despesas = despesas;
 	}
 
 
 
 	public Pessoa getNova_pessoa() {
+
 		return nova_pessoa;
 	}
 
 	public void setNova_pessoa(Pessoa nova_pessoa) {
+
 		this.nova_pessoa = nova_pessoa;
 	}
 
 	public Compra getNova_compra() {
+
 		return nova_compra;
 	}
 
 	public void setNova_compra(Compra nova_compra) {
+
 		this.nova_compra = nova_compra;
 	}
 
 	public Imovel getNovo_imovel() {
+
 		return novo_imovel;
 	}
 
 	public void setNovo_imovel(Imovel novo_imovel) {
+
 		this.novo_imovel = novo_imovel;
 	}
 
 	public String getNome() {
+
 		return nome;
 	}
 
-
-
-
 	public void setNome(String nome) {
+
 		this.nome = nome;
 	}
 
-
-
-
 	public int getId() {
+
 		return id;
 	}
 
@@ -120,6 +131,7 @@ public class Grupo {
 
 
 	public void setId(int id) {
+
 		this.id = id;
 	}
 
@@ -127,6 +139,7 @@ public class Grupo {
 
 
 	public int getMax_pessoas() {
+
 		return max_pessoas;
 	}
 
