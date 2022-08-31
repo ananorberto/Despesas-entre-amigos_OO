@@ -102,7 +102,7 @@ public class Menu extends JFrame implements ActionListener {
 			MostrarDividas mostrarDividas = new MostrarDividas();
 		}
 		if (e.getSource() == mostrar_cadastros) {
-			new MostrarCadastros().mostrarDados();
+			new CadastrosGrupo().mostrarDados();
 		}
 		if (e.getSource() == deletar_grupo) {
 			DeletarGrupo deletarGrupo = new DeletarGrupo();
