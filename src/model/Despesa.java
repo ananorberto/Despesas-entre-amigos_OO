@@ -4,6 +4,7 @@ public abstract class Despesa {
 	protected double valor;
 	protected String data;
 	protected int id_pagador;
+	protected int id_grupo;
 
 
 	public int getId_pagador() {

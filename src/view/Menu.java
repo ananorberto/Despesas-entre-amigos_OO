@@ -13,7 +13,7 @@ public class Menu extends JFrame implements ActionListener {
 
 	private final JLabel label_titulo = new JLabel("Despesas entre amigos");
 	private final JButton add_grupo = new JButton("Cadastrar Grupo");
-	private final JButton add_usuario = new JButton("Cadastrar Pessoa");
+	private final JButton add_pessoa = new JButton("Cadastrar Pessoa");
 	private final JButton add_compra = new JButton("Adicionar Compra");
 	private final JButton add_imovel = new JButton("Adicionar Imovel");
 	private final JButton mostrar_divida = new JButton("Mostrar Divida");
@@ -31,10 +31,10 @@ public class Menu extends JFrame implements ActionListener {
 		add_grupo.setForeground(new Color(222, 222, 245));
 		add_grupo.addActionListener(this);
 
-		add_usuario.setBounds(160, 110, 180, 30);
-		add_usuario.setBackground(new Color(108, 112, 139));
-		add_usuario.setForeground(new Color(222, 222, 245));
-		add_usuario.addActionListener(this);
+		add_pessoa.setBounds(160, 110, 180, 30);
+		add_pessoa.setBackground(new Color(108, 112, 139));
+		add_pessoa.setForeground(new Color(222, 222, 245));
+		add_pessoa.addActionListener(this);
 
 		add_compra.setBounds(160, 150, 180, 30);
 		add_compra.setBackground(new Color(108, 112, 139));
@@ -65,7 +65,7 @@ public class Menu extends JFrame implements ActionListener {
 
 		add(label_titulo);
 		add(add_grupo);
-		add(add_usuario);
+		add(add_pessoa);
 		add(add_compra);
 		add(add_imovel);
 		add(mostrar_divida);
@@ -86,8 +86,8 @@ public class Menu extends JFrame implements ActionListener {
 		if (e.getSource() == add_grupo) {
 			Add_grupo add_grupo = new Add_grupo();
 		}
-		if (e.getSource() == add_usuario) {
-			Add_usuario add_usuario = new Add_usuario();
+		if (e.getSource() == add_pessoa) {
+			Add_pessoa add_pessoa = new Add_pessoa();
 		}
 		if (e.getSource() == add_compra) {
 			Add_compra add_compra = new Add_compra();

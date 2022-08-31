@@ -11,14 +11,14 @@ public class Grupo {
 	private String nome;
 	private int id;
 	private int max_pessoas;
-	private ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	private Usuario novo_usuario;
+	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
+	private Pessoa nova_pessoa;
 	private ArrayList<Despesa> despesas = new ArrayList<Despesa>();
-	private Compras nova_compra;
+	private Compra nova_compra;
 	private Imovel novo_imovel;
 	private double despesa_dividida = 0.0;
 	int qtde_pessoas = 0;
-	int j = 0;
+	int qtde_despesas = 0;
 
 	public Grupo(int max_pessoas, int id, String nome) {
 		this.max_pessoas = max_pessoas;
@@ -28,6 +28,18 @@ public class Grupo {
 	
 	
 	
+	public int getQtde_despesas() {
+		return qtde_despesas;
+	}
+
+
+
+	public void aumentar_qtde_despesas() {
+		this.qtde_despesas++;
+	}
+
+
+
 	public int getQtde_pessoas() {
 		return qtde_pessoas;
 	}
@@ -38,16 +50,14 @@ public class Grupo {
 		this.qtde_pessoas = qtde_pessoas;
 	}
 
-
-
-	public ArrayList<Usuario> getUsuarios() {
-		return usuarios;
+	public ArrayList<Pessoa> getPessoas() {
+		return pessoas;
 	}
 
 
 
-	public void setUsuarios(ArrayList<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setPessoas(ArrayList<Pessoa> pessoas) {
+		this.pessoas = pessoas;
 	}
 
 
@@ -64,19 +74,19 @@ public class Grupo {
 
 
 
-	public Usuario getNovo_usuario() {
-		return novo_usuario;
+	public Pessoa getNova_pessoa() {
+		return nova_pessoa;
 	}
 
-	public void setNovo_usuario(Usuario novo_usuario) {
-		this.novo_usuario = novo_usuario;
+	public void setNova_pessoa(Pessoa nova_pessoa) {
+		this.nova_pessoa = nova_pessoa;
 	}
 
-	public Compras getNova_compra() {
+	public Compra getNova_compra() {
 		return nova_compra;
 	}
 
-	public void setNova_compra(Compras nova_compra) {
+	public void setNova_compra(Compra nova_compra) {
 		this.nova_compra = nova_compra;
 	}
 
@@ -130,10 +140,10 @@ public class Grupo {
 
 
 
-	public void add_usuario() {
+	public void add_pessoa() {
 		if(qtde_pessoas < max_pessoas){
 			
-			usuarios.add(this.novo_usuario);
+			pessoas.add(this.nova_pessoa);
 			qtde_pessoas++;
 		}
 		else{
@@ -144,13 +154,13 @@ public class Grupo {
 	
 	public void definir_saldos() {
 		for(int i = 0; i < max_pessoas; i++) {
-			usuarios.get(i).setSaldo(this.despesa_dividida);
+			pessoas.get(i).setSaldo(this.despesa_dividida);
 		}
 	}
 
 	public void dividir_despesas() {
 		for(int i = 0; i < max_pessoas; i++) {
-			this.despesa_dividida =  this.despesa_dividida + usuarios.get(i).getTotal_despesa();
+			this.despesa_dividida =  this.despesa_dividida + pessoas.get(i).getTotal_despesa();
 		}
 		
 		this.despesa_dividida = (this.despesa_dividida)/max_pessoas;
@@ -161,12 +171,12 @@ public class Grupo {
 		String dividas[] = new String[max_pessoas];
 		int j = 0;
 		for(int i = 0; i < max_pessoas; i++) {
-			if(usuarios.get(i).getSaldo() < 0) {
-				dividas[j] = (usuarios.get(i).getNome() + "deve ao grupo" + "R$" + abs(usuarios.get(i).getSaldo()));
+			if(pessoas.get(i).getSaldo() < 0) {
+				dividas[j] = (pessoas.get(i).getNome() + "deve ao grupo" + "R$" + abs(pessoas.get(i).getSaldo()));
 				j++;
 			}
 			else{
-				dividas[j] = ("O grupo deve " + usuarios.get(i).getNome()  + "R$" + abs(usuarios.get(i).getSaldo()));
+				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome()  + "R$" + abs(pessoas.get(i).getSaldo()));
 				j++;
 			}
 		}
@@ -177,8 +187,8 @@ public class Grupo {
 	public void add_compras() {
 		despesas.add(nova_compra);
 		for(int i = 0; i < max_pessoas; i++) {
-			if(nova_compra.getId_pagador() == usuarios.get(i).getId()) {
-				usuarios.get(i).setTotal_despesa(nova_compra.getValor());
+			if(nova_compra.getId_pagador() == pessoas.get(i).getId()) {
+				pessoas.get(i).setTotal_despesa(nova_compra.getValor());
 			}
 		}
 	}
@@ -186,8 +196,8 @@ public class Grupo {
 	public void add_imovel(){
 		despesas.add(novo_imovel);
 		for(int i = 0; i < max_pessoas; i++) {
-			if(novo_imovel.getId_pagador() == usuarios.get(i).getId()) {
-				usuarios.get(i).setTotal_despesa(novo_imovel.getValor());
+			if(novo_imovel.getId_pagador() == pessoas.get(i).getId()) {
+				pessoas.get(i).setTotal_despesa(novo_imovel.getValor());
 			}
 		}
 	}
