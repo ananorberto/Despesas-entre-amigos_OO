@@ -3,6 +3,7 @@ package model;
 import java.util.ArrayList;
 
 import static java.lang.Math.abs;
+import static java.lang.String.format;
 
 public class Grupo {
 
@@ -14,7 +15,7 @@ public class Grupo {
 	private ArrayList<Despesa> despesas = new ArrayList<Despesa>();
 	private Compra nova_compra;
 	private Imovel novo_imovel;
-	private double despesa_dividida = 0.0;
+	private double despesa_dividida;
 	int qtde_pessoas = 0;
 	int qtde_despesas = 0;
 
@@ -135,52 +136,36 @@ public class Grupo {
 	}
 
 	public void definir_saldos() {
-		for (int i = 0; i < max_pessoas; i++) {
-			pessoas.get(i).setSaldo(this.despesa_dividida);
+		for (int i = 0; i < qtde_pessoas; i++) {
+			pessoas.get(i).setSaldo(pessoas.get(i).getTotal_despesa() - this.despesa_dividida);
 		}
 	}
 
 	public void dividir_despesas() {
-		for (int i = 0; i < max_pessoas; i++) {
+		this.despesa_dividida = 0.0;
+		
+		for (int i = 0; i < qtde_pessoas; i++) {
 			this.despesa_dividida = this.despesa_dividida + pessoas.get(i).getTotal_despesa();
 		}
 
-		this.despesa_dividida = (this.despesa_dividida) / max_pessoas;
+		this.despesa_dividida = (this.despesa_dividida) / qtde_pessoas;
 
 	}
 
 	public String[] mostrar_dividas() {
-		String dividas[] = new String[max_pessoas];
+		String dividas[] = new String[qtde_pessoas];
 		int j = 0;
-		for (int i = 0; i < max_pessoas; i++) {
+		for (int i = 0; i < qtde_pessoas; i++) {
 			if (pessoas.get(i).getSaldo() < 0) {
-				dividas[j] = (pessoas.get(i).getNome() + "deve ao grupo" + "R$" + abs(pessoas.get(i).getSaldo()));
+				dividas[j] = (pessoas.get(i).getNome() + " deve ao grupo" + "R$" + format("%.2f", abs(pessoas.get(i).getSaldo())));
 				j++;
 			} else {
-				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome() + "R$" + abs(pessoas.get(i).getSaldo()));
+				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome() + " R$" + format("%.2f", abs(pessoas.get(i).getSaldo())));
 				j++;
 			}
 		}
 
 		return dividas;
-	}
-
-	public void add_compras() {
-		despesas.add(nova_compra);
-		for (int i = 0; i < max_pessoas; i++) {
-			if (nova_compra.getId_pagador() == pessoas.get(i).getId()) {
-				pessoas.get(i).setTotal_despesa(nova_compra.getValor());
-			}
-		}
-	}
-
-	public void add_imovel() {
-		despesas.add(novo_imovel);
-		for (int i = 0; i < max_pessoas; i++) {
-			if (novo_imovel.getId_pagador() == pessoas.get(i).getId()) {
-				pessoas.get(i).setTotal_despesa(novo_imovel.getValor());
-			}
-		}
 	}
 
 }
