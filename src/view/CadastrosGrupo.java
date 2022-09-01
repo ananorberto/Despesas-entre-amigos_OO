@@ -17,7 +17,7 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 	private JButton Button_voltar = new JButton("Voltar");
 
 	public CadastrosGrupo() {
-		super("Tela Mostrar Cadastros");
+		super("Mostrar Grupos Cadastrados");
 
 		Button_voltar.setBounds(120, 290, 180, 30);
 		Button_voltar.setBackground(new Color(108, 112, 139));
@@ -59,7 +59,4 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 		Object src = e.getSource();
 	}
 
-	public static void main(String[] args) {
-		CadastrosGrupo mostrarCadastros = new CadastrosGrupo();
-	}
 }

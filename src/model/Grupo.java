@@ -23,29 +23,21 @@ public class Grupo {
 		this.nome = nome;
 		this.id = id;
 	}
-	
-	
-	
+
 	public int getQtde_despesas() {
 
 		return qtde_despesas;
 	}
-
-
 
 	public void aumentar_qtde_despesas() {
 
 		this.qtde_despesas++;
 	}
 
-
-
 	public int getQtde_pessoas() {
 
 		return qtde_pessoas;
 	}
-
-
 
 	public void setQtde_pessoas(int qtde_pessoas) {
 
@@ -57,28 +49,20 @@ public class Grupo {
 		return pessoas;
 	}
 
-
-
 	public void setPessoas(ArrayList<Pessoa> pessoas) {
 
 		this.pessoas = pessoas;
 	}
-
-
 
 	public ArrayList<Despesa> getDespesas() {
 
 		return despesas;
 	}
 
-
-
 	public void setDespesas(ArrayList<Despesa> despesas) {
 
 		this.despesas = despesas;
 	}
-
-
 
 	public Pessoa getNova_pessoa() {
 
@@ -125,69 +109,55 @@ public class Grupo {
 		return id;
 	}
 
-
-
-
 	public void setId(int id) {
 
 		this.id = id;
 	}
-
-
-
 
 	public int getMax_pessoas() {
 
 		return max_pessoas;
 	}
 
-
-
-
 	public void setMax_pessoas(int qtde_pessoas) {
 		this.max_pessoas = qtde_pessoas;
 	}
 
-
-
-
 	public void add_pessoa() {
-		if(qtde_pessoas < max_pessoas){
-			
+		if (qtde_pessoas < max_pessoas) {
+
 			pessoas.add(this.nova_pessoa);
 			qtde_pessoas++;
-		}
-		else{
+		} else {
 			System.out.println("Tá cheio");
 		}
 
 	}
-	
+
 	public void definir_saldos() {
-		for(int i = 0; i < max_pessoas; i++) {
+		for (int i = 0; i < max_pessoas; i++) {
 			pessoas.get(i).setSaldo(this.despesa_dividida);
 		}
 	}
 
 	public void dividir_despesas() {
-		for(int i = 0; i < max_pessoas; i++) {
-			this.despesa_dividida =  this.despesa_dividida + pessoas.get(i).getTotal_despesa();
+		for (int i = 0; i < max_pessoas; i++) {
+			this.despesa_dividida = this.despesa_dividida + pessoas.get(i).getTotal_despesa();
 		}
-		
-		this.despesa_dividida = (this.despesa_dividida)/max_pessoas;
-		
+
+		this.despesa_dividida = (this.despesa_dividida) / max_pessoas;
+
 	}
 
 	public String[] mostrar_dividas() {
 		String dividas[] = new String[max_pessoas];
 		int j = 0;
-		for(int i = 0; i < max_pessoas; i++) {
-			if(pessoas.get(i).getSaldo() < 0) {
+		for (int i = 0; i < max_pessoas; i++) {
+			if (pessoas.get(i).getSaldo() < 0) {
 				dividas[j] = (pessoas.get(i).getNome() + "deve ao grupo" + "R$" + abs(pessoas.get(i).getSaldo()));
 				j++;
-			}
-			else{
-				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome()  + "R$" + abs(pessoas.get(i).getSaldo()));
+			} else {
+				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome() + "R$" + abs(pessoas.get(i).getSaldo()));
 				j++;
 			}
 		}
@@ -197,17 +167,17 @@ public class Grupo {
 
 	public void add_compras() {
 		despesas.add(nova_compra);
-		for(int i = 0; i < max_pessoas; i++) {
-			if(nova_compra.getId_pagador() == pessoas.get(i).getId()) {
+		for (int i = 0; i < max_pessoas; i++) {
+			if (nova_compra.getId_pagador() == pessoas.get(i).getId()) {
 				pessoas.get(i).setTotal_despesa(nova_compra.getValor());
 			}
 		}
 	}
 
-	public void add_imovel(){
+	public void add_imovel() {
 		despesas.add(novo_imovel);
-		for(int i = 0; i < max_pessoas; i++) {
-			if(novo_imovel.getId_pagador() == pessoas.get(i).getId()) {
+		for (int i = 0; i < max_pessoas; i++) {
+			if (novo_imovel.getId_pagador() == pessoas.get(i).getId()) {
 				pessoas.get(i).setTotal_despesa(novo_imovel.getValor());
 			}
 		}

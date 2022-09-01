@@ -1,7 +1,5 @@
 package view;
 
-import model.model_database.Database;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -11,6 +9,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+import model.model_database.Database;
+
 public class Menu extends JFrame implements ActionListener {
 
 	private final JLabel label_titulo = new JLabel("Despesas entre amigos");
@@ -19,9 +19,8 @@ public class Menu extends JFrame implements ActionListener {
 	private final JButton add_compra = new JButton("Adicionar Compra");
 	private final JButton add_imovel = new JButton("Adicionar Imovel");
 	private final JButton mostrar_divida = new JButton("Mostrar Divida");
-	private final JButton mostrar_cadastros = new JButton("Mostrar cadastros");
-	private final JButton deletar_grupo = new JButton("Deletar Grupo");
-	
+	private final JButton mostrar_grupos_cadastros = new JButton("Grupos cadastrados");
+	private final JButton mostrar_pessoas_cadastradas = new JButton("Pessoas cadastradas");
 
 	public Menu() {
 		super("Divisão de Despesas entre amigos");
@@ -54,15 +53,15 @@ public class Menu extends JFrame implements ActionListener {
 		mostrar_divida.setForeground(new Color(222, 222, 245));
 		mostrar_divida.addActionListener(this);
 
-		mostrar_cadastros.setBounds(160, 270, 180, 30);
-		mostrar_cadastros.setBackground(new Color(108, 112, 139));
-		mostrar_cadastros.setForeground(new Color(222, 222, 245));
-		mostrar_cadastros.addActionListener(this);
+		mostrar_grupos_cadastros.setBounds(160, 270, 180, 30);
+		mostrar_grupos_cadastros.setBackground(new Color(108, 112, 139));
+		mostrar_grupos_cadastros.setForeground(new Color(222, 222, 245));
+		mostrar_grupos_cadastros.addActionListener(this);
 
-		deletar_grupo.setBounds(160, 310, 180, 30);
-		deletar_grupo.setBackground(new Color(108, 112, 139));
-		deletar_grupo.setForeground(new Color(222, 222, 245));
-		deletar_grupo.addActionListener(this);
+		mostrar_pessoas_cadastradas.setBounds(160, 310, 180, 30);
+		mostrar_pessoas_cadastradas.setBackground(new Color(108, 112, 139));
+		mostrar_pessoas_cadastradas.setForeground(new Color(222, 222, 245));
+		mostrar_pessoas_cadastradas.addActionListener(this);
 
 		setLayout(null);
 
@@ -72,8 +71,8 @@ public class Menu extends JFrame implements ActionListener {
 		add(add_compra);
 		add(add_imovel);
 		add(mostrar_divida);
-		add(deletar_grupo);
-		add(mostrar_cadastros);
+		add(mostrar_pessoas_cadastradas);
+		add(mostrar_grupos_cadastros);
 
 		setSize(520, 420);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -87,25 +86,25 @@ public class Menu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == add_grupo) {
-			Add_grupo add_grupo = new Add_grupo();
+			new Add_grupo();
 		}
 		if (e.getSource() == add_pessoa) {
-			Add_pessoa add_pessoa = new Add_pessoa();
+			new Add_pessoa();
 		}
 		if (e.getSource() == add_compra) {
-			Add_compra add_compra = new Add_compra();
+			new Add_compra();
 		}
 		if (e.getSource() == add_imovel) {
-			Add_imovel add_imovel = new Add_imovel();
+			new Add_imovel();
 		}
 		if (e.getSource() == mostrar_divida) {
-			MostrarDividas mostrarDividas = new MostrarDividas();
+			new MostrarDividas();
 		}
-		if (e.getSource() == mostrar_cadastros) {
+		if (e.getSource() == mostrar_grupos_cadastros) {
 			new CadastrosGrupo().mostrarDados();
 		}
-		if (e.getSource() == deletar_grupo) {
-			DeletarGrupo deletarGrupo = new DeletarGrupo();
+		if (e.getSource() == mostrar_pessoas_cadastradas){
+			new MenuCadastrosPessoa();
 		}
 		dispose();
 	}

@@ -4,26 +4,28 @@ package view;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import model.model_database.Database;
 
-public class DeletarGrupo extends JFrame implements ActionListener {
 
-    private  final  JLabel titulo = new JLabel("Cadastre as seguintes informações");
+public class MenuCadastrosPessoa extends JFrame implements ActionListener {
+
+    private  final  JLabel titulo = new JLabel("Insira o ID do grupo para ver as pessoas cadastradas");
     private  final  JLabel labelId = new JLabel("ID do grupo: ");
-    private JTextField id = new JTextField();
+    private JTextField id_grupo = new JTextField();
     private  final  JButton voltar = new JButton("Voltar");
-    private  final  JButton del = new JButton("Deletar");
+    private  final  JButton ok = new JButton("OK");
 
 
 
-    public DeletarGrupo(){
+    public MenuCadastrosPessoa(){
         super("Deletar Grupo");
 
-        titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
-        titulo.setBounds(90, 10, 400, 40);
+        titulo.setFont(new Font(("Verdana"), Font.PLAIN, 17));
+        titulo.setBounds(40, 10, 500, 40);
 
 
         labelId.setBounds(40, 70, 420, 30);
-        id.setBounds(130, 70, 360, 30);
+        id_grupo.setBounds(130, 70, 360, 30);
 
 
         voltar.setBounds(70, 130, 180, 30);
@@ -31,17 +33,17 @@ public class DeletarGrupo extends JFrame implements ActionListener {
         voltar.setForeground(new Color(222, 222, 245));
         voltar.addActionListener(this);
 
-        del.setBounds(260, 130, 180, 30);
-        del.setBackground(new Color(108, 112, 139));
-        del.setForeground(new Color(222, 222, 245));
+        ok.setBounds(260, 130, 180, 30);
+        ok.setBackground(new Color(108, 112, 139));
+        ok.setForeground(new Color(222, 222, 245));
 
 
         setLayout(null);
         add(titulo);
         add(labelId);
-        add(id);
+        add(id_grupo);
         add(voltar);
-        add(del);
+        add(ok);
 
         setSize(520, 220);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,5 +58,9 @@ public class DeletarGrupo extends JFrame implements ActionListener {
             dispose();
         }
 
+    }
+
+    public static void main(String[] args) {
+        new MenuCadastrosPessoa();
     }
 }
