@@ -57,6 +57,11 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
+		
+		if(e.getValueIsAdjusting() && src == listaGruposCadastrados) {
+			new DetalheGrupo(listaGruposCadastrados.getSelectedIndex());
+			dispose();
+		}
 	}
 
 }

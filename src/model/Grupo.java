@@ -120,8 +120,8 @@ public class Grupo {
 		return max_pessoas;
 	}
 
-	public void setMax_pessoas(int qtde_pessoas) {
-		this.max_pessoas = qtde_pessoas;
+	public void setMax_pessoas(int max_pessoas) {
+		this.max_pessoas = max_pessoas;
 	}
 
 	public void add_pessoa() {
