@@ -1,12 +1,15 @@
 package view;
 
-import controller.ControleGrupo;
-import model.model_database.Database;
+import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.*;
-import java.awt.event.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+
+import controller.ControleGrupo;
+import model.model_database.Database;
 
 
 public class CadastrosPessoa extends JFrame implements ActionListener, ListSelectionListener {
@@ -29,14 +32,13 @@ public class CadastrosPessoa extends JFrame implements ActionListener, ListSelec
 
         setSize(400, 390);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        getContentPane().setBackground(new Color(255, 255, 255));
+        getContentPane().setBackground(new Color(187, 190, 210, 215));
         setLocationRelativeTo(null);
         setLayout(null);
         setVisible(true);
     }
-    public void mostrarDados(){
-        listaNomes = ControleGrupo.getNomeGrupo();
-        listaPessoasCadastradas = new JList<>(listaNomes);
+    public void mostrarDados(String[] getNomePessoa){
+        listaPessoasCadastradas = new JList<>(getNomePessoa);
         listaPessoasCadastradas.setBounds(17, 40, 350, 170);
         listaPessoasCadastradas.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         listaPessoasCadastradas.addListSelectionListener(this);
@@ -44,8 +46,8 @@ public class CadastrosPessoa extends JFrame implements ActionListener, ListSelec
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource()== Button_voltar){
-            Menu menu = new Menu();
+        if (e.getSource() == Button_voltar) {
+            new MenuCadastrosPessoa();
             dispose();
         }
     }

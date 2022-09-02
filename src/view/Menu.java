@@ -79,7 +79,7 @@ public class Menu extends JFrame implements ActionListener {
 		setVisible(true);
 		setResizable(true);
 		setLocationRelativeTo(null);// Centraliza o JFrame
-		getContentPane().setBackground(new Color(255, 255, 255));
+		getContentPane().setBackground(new Color(227, 227, 236));
 
 	}
 

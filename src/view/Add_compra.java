@@ -119,6 +119,8 @@ public class Add_compra extends JFrame implements ActionListener {
 		                		
 		                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
 		 														"Cadastro", JOptionPane.PLAIN_MESSAGE);
+                                dispose();
+                                new Add_compra();
 		                		
 		                		break;
 	                		}
@@ -127,6 +129,9 @@ public class Add_compra extends JFrame implements ActionListener {
                 				JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
          								"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 	                			acabou = true;
+
+                                dispose();
+                                new Add_compra();
 	                		}
 	  
                 		}
@@ -140,6 +145,8 @@ public class Add_compra extends JFrame implements ActionListener {
                 		//Nao achou o grupo
                 		JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou grupo com o ID inserido", 
                         								"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+                        dispose();
+                        new Add_compra();
                 	}
                 }
 
@@ -147,6 +154,8 @@ public class Add_compra extends JFrame implements ActionListener {
             catch(NumberFormatException exception){
             	JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
                 								"Erro", JOptionPane.PLAIN_MESSAGE);
+                dispose();
+                new Add_compra();
             }
         }
     }

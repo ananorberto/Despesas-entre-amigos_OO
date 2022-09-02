@@ -100,15 +100,21 @@ public class Add_grupo extends JFrame implements ActionListener {
 	
 					JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
 							JOptionPane.PLAIN_MESSAGE);
+					dispose();
+					new Add_grupo();
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse ID",
 													"ID repetido", JOptionPane.PLAIN_MESSAGE);
+					dispose();
+					new Add_grupo();
 				}
 			} catch (NumberFormatException exception) {
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
 												"Erro", JOptionPane.PLAIN_MESSAGE);
 				System.out.println("...");
+				dispose();
+				new Add_grupo();
 			}
 		}
 	}

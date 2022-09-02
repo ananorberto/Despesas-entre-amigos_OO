@@ -35,12 +35,12 @@ public class Database {
 		return qtde_grupos;
 	}
 
+
 	public static void aumentar_contador_grupos() {
 		qtde_grupos = qtde_grupos + 1;
 	}
 
 	public static List<Grupo> getGrupos() {
-
 		return GRUPOS;
 	}
 
@@ -87,8 +87,7 @@ public class Database {
 		GRUPOS.get(2).getDespesas().add(i3);
 		GRUPOS.get(2).getPessoas().get(1).setTotal_despesa(i3.getValor());
 		GRUPOS.get(2).aumentar_qtde_despesas();
-		
-		
+
 		
 		qtde_grupos = 3;
 	}

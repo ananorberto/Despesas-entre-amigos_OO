@@ -28,7 +28,7 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 
 		setSize(400, 390);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		getContentPane().setBackground(new Color(255, 255, 255));
+		getContentPane().setBackground(new Color(187, 190, 210, 215));
 		setLocationRelativeTo(null);
 		setLayout(null);
 		setVisible(true);
@@ -47,7 +47,7 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource()== Button_voltar){
+		if (e.getSource() == Button_voltar){
 			Menu menu = new Menu();
 			dispose();
 		}
@@ -57,6 +57,11 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
 		Object src = e.getSource();
+	}
+
+	public static void main(String[] args) {
+		Database.pre_cadastrar_grupos();
+		new CadastrosGrupo();
 	}
 
 }
