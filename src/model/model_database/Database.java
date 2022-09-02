@@ -34,6 +34,10 @@ public class Database {
 	public static int getQtde_grupos() {
 		return qtde_grupos;
 	}
+	
+	public static void diminuir_Qtde_grupos() {
+		qtde_grupos = qtde_grupos -1;
+	}
 
 
 	public static void aumentar_contador_grupos() {
