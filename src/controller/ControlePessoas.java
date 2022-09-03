@@ -21,6 +21,7 @@ public class ControlePessoas {
 	public static void cadastrarPessoa(String nomeString, String id_userString, String cpfString, String id_grupoString) {
     	try {
             boolean nao_repete = true;
+            boolean grupoCheio;
     		int id_user = Integer.parseInt(id_userString);
             int id_grupo = Integer.parseInt(id_grupoString);
             
@@ -47,9 +48,12 @@ public class ControlePessoas {
                 		Pessoa new_user = new Pessoa(cpfString, nomeString, id_user);
                 		
                 		Database.getGrupos().get(i).setNova_pessoa(new_user);
-                		Database.getGrupos().get(i).add_pessoa();
-                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
- 														"Cadastro", JOptionPane.PLAIN_MESSAGE);
+                		grupoCheio = Database.getGrupos().get(i).add_pessoa();
+                		
+                		if(grupoCheio == false) {
+                			JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
+ 															"Cadastro", JOptionPane.PLAIN_MESSAGE);
+                		}
                 		
                 		break;
                 	}

@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 import static java.lang.Math.abs;
 import static java.lang.String.format;
@@ -13,8 +14,6 @@ public class Grupo {
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
 	private Pessoa nova_pessoa;
 	private ArrayList<Despesa> despesas = new ArrayList<Despesa>();
-	private Compra nova_compra;
-	private Imovel novo_imovel;
 	private double despesa_dividida;
 	int qtde_pessoas = 0;
 	int qtde_despesas = 0;
@@ -79,26 +78,6 @@ public class Grupo {
 		this.nova_pessoa = nova_pessoa;
 	}
 
-	public Compra getNova_compra() {
-
-		return nova_compra;
-	}
-
-	public void setNova_compra(Compra nova_compra) {
-
-		this.nova_compra = nova_compra;
-	}
-
-	public Imovel getNovo_imovel() {
-
-		return novo_imovel;
-	}
-
-	public void setNovo_imovel(Imovel novo_imovel) {
-
-		this.novo_imovel = novo_imovel;
-	}
-
 	public String getNome() {
 
 		return nome;
@@ -128,13 +107,16 @@ public class Grupo {
 		this.max_pessoas = max_pessoas;
 	}
 
-	public void add_pessoa() {
+	public boolean add_pessoa() {
 		if (qtde_pessoas < max_pessoas) {
 
 			pessoas.add(this.nova_pessoa);
 			qtde_pessoas++;
+			return false;
 		} else {
-			System.out.println("Tá cheio");
+			JOptionPane.showMessageDialog(null, "O grupo escolhido está cheio", 
+						"Erro", JOptionPane.PLAIN_MESSAGE);
+			return true;
 		}
 
 	}

@@ -9,7 +9,7 @@ import model.model_database.Database;
 
 public class ControleGrupo {
 
-    public ControleGrupo(Database database) {
+    public ControleGrupo() {
     }
 
     public static String[] getNomeGrupo() {
