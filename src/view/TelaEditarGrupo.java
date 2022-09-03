@@ -5,12 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import controller.ControleGrupo;
 import model.model_database.Database;
 
-public class DetalheGrupo extends JFrame implements ActionListener {
+public class TelaEditarGrupo extends JFrame implements ActionListener {
 
 	private JLabel labelNome = new JLabel("Nome: ");
 	private JTextField valorNome;
@@ -21,7 +18,7 @@ public class DetalheGrupo extends JFrame implements ActionListener {
 	private JButton botaoVoltar = new JButton("Voltar");
 	private int posicao;
 	
-	public DetalheGrupo(int pos) {
+	public TelaEditarGrupo(int pos) {
 		super("Detalhes do Grupo");
 		
 		posicao = pos;
@@ -47,6 +44,7 @@ public class DetalheGrupo extends JFrame implements ActionListener {
 		add(valorMaxPessoas);
 		
 		setLayout(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setSize(400, 250);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -57,17 +55,11 @@ public class DetalheGrupo extends JFrame implements ActionListener {
 		
 	}
 	
-	
-
-	
-	
-	
-	
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if(src == botaoVoltar) {
-			new CadastrosGrupo().mostrarDados();
+			new TelaListagemGrupos().mostrarDados();
 			dispose();
 		}
 		else if(src == botaoSalvar) {
@@ -103,7 +95,7 @@ public class DetalheGrupo extends JFrame implements ActionListener {
 			Database.diminuir_Qtde_grupos();
 			JOptionPane.showMessageDialog(null, "Grupo removido",  "Deletar",
 					JOptionPane.PLAIN_MESSAGE);
-			new CadastrosGrupo().mostrarDados();
+			new TelaListagemGrupos().mostrarDados();
 			dispose();
 			
 			
@@ -111,6 +103,4 @@ public class DetalheGrupo extends JFrame implements ActionListener {
 		
 	}
 
-	
-	
 }

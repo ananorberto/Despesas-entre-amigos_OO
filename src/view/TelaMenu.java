@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 
 import model.model_database.Database;
 
-public class Menu extends JFrame implements ActionListener {
+public class TelaMenu extends JFrame implements ActionListener {
 
 	private final JLabel label_titulo = new JLabel("Despesas entre amigos");
 	private final JButton add_grupo = new JButton("Cadastrar Grupo");
@@ -22,7 +22,7 @@ public class Menu extends JFrame implements ActionListener {
 	private final JButton mostrar_grupos_cadastros = new JButton("Grupos cadastrados");
 	private final JButton mostrar_pessoas_cadastradas = new JButton("Pessoas cadastradas");
 
-	public Menu() {
+	public TelaMenu() {
 		super("Divisão de Despesas entre amigos");
 
 		label_titulo.setFont(new Font(("Verdana"), Font.PLAIN, 25));
@@ -86,31 +86,31 @@ public class Menu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == add_grupo) {
-			new Add_grupo();
+			new TelaAddGrupo();
 		}
 		if (e.getSource() == add_pessoa) {
-			new Add_pessoa();
+			new TelaAddPessoa();
 		}
 		if (e.getSource() == add_compra) {
-			new Add_compra();
+			new TelaAddCompra();
 		}
 		if (e.getSource() == add_imovel) {
-			new Add_imovel();
+			new TelaAddImovel();
 		}
 		if (e.getSource() == mostrar_divida) {
-			new MostrarDividas();
+			new TelaMostrarDividas();
 		}
 		if (e.getSource() == mostrar_grupos_cadastros) {
-			new CadastrosGrupo().mostrarDados();
+			new TelaListagemGrupos().mostrarDados();
 		}
 		if (e.getSource() == mostrar_pessoas_cadastradas){
-			new MenuCadastrosPessoa();
+			new TelaListagemPessoas(0);
 		}
 		dispose();
 	}
 
 	public static void main(String[] args) {
 		Database.pre_cadastrar_grupos();
-		Menu menu = new Menu();
+		new TelaMenu();
 	}
 }

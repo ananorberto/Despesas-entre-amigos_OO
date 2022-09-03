@@ -10,20 +10,20 @@ import javax.swing.event.ListSelectionListener;
 import controller.ControleGrupo;
 import model.model_database.Database;
 
-public class CadastrosGrupo extends JFrame implements ActionListener, ListSelectionListener{
+public class TelaListagemGrupos extends JFrame implements ActionListener, ListSelectionListener{
 
 	private JList<String> listaGruposCadastrados;
 	private String[] listaNomes = new String[Database.getQtde_grupos()];
-	private JButton Button_voltar = new JButton("Voltar");
+	private JButton button_voltar = new JButton("Voltar");
 
-	public CadastrosGrupo() {
+	public TelaListagemGrupos() {
 		super("Mostrar Grupos Cadastrados");
 
-		Button_voltar.setBounds(120, 290, 180, 30);
-		Button_voltar.setBackground(new Color(108, 112, 139));
-		Button_voltar.setForeground(new Color(222, 222, 245));
-		Button_voltar.addActionListener(this);
-		add(Button_voltar);
+		button_voltar.setBounds(120, 290, 180, 30);
+		button_voltar.setBackground(new Color(108, 112, 139));
+		button_voltar.setForeground(new Color(222, 222, 245));
+		button_voltar.addActionListener(this);
+		add(button_voltar);
 
 
 		setSize(400, 390);
@@ -47,8 +47,8 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == Button_voltar){
-			Menu menu = new Menu();
+		if (e.getSource() == button_voltar){
+			TelaMenu menu = new TelaMenu();
 			dispose();
 		}
 
@@ -59,14 +59,9 @@ public class CadastrosGrupo extends JFrame implements ActionListener, ListSelect
 		Object src = e.getSource();
 		
 		if(e.getValueIsAdjusting() && src == listaGruposCadastrados) {
-			new DetalheGrupo(listaGruposCadastrados.getSelectedIndex());
+			new TelaEditarGrupo(listaGruposCadastrados.getSelectedIndex());
 			dispose();
 		}
-	}
-
-	public static void main(String[] args) {
-		Database.pre_cadastrar_grupos();
-		new CadastrosGrupo();
 	}
 
 }

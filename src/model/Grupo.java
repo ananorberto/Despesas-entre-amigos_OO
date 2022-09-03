@@ -25,6 +25,10 @@ public class Grupo {
 		this.id = id;
 	}
 
+	public void diminuir_qtde_pessoas() {
+		this.qtde_pessoas = this.qtde_pessoas - 1;
+	}
+	
 	public int getQtde_despesas() {
 
 		return qtde_despesas;

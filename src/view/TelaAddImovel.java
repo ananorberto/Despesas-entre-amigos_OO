@@ -8,13 +8,11 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import model.*;
-import model.model_database.Database;
+import controller.*;
 
-public class Add_imovel extends JFrame implements ActionListener {
+public class TelaAddImovel extends JFrame implements ActionListener {
 
 	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
 	private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
@@ -34,7 +32,7 @@ public class Add_imovel extends JFrame implements ActionListener {
 	private final JButton Button_cadastrar = new JButton("Cadastrar");
 	private final JButton Button_voltar = new JButton("Voltar");
 
-	public Add_imovel() {
+	public TelaAddImovel() {
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
 		titulo.setBounds(90, 10, 400, 40);
 
@@ -100,7 +98,7 @@ public class Add_imovel extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == Button_voltar) {
-			Menu menu = new Menu();
+			TelaMenu menu = new TelaMenu();
 			dispose();
 		}
 		else if(e.getSource() == Button_cadastrar) {
@@ -112,62 +110,11 @@ public class Add_imovel extends JFrame implements ActionListener {
 			String dataString = data.getText();
 			String id_pagadorString = id_pagador.getText();
 			String id_grupoString = id_grupo.getText();
-			boolean acabou = false;
 			
-			 try {
-	                int id_pagadorInt = Integer.parseInt(id_pagadorString);
-	                int id_grupoInt = Integer.parseInt(id_grupoString);
-	                double conta_luzDouble = Double.parseDouble(conta_luzString);
-	                double conta_aguaDouble = Double.parseDouble(conta_aguaString);
-	                double aluguelDouble = Double.parseDouble(aluguelString);
-
-	                for(int i = 0; i < Database.getQtde_grupos(); i++) {
-	                	if( Database.getGrupos().get(i).getId() == id_grupoInt) {
-	                		//Achou o grupo
-	                		for(int j = 0; j < Database.getGrupos().get(i).getQtde_pessoas(); j++) {
-	                			if(Database.getGrupos().get(i).getPessoas().get(j).getId() == id_pagadorInt) {
-	                				//Achou a pessoa
-	                				acabou = true;
-		                			Imovel novo_imovel = new Imovel(enderecoString, conta_luzDouble, conta_aguaDouble, 
-		                											aluguelDouble, dataString, id_pagadorInt, id_grupoInt);
-		                			
-			                		novo_imovel.somar_gastos();
-		                			
-		                			Database.getGrupos().get(i).getDespesas().add(novo_imovel);
-			                		Database.getGrupos().get(i).aumentar_qtde_despesas();
-			                		Database.getGrupos().get(i).getPessoas().get(j).setTotal_despesa(novo_imovel.getValor());
-			                		
-			                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
-			 														"Cadastro", JOptionPane.PLAIN_MESSAGE);
-			                		
-			                		break;
-		                		}
-	                			else if(j == (Database.getGrupos().get(i).getQtde_despesas() - 1)){
-	                				//Nao achou a pessoa
-	                				JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
-	                						"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
-		                			acabou = true;
-		                		}
-		  
-	                		}
-	                		if(acabou == true) {
-	                			//Parar de procurar os grupos assim que encontrar a pessoa
-	                			break;
-	                		}
-	                	
-	                	}
-	                	else if(i == (Database.getQtde_grupos() - 1)) {
-	                		//Nao achou o grupo
-	                		JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
-	                											"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
-	                	}
-	                }
-
-	            }
-	            catch(NumberFormatException exception){
-	            	JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
-	                								"Erro", JOptionPane.PLAIN_MESSAGE);
-	            }
+			ControleDespesa.cadastrarImovel(enderecoString, conta_luzString, conta_aguaString, aluguelString, 
+											dataString, id_pagadorString, id_grupoString);
+			
+			
 		}
 	}
 }

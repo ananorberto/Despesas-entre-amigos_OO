@@ -11,7 +11,7 @@ import javax.swing.event.ListSelectionListener;
 import controller.ControleGrupo;
 import model.model_database.*;
 
-public class MostrarDividas extends JFrame implements ActionListener, ListSelectionListener {
+public class TelaMostrarDividas extends JFrame implements ActionListener, ListSelectionListener {
 
     private  final JLabel titulo = new JLabel("Cadastre as seguintes informações");
     private  final JLabel labelId = new JLabel("ID do grupo: ");
@@ -24,7 +24,7 @@ public class MostrarDividas extends JFrame implements ActionListener, ListSelect
     private  final  JButton voltar = new JButton("Voltar");
 
 
-    public MostrarDividas(){
+    public TelaMostrarDividas(){
         super("Mostrar dividas");
 
         titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
@@ -73,7 +73,7 @@ public class MostrarDividas extends JFrame implements ActionListener, ListSelect
     
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == voltar) {
-            Menu menu = new Menu();
+            TelaMenu menu = new TelaMenu();
             dispose();
         }
         else if(e.getSource() == consultar) {
@@ -88,7 +88,7 @@ public class MostrarDividas extends JFrame implements ActionListener, ListSelect
 	        			Database.getGrupos().get(i).definir_saldos();
 	        			String dividas[] = new String[Database.getGrupos().get(i).getQtde_pessoas()];
 	        			dividas = Database.getGrupos().get(i).mostrar_dividas();
-	        			new MostrarDividas().mostrarDados(i, dividas);
+	        			new TelaMostrarDividas().mostrarDados(i, dividas);
 	        			System.out.println("Foi");
 	        			dispose();
 	        			break;
@@ -109,13 +109,8 @@ public class MostrarDividas extends JFrame implements ActionListener, ListSelect
 
     }
     
-    public static void main(String[] args) {
-    	MostrarDividas tela = new MostrarDividas();
-    }
-
 	@Override
 	public void valueChanged(ListSelectionEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 
