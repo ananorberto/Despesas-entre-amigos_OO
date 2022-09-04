@@ -2,47 +2,45 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import database.Database;
 import model.Compra;
 import model.Imovel;
-import model.model_database.Database;
 
 public class ControleDespesa {
 
-	public ControleDespesa() {
-		
+	public ControleDespesa() {	
 	}
 	
-	public static void cadastrarCompra(String nome_mercadoString, String id_pagadorString, String id_grupoString,
+	public static void cadastrarCompra(String nomeMercadoString, String idPagadorString, String idGrupoString,
 										String itensString, String valorString, String dataString) {
 		 try {
 			 boolean acabou = false;
-             int id_pagadorInt = Integer.parseInt(id_pagadorString);
-             int id_grupoInt = Integer.parseInt(id_grupoString);
+             int idPagadorInt = Integer.parseInt(idPagadorString);
+             int idGrupoInt = Integer.parseInt(idGrupoString);
              double valorDouble = Double.parseDouble(valorString);
              
-             for(int i = 0; i < Database.getQtde_grupos(); i++) {
-             	if( Database.getGrupos().get(i).getId() == id_grupoInt) {
+             for(int i = 0; i < Database.getQtdeGrupos(); i++) {
+             	if( Database.getGrupos().get(i).getId() == idGrupoInt) {
              		//Achou o grupo
-             		for(int j = 0; j < Database.getGrupos().get(i).getQtde_pessoas(); j++) {
-             			if(Database.getGrupos().get(i).getPessoas().get(j).getId() == id_pagadorInt) {
+             		for(int j = 0; j < Database.getGrupos().get(i).getQtdePessoas(); j++) {
+             			if(Database.getGrupos().get(i).getPessoas().get(j).getId() == idPagadorInt) {
              				//Achou a pessoa
              				acabou = true;
-	                			Compra nova_compra = new Compra(nome_mercadoString, valorDouble, dataString, 
-		                											id_pagadorInt, id_grupoInt, itensString);
-		                		Database.getGrupos().get(i).getDespesas().add(nova_compra);
-		                		Database.getGrupos().get(i).aumentar_qtde_despesas();	                		
-		                		Database.getGrupos().get(i).getPessoas().get(j).setTotal_despesa(valorDouble);
+	                			Compra novaCompra = new Compra(nomeMercadoString, valorDouble, dataString, 
+		                										idPagadorInt, idGrupoInt, itensString);
+		                		Database.getGrupos().get(i).getDespesas().add(novaCompra);
+		                		Database.getGrupos().get(i).aumentarQtdeDespesas();	                		
+		                		Database.getGrupos().get(i).getPessoas().get(j).setTotalDespesa(valorDouble);
 		                		
 		                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
-		 														"Cadastro", JOptionPane.PLAIN_MESSAGE);
+		 													  "Cadastro", JOptionPane.PLAIN_MESSAGE);
                              
-		                		
 		                		break;
 	                		}
-             			else if(j == (Database.getGrupos().get(i).getQtde_despesas() - 1)){
+             			else if(j == (Database.getGrupos().get(i).getQtdeDespesas() - 1)){
              				//Nao achou a pessoa
              				JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
-      								"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+      													  "Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 	                			acabou = true;
 
                              
@@ -55,10 +53,10 @@ public class ControleDespesa {
              		}
              	
              	}
-             	else if(i == (Database.getQtde_grupos() - 1)) {
+             	else if(i == (Database.getQtdeGrupos() - 1)) {
              		//Nao achou o grupo
              		JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou grupo com o ID inserido", 
-                     								"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+                     							  "Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
                      
              	}
              }
@@ -66,48 +64,48 @@ public class ControleDespesa {
          }
          catch(NumberFormatException exception){
          	JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
-             								"Erro", JOptionPane.PLAIN_MESSAGE);
+             							  "Erro", JOptionPane.PLAIN_MESSAGE);
              
          }
 		
 	}
 	
-	public static void cadastrarImovel(String enderecoString, String conta_luzString, String conta_aguaString, 
-						String aluguelString, String dataString, String id_pagadorString, String id_grupoString) {
+	public static void cadastrarImovel(String enderecoString, String contaLuzString, String contaAguaString, 
+									   String aluguelString, String dataString, String idPagadorString, String idGrupoString) {
 		
 		 try {
 			 boolean acabou = false;
-             int id_pagadorInt = Integer.parseInt(id_pagadorString);
-             int id_grupoInt = Integer.parseInt(id_grupoString);
-             double conta_luzDouble = Double.parseDouble(conta_luzString);
-             double conta_aguaDouble = Double.parseDouble(conta_aguaString);
+             int idPagadorInt = Integer.parseInt(idPagadorString);
+             int idGrupoInt = Integer.parseInt(idGrupoString);
+             double contaLuzDouble = Double.parseDouble(contaLuzString);
+             double contaAguaDouble = Double.parseDouble(contaAguaString);
              double aluguelDouble = Double.parseDouble(aluguelString);
 
-             for(int i = 0; i < Database.getQtde_grupos(); i++) {
-             	if( Database.getGrupos().get(i).getId() == id_grupoInt) {
+             for(int i = 0; i < Database.getQtdeGrupos(); i++) {
+             	if( Database.getGrupos().get(i).getId() == idGrupoInt) {
              		//Achou o grupo
-             		for(int j = 0; j < Database.getGrupos().get(i).getQtde_pessoas(); j++) {
-             			if(Database.getGrupos().get(i).getPessoas().get(j).getId() == id_pagadorInt) {
+             		for(int j = 0; j < Database.getGrupos().get(i).getQtdePessoas(); j++) {
+             			if(Database.getGrupos().get(i).getPessoas().get(j).getId() == idPagadorInt) {
              				//Achou a pessoa
              				acabou = true;
-	                			Imovel novo_imovel = new Imovel(enderecoString, conta_luzDouble, conta_aguaDouble, 
-	                											aluguelDouble, dataString, id_pagadorInt, id_grupoInt);
+	                			Imovel novoImovel = new Imovel(enderecoString, contaLuzDouble, contaAguaDouble, 
+	                											aluguelDouble, dataString, idPagadorInt, idGrupoInt);
 	                			
-		                		novo_imovel.somar_gastos();
+		                		novoImovel.somar_gastos();
 	                			
-	                			Database.getGrupos().get(i).getDespesas().add(novo_imovel);
-		                		Database.getGrupos().get(i).aumentar_qtde_despesas();
-		                		Database.getGrupos().get(i).getPessoas().get(j).setTotal_despesa(novo_imovel.getValor());
+	                			Database.getGrupos().get(i).getDespesas().add(novoImovel);
+		                		Database.getGrupos().get(i).aumentarQtdeDespesas();
+		                		Database.getGrupos().get(i).getPessoas().get(j).setTotalDespesa(novoImovel.getValor());
 		                		
 		                		JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", 
-		 														"Cadastro", JOptionPane.PLAIN_MESSAGE);
+		 													  "Cadastro", JOptionPane.PLAIN_MESSAGE);
 		                		
 		                		break;
 	                		}
-             			else if(j == (Database.getGrupos().get(i).getQtde_despesas() - 1)){
+             			else if(j == (Database.getGrupos().get(i).getQtdeDespesas() - 1)){
              				//Nao achou a pessoa
              				JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
-             						"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+             											  "Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 	                			acabou = true;
 	                		}
 	  
@@ -118,17 +116,17 @@ public class ControleDespesa {
              		}
              	
              	}
-             	else if(i == (Database.getQtde_grupos() - 1)) {
+             	else if(i == (Database.getQtdeGrupos() - 1)) {
              		//Nao achou o grupo
              		JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos", 
-             											"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+             									  "Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
              	}
              }
 
          }
          catch(NumberFormatException exception){
          	JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
-             								"Erro", JOptionPane.PLAIN_MESSAGE);
+             							  "Erro", JOptionPane.PLAIN_MESSAGE);
          }
 	}
 }

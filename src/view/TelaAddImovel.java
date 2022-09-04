@@ -16,21 +16,21 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 
 	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
 	private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
-	private final JTextField id_grupo = new JTextField();
+	private final JTextField idGrupo = new JTextField();
 	private final JLabel labelId = new JLabel("ID do Pagador: ");
-	private JTextField id_pagador = new JTextField();
+	private JTextField idPagador = new JTextField();
 	private final JLabel labelContaLuz = new JLabel("Valor da Conta de Luz: ");
-	private JTextField conta_luz = new JTextField();
+	private JTextField contaLuz = new JTextField();
 	private final JLabel labelContaAgua = new JLabel("Valor da Conta de Agua: ");
-	private JTextField conta_agua = new JTextField();
+	private JTextField contaAgua = new JTextField();
 	private final JLabel labelAluguel = new JLabel("Digite o valor do aluguel: ");
 	private JTextField aluguel = new JTextField();
 	private final JLabel labelEndereco = new JLabel("Endereço: ");
 	private JTextField endereco = new JTextField();
 	private final JLabel labelData = new JLabel("Data: ");
 	private JTextField data = new JTextField();
-	private final JButton Button_cadastrar = new JButton("Cadastrar");
-	private final JButton Button_voltar = new JButton("Voltar");
+	private final JButton cadastrar = new JButton("Cadastrar");
+	private final JButton voltar = new JButton("Voltar");
 
 	public TelaAddImovel() {
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
@@ -38,19 +38,19 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 
 		// CONFIGURAÇÃO PENDENTE
 		labelContaLuz.setBounds(50, 70, 420, 30);
-		conta_luz.setBounds(220, 70, 270, 30);
+		contaLuz.setBounds(220, 70, 270, 30);
 
 		labelContaAgua.setBounds(50, 110, 420, 30);
-		conta_agua.setBounds(225, 110, 265, 30);
+		contaAgua.setBounds(225, 110, 265, 30);
 
 		labelAluguel.setBounds(50, 150, 420, 30);
 		aluguel.setBounds(230, 150, 260, 30);
 
 		labelId.setBounds(50, 190, 420, 30);
-		id_pagador.setBounds(160, 190, 330, 30);
+		idPagador.setBounds(160, 190, 330, 30);
 
 		labelIdGrupo.setBounds(50, 230, 420, 30);
-		id_grupo.setBounds(160, 230, 330, 30);
+		idGrupo.setBounds(160, 230, 330, 30);
 
 		labelEndereco.setBounds(50, 270, 420, 30);
 		endereco.setBounds(130, 270, 360, 30);
@@ -58,30 +58,30 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 		labelData.setBounds(50, 310, 420, 30);
 		data.setBounds(100, 310, 390, 30);
 
-		Button_voltar.setBounds(70, 370, 180, 30);
-		Button_voltar.setBackground(new Color(108, 112, 139));
-		Button_voltar.setForeground(new Color(222, 222, 245));
-		Button_voltar.addActionListener(this);
+		voltar.setBounds(70, 370, 180, 30);
+		voltar.setBackground(new Color(108, 112, 139));
+		voltar.setForeground(new Color(222, 222, 245));
+		voltar.addActionListener(this);
 
-		Button_cadastrar.setBounds(260, 370, 180, 30);
-		Button_cadastrar.setBackground(new Color(108, 112, 139));
-		Button_cadastrar.setForeground(new Color(222, 222, 245));
-		Button_cadastrar.addActionListener(this);
+		cadastrar.setBounds(260, 370, 180, 30);
+		cadastrar.setBackground(new Color(108, 112, 139));
+		cadastrar.setForeground(new Color(222, 222, 245));
+		cadastrar.addActionListener(this);
 
 		setLayout(null);
 		add(titulo);
 		add(labelContaLuz);
-		add(conta_luz);
+		add(contaLuz);
 		add(labelContaAgua);
-		add(conta_agua);
+		add(contaAgua);
 		add(labelId);
-		add(id_pagador);
+		add(idPagador);
 		add(labelIdGrupo);
-		add(id_grupo);
+		add(idGrupo);
 		add(labelEndereco);
 		add(endereco);
-		add(Button_cadastrar);
-		add(Button_voltar);
+		add(cadastrar);
+		add(voltar);
 		add(labelData);
 		add(data);
 		add(labelAluguel);
@@ -97,22 +97,22 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == Button_voltar) {
+		if (e.getSource() == voltar) {
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		}
-		else if(e.getSource() == Button_cadastrar) {
+		else if(e.getSource() == cadastrar) {
 			 
 			String enderecoString = endereco.getText(); 
-			String conta_luzString = conta_luz.getText(); 
-			String conta_aguaString = conta_agua.getText();
+			String contaLuzString = contaLuz.getText(); 
+			String contaAguaString = contaAgua.getText();
 			String aluguelString = aluguel.getText();
 			String dataString = data.getText();
-			String id_pagadorString = id_pagador.getText();
-			String id_grupoString = id_grupo.getText();
+			String idPagadorString = idPagador.getText();
+			String idGrupoString = idGrupo.getText();
 			
-			ControleDespesa.cadastrarImovel(enderecoString, conta_luzString, conta_aguaString, aluguelString, 
-											dataString, id_pagadorString, id_grupoString);
+			ControleDespesa.cadastrarImovel(enderecoString, contaLuzString, contaAguaString, aluguelString, 
+											dataString, idPagadorString, idGrupoString);
 			
 			
 		}

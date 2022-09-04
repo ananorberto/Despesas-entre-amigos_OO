@@ -5,7 +5,7 @@ public class Pessoa {
 	private String cpf;
 	private String nome;
 	private int id;
-	private double total_despesa = 0;
+	private double totalDespesa = 0;
 	private double saldo;
 
 	public Pessoa(String cpf, String nome, int id) {
@@ -31,8 +31,8 @@ public class Pessoa {
 		return id;
 	}
 
-	public double getTotal_despesa() {
-		return total_despesa;
+	public double getTotalDespesa() {
+		return totalDespesa;
 	}
 
 	public double getSaldo() {
@@ -51,20 +51,13 @@ public class Pessoa {
 		this.id = id;
 	}
 
-	public void setTotal_despesa(double valor_despesa) {
+	public void setTotalDespesa(double valor_despesa) {
 
-		this.total_despesa = this.total_despesa + valor_despesa;
+		this.totalDespesa = this.totalDespesa + valor_despesa;
 	}
 
 	public void setSaldo(double saldo) {
 		this.saldo = saldo;
 	}
-
-	public String mostrar_dados() {
-		return ("CPF: " + cpf +
-				"\nNOME: " + nome +
-				"\nID: " + id);
-	}
-
 
 }

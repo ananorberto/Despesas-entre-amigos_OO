@@ -17,11 +17,11 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 	private final JLabel labelNome = new JLabel("Nome: ");
 	private final JTextField nome = new JTextField();
 	private final JLabel labelId = new JLabel("ID: ");
-	private final JTextField id = new JTextField();
+	private final JTextField idGrupo = new JTextField();
 	private final JLabel labelQtde = new JLabel("Máximo de pessoas: ");
-	private final JTextField max_pessoas = new JTextField();
-	private final JButton Button_cadastrar = new JButton("Cadastrar");
-	private final JButton Button_voltar = new JButton("Voltar");
+	private final JTextField maxPessoas = new JTextField();
+	private final JButton cadastrar = new JButton("Cadastrar");
+	private final JButton voltar = new JButton("Voltar");
 
 	public TelaAddGrupo() {
 		super("Cadastrar grupo");
@@ -33,31 +33,31 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 		nome.setBounds(100, 70, 400, 30);
 
 		labelId.setBounds(50, 110, 420, 30);
-		id.setBounds(80, 110, 420, 30);
+		idGrupo.setBounds(80, 110, 420, 30);
 
 		labelQtde.setBounds(50, 150, 420, 30);
-		max_pessoas.setBounds(230, 150, 270, 30);
+		maxPessoas.setBounds(230, 150, 270, 30);
 
-		Button_voltar.setBounds(70, 220, 180, 30);
-		Button_voltar.setBackground(new Color(108, 112, 139));
-		Button_voltar.setForeground(new Color(222, 222, 245));
-		Button_voltar.addActionListener(this);
+		voltar.setBounds(70, 220, 180, 30);
+		voltar.setBackground(new Color(108, 112, 139));
+		voltar.setForeground(new Color(222, 222, 245));
+		voltar.addActionListener(this);
 
-		Button_cadastrar.setBounds(260, 220, 180, 30);
-		Button_cadastrar.setBackground(new Color(108, 112, 139));
-		Button_cadastrar.setForeground(new Color(222, 222, 245));
-		Button_cadastrar.addActionListener(this);
+		cadastrar.setBounds(260, 220, 180, 30);
+		cadastrar.setBackground(new Color(108, 112, 139));
+		cadastrar.setForeground(new Color(222, 222, 245));
+		cadastrar.addActionListener(this);
 
 		setLayout(null);
 		add(label_titulo);
 		add(labelNome);
 		add(nome);
 		add(labelId);
-		add(id);
+		add(idGrupo);
 		add(labelQtde);
-		add(max_pessoas);
-		add(Button_cadastrar);
-		add(Button_voltar);
+		add(maxPessoas);
+		add(cadastrar);
+		add(voltar);
 
 		setSize(520, 340);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -70,15 +70,15 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == Button_voltar) {
+		if (e.getSource() == voltar) {
 			TelaMenu menu = new TelaMenu();
 			dispose();
-		} else if (e.getSource() == Button_cadastrar) {
+		} else if (e.getSource() == cadastrar) {
 			String nomeString = nome.getText();
-			String idString = id.getText();
-			String max_pessoasString = max_pessoas.getText();
+			String idString = idGrupo.getText();
+			String maxPessoasString = maxPessoas.getText();
 			
-			ControleGrupo.cadastrarGrupo(nomeString, idString, max_pessoasString);
+			ControleGrupo.cadastrarGrupo(nomeString, idString, maxPessoasString);
 			
 		}
 	}

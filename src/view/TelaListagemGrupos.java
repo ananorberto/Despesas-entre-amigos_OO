@@ -8,22 +8,22 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import controller.ControleGrupo;
-import model.model_database.Database;
+import database.Database;
 
 public class TelaListagemGrupos extends JFrame implements ActionListener, ListSelectionListener{
 
 	private JList<String> listaGruposCadastrados;
-	private String[] listaNomes = new String[Database.getQtde_grupos()];
-	private JButton button_voltar = new JButton("Voltar");
+	private String[] listaNomes = new String[Database.getQtdeGrupos()];
+	private JButton voltar = new JButton("Voltar");
 
 	public TelaListagemGrupos() {
 		super("Mostrar Grupos Cadastrados");
 
-		button_voltar.setBounds(120, 290, 180, 30);
-		button_voltar.setBackground(new Color(108, 112, 139));
-		button_voltar.setForeground(new Color(222, 222, 245));
-		button_voltar.addActionListener(this);
-		add(button_voltar);
+		voltar.setBounds(120, 290, 180, 30);
+		voltar.setBackground(new Color(108, 112, 139));
+		voltar.setForeground(new Color(222, 222, 245));
+		voltar.addActionListener(this);
+		add(voltar);
 
 
 		setSize(400, 390);
@@ -47,7 +47,7 @@ public class TelaListagemGrupos extends JFrame implements ActionListener, ListSe
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == button_voltar){
+		if (e.getSource() == voltar){
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		}

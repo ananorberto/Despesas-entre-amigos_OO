@@ -2,8 +2,8 @@ package controller;
 
 import javax.swing.JOptionPane;
 
+import database.Database;
 import model.Grupo;
-import model.model_database.Database;
 
 
 
@@ -14,45 +14,46 @@ public class ControleGrupo {
 
     public static String[] getNomeGrupo() {
 
-        String[] string = new String[Database.getQtde_grupos()];
-        for (int i = 0; i < Database.getQtde_grupos(); i++) {
-            string[i] = Database.getGrupos().get(i).getNome();
+        String[] nomesGrupo = new String[Database.getQtdeGrupos()];
+        for (int i = 0; i < Database.getQtdeGrupos(); i++) {
+            nomesGrupo[i] = Database.getGrupos().get(i).getNome();
         }
-        return string;
+        return nomesGrupo;
     }
     
-    public static void cadastrarGrupo(String nomeString, String idString, String max_pessoasString) {
-    	boolean nao_repete = true;
+    public static void cadastrarGrupo(String nomeString, String idString, String maxPessoasString) {
+    	boolean naoRepete = true;
     	
     	try {
 			int idInt = Integer.parseInt(idString);
-			int max_pessoasInt = Integer.parseInt(max_pessoasString);
+			int maxPessoasInt = Integer.parseInt(maxPessoasString);
 
-			for(int i = 0; i < Database.getQtde_grupos(); i++) {
+			for(int i = 0; i < Database.getQtdeGrupos(); i++) {
 				if(Database.getGrupos().get(i).getId() == idInt) {
-					nao_repete = false;
+					naoRepete = false;
 					break;
 				}
 			}
 			
 			
-			if(nao_repete == true) {
-				Grupo novo_grupo = new Grupo(max_pessoasInt, idInt, nomeString);
+			if(naoRepete == true) {
+				Grupo novoGrupo = new Grupo(maxPessoasInt, idInt, nomeString);
 				
-				Database.getGrupos().add(novo_grupo);
-				Database.aumentar_contador_grupos();
+				Database.getGrupos().add(novoGrupo);
+				Database.aumentarQtdeGrupos();
 
 				JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
-						JOptionPane.PLAIN_MESSAGE);
+											  JOptionPane.PLAIN_MESSAGE);
 			}
 			else {
 				JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse ID",
-												"ID repetido", JOptionPane.PLAIN_MESSAGE);
+											  "ID repetido", JOptionPane.PLAIN_MESSAGE);
 				
 			}
-		} catch (NumberFormatException exception) {
+		} 
+    	catch (NumberFormatException exception) {
 			JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
-											"Erro", JOptionPane.PLAIN_MESSAGE);
+										  "Erro", JOptionPane.PLAIN_MESSAGE);
 
 		}
     }

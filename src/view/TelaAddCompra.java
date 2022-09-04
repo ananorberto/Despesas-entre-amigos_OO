@@ -10,11 +10,11 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 
     private final  JLabel titulo = new JLabel("Cadastre as seguintes informações");
     private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
-	private final JTextField id_grupo = new JTextField();
+	private final JTextField idGrupo = new JTextField();
     private final JLabel labelId = new JLabel("ID do Pagador: ");
-    private final JTextField id_pagador = new JTextField();
+    private final JTextField idPagador = new JTextField();
     private final JLabel labelMercado = new JLabel("Nome do Mercado: ");
-    private final JTextField nome_mercado = new JTextField();
+    private final JTextField nomeMercado = new JTextField();
     private final JLabel labelItens = new JLabel("Itens da compra: ");
 	private final JTextField itens = new JTextField();
     private final JLabel labelValor= new JLabel("Valor da compra: ");
@@ -31,13 +31,13 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 		titulo.setBounds(90, 10, 400, 40);
 
 		labelMercado.setBounds(50, 70, 420, 30);
-		nome_mercado.setBounds(190, 70, 300, 30);
+		nomeMercado.setBounds(190, 70, 300, 30);
 
 		labelId.setBounds(50, 110, 420, 30);
-		id_pagador.setBounds(160, 110, 330, 30);
+		idPagador.setBounds(160, 110, 330, 30);
 
 		labelIdGrupo.setBounds(50, 150, 420, 30);
-		id_grupo.setBounds(160, 150, 330, 30);
+		idGrupo.setBounds(160, 150, 330, 30);
 
 		labelItens.setBounds(50, 190, 420, 30);
 		itens.setBounds(175, 190, 315, 30);
@@ -61,11 +61,11 @@ public class TelaAddCompra extends JFrame implements ActionListener {
         setLayout(null);
         add(titulo);
         add(labelMercado);
-        add(nome_mercado);
+        add(nomeMercado);
         add(labelId);
-        add(id_pagador);
+        add(idPagador);
         add(labelIdGrupo);
-		add(id_grupo);
+		add(idGrupo);
 		add(labelItens);
 		add(itens);
         add(labelValor);
@@ -90,14 +90,15 @@ public class TelaAddCompra extends JFrame implements ActionListener {
         }
         else if(e.getSource() == cadastrar) {
         	
-        	String nome_mercadoString = nome_mercado.getText();
-            String id_pagadorString = id_pagador.getText();
-            String id_grupoString = id_grupo.getText();
+        	String nomeMercadoString = nomeMercado.getText();
+            String idPagadorString = idPagador.getText();
+            String idGrupoString = idGrupo.getText();
             String itensString = itens.getText();
             String valorString = valor.getText();
             String dataString = data.getText();            
             
-            ControleDespesa.cadastrarCompra(nome_mercadoString, id_pagadorString, id_grupoString, itensString, valorString, dataString);
+            ControleDespesa.cadastrarCompra(nomeMercadoString, idPagadorString, idGrupoString, itensString, 
+            								valorString, dataString);
            
         }
     }

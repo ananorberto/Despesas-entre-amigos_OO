@@ -9,7 +9,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import controller.*;
-import model.model_database.Database;
+import database.Database;
 
 
 public class TelaListagemPessoas extends JFrame implements ActionListener, ListSelectionListener {
@@ -17,36 +17,36 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
      * @param e the event to be processed
      */
     private JList<String> listaPessoasCadastradas;
-    private JLabel label_id_grupo = new JLabel("ID do Grupo: ");
-    private JTextField id_grupo = new JTextField();
+    private JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
+    private JTextField idGrupo = new JTextField();
     private String listaNomes[];
-    private JButton button_voltar = new JButton("Voltar");
-    private JButton button_procurar = new JButton("Procurar");
-    private int posicao_grupo;
+    private JButton voltar = new JButton("Voltar");
+    private JButton buscar = new JButton("Buscar");
+    private int posicaoGrupo;
     
 
     public TelaListagemPessoas(int pos){
         super("Mostrar Pessoas Cadastradas");
         
-        this.posicao_grupo = pos;
+        this.posicaoGrupo = pos;
         
-        label_id_grupo.setBounds(30, 20, 150, 25);
-        add(label_id_grupo);
+        labelIdGrupo.setBounds(30, 20, 150, 25);
+        add(labelIdGrupo);
         
-        id_grupo.setBounds(180, 20, 180, 25);
-        add(id_grupo);
+        idGrupo.setBounds(180, 20, 180, 25);
+        add(idGrupo);
         
-        button_procurar.setBounds(200, 290, 180, 30);
-        button_procurar.setBackground(new Color(108, 112, 139));
-        button_procurar.setForeground(new Color(222, 222, 245));
-        button_procurar.addActionListener(this);
-        add(button_procurar);
+        buscar.setBounds(200, 290, 180, 30);
+        buscar.setBackground(new Color(108, 112, 139));
+        buscar.setForeground(new Color(222, 222, 245));
+        buscar.addActionListener(this);
+        add(buscar);
         
-        button_voltar.setBounds(10, 290, 180, 30);
-        button_voltar.setBackground(new Color(108, 112, 139));
-        button_voltar.setForeground(new Color(222, 222, 245));
-        button_voltar.addActionListener(this);
-        add(button_voltar);
+        voltar.setBounds(10, 290, 180, 30);
+        voltar.setBackground(new Color(108, 112, 139));
+        voltar.setForeground(new Color(222, 222, 245));
+        voltar.addActionListener(this);
+        add(voltar);
 
 
         setSize(400, 390);
@@ -65,24 +65,24 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == button_voltar) {
+        if (e.getSource() == voltar) {
             new TelaMenu();
             dispose();
         }
-        else if(e.getSource() == button_procurar) {
-        	String id_grupoString = id_grupo.getText();
+        else if(e.getSource() == buscar) {
+        	String id_grupoString = idGrupo.getText();
         	try {
         		int id_grupoInt = Integer.parseInt(id_grupoString);
-        		for(int i = 0; i < Database.getQtde_grupos(); i++) {
+        		for(int i = 0; i < Database.getQtdeGrupos(); i++) {
         			if(Database.getGrupos().get(i).getId() == id_grupoInt) {
         				
-        				this.posicao_grupo = Database.getGrupos().indexOf(Database.getGrupos().get(i));
-        				listaNomes = ControlePessoas.getNomePessoas(this.posicao_grupo);
-        				new TelaListagemPessoas(this.posicao_grupo).mostrarDados(listaNomes);
+        				this.posicaoGrupo = Database.getGrupos().indexOf(Database.getGrupos().get(i));
+        				listaNomes = ControlePessoas.getNomePessoas(this.posicaoGrupo);
+        				new TelaListagemPessoas(this.posicaoGrupo).mostrarDados(listaNomes);
         				dispose();
         				break;
         			}
-        			else if(i ==  (Database.getQtde_grupos() - 1)) {
+        			else if(i ==  (Database.getQtdeGrupos() - 1)) {
         				JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o ID inserido", 
         						"ID nao encontrado", JOptionPane.PLAIN_MESSAGE);
         			}
@@ -105,7 +105,7 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
         Object src = e.getSource();
         
         if(e.getValueIsAdjusting() && src == listaPessoasCadastradas) {
-			new TelaEditarPessoa(this.posicao_grupo, listaPessoasCadastradas.getSelectedIndex());
+			new TelaEditarPessoa(this.posicaoGrupo, listaPessoasCadastradas.getSelectedIndex());
 			dispose();
 		}
         

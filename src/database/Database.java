@@ -1,4 +1,4 @@
-package model.model_database;
+package database;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import model.*;
 
 public class Database {
 	private static final List<Grupo> GRUPOS = new ArrayList<Grupo>();
-	private static int qtde_grupos = 0;
+	private static int qtdeGrupos = 0;
 	
 	private static Grupo g1 = new Grupo(3, 100, "grupo1");
 	private static Grupo g2 = new Grupo(3, 101, "grupo2");
@@ -31,69 +31,73 @@ public class Database {
 	public Database() {
 	}
 
-	public static int getQtde_grupos() {
-		return qtde_grupos;
+	public static int getQtdeGrupos() {
+		return qtdeGrupos;
 	}
 	
-	public static void diminuir_Qtde_grupos() {
-		qtde_grupos = qtde_grupos -1;
+	public static void setQtdeGrupos(int num) {
+		qtdeGrupos = num;
+	}
+	
+	public static void diminuirQtdeGrupos() {
+		qtdeGrupos = qtdeGrupos -1;
 	}
 
 
-	public static void aumentar_contador_grupos() {
-		qtde_grupos = qtde_grupos + 1;
+	public static void aumentarQtdeGrupos() {
+		qtdeGrupos = qtdeGrupos + 1;
 	}
 
 	public static List<Grupo> getGrupos() {
 		return GRUPOS;
 	}
 
-	public static void pre_cadastrar_grupos() {
+	public static void preCadastrarGrupos() {
 		GRUPOS.add(g1);
 		GRUPOS.add(g2);
 		GRUPOS.add(g3);
 		
-		GRUPOS.get(0).setNova_pessoa(p1_1);
-		GRUPOS.get(0).add_pessoa();
-		GRUPOS.get(0).setNova_pessoa(p1_2);
-		GRUPOS.get(0).add_pessoa();
+		GRUPOS.get(0).setNovaPessoa(p1_1);
+		GRUPOS.get(0).addPessoa();
+		GRUPOS.get(0).setNovaPessoa(p1_2);
+		GRUPOS.get(0).addPessoa();
 		
-		GRUPOS.get(1).setNova_pessoa(p2_1);
-		GRUPOS.get(1).add_pessoa();
-		GRUPOS.get(1).setNova_pessoa(p2_2);
-		GRUPOS.get(1).add_pessoa();
+		GRUPOS.get(1).setNovaPessoa(p2_1);
+		GRUPOS.get(1).addPessoa();
+		GRUPOS.get(1).setNovaPessoa(p2_2);
+		GRUPOS.get(1).addPessoa();
 		
-		GRUPOS.get(2).setNova_pessoa(p3_1);
-		GRUPOS.get(2).add_pessoa();
-		GRUPOS.get(2).setNova_pessoa(p3_2);
-		GRUPOS.get(2).add_pessoa();
+		GRUPOS.get(2).setNovaPessoa(p3_1);
+		GRUPOS.get(2).addPessoa();
+		GRUPOS.get(2).setNovaPessoa(p3_2);
+		GRUPOS.get(2).addPessoa();
 		
 		GRUPOS.get(0).getDespesas().add(c1);
-		GRUPOS.get(0).getPessoas().get(0).setTotal_despesa(c1.getValor());
-		GRUPOS.get(0).aumentar_qtde_despesas();
+		GRUPOS.get(0).getPessoas().get(0).setTotalDespesa(c1.getValor());
+		GRUPOS.get(0).aumentarQtdeDespesas();
 		i1.somar_gastos();
 		GRUPOS.get(0).getDespesas().add(i1);
-		GRUPOS.get(0).getPessoas().get(1).setTotal_despesa(i1.getValor());
-		GRUPOS.get(0).aumentar_qtde_despesas();
+		GRUPOS.get(0).getPessoas().get(1).setTotalDespesa(i1.getValor());
+		GRUPOS.get(0).aumentarQtdeDespesas();
 		
 		GRUPOS.get(1).getDespesas().add(c2);
-		GRUPOS.get(1).getPessoas().get(0).setTotal_despesa(c2.getValor());
-		GRUPOS.get(1).aumentar_qtde_despesas();
+		GRUPOS.get(1).getPessoas().get(0).setTotalDespesa(c2.getValor());
+		GRUPOS.get(1).aumentarQtdeDespesas();
 		i2.somar_gastos();
 		GRUPOS.get(1).getDespesas().add(i2);
-		GRUPOS.get(1).getPessoas().get(1).setTotal_despesa(i2.getValor());
-		GRUPOS.get(1).aumentar_qtde_despesas();
+		GRUPOS.get(1).getPessoas().get(1).setTotalDespesa(i2.getValor());
+		GRUPOS.get(1).aumentarQtdeDespesas();
 		
 		GRUPOS.get(2).getDespesas().add(c3);
-		GRUPOS.get(2).getPessoas().get(0).setTotal_despesa(c3.getValor());
-		GRUPOS.get(2).aumentar_qtde_despesas();
+		GRUPOS.get(2).getPessoas().get(0).setTotalDespesa(c3.getValor());
+		GRUPOS.get(2).aumentarQtdeDespesas();
 		i3.somar_gastos();
 		GRUPOS.get(2).getDespesas().add(i3);
-		GRUPOS.get(2).getPessoas().get(1).setTotal_despesa(i3.getValor());
-		GRUPOS.get(2).aumentar_qtde_despesas();
+		GRUPOS.get(2).getPessoas().get(1).setTotalDespesa(i3.getValor());
+		GRUPOS.get(2).aumentarQtdeDespesas();
 
 		
-		qtde_grupos = 3;
+		qtdeGrupos = 3;
 	}
-
+	
 }

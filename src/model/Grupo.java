@@ -10,42 +10,56 @@ public class Grupo {
 
 	private String nome;
 	private int id;
-	private int max_pessoas;
+	private int maxPessoas;
 	private ArrayList<Pessoa> pessoas = new ArrayList<Pessoa>();
-	private Pessoa nova_pessoa;
+	private Pessoa novaPessoa;
 	private ArrayList<Despesa> despesas = new ArrayList<Despesa>();
-	private double despesa_dividida;
-	int qtde_pessoas = 0;
-	int qtde_despesas = 0;
+	private double despesaDividida;
+	int qtdePessoas = 0;
+	int qtdeDespesas = 0;
 
-	public Grupo(int max_pessoas, int id, String nome) {
-		this.max_pessoas = max_pessoas;
+	public Grupo(int maxPessoas, int id, String nome) {
+		this.maxPessoas = maxPessoas;
 		this.nome = nome;
 		this.id = id;
 	}
 
-	public void diminuir_qtde_pessoas() {
-		this.qtde_pessoas = this.qtde_pessoas - 1;
+	
+	
+	public double getDespesaDividida() {
+		return despesaDividida;
+	}
+
+
+
+	public void setDespesaDividida(double despesaDividida) {
+		this.despesaDividida = despesaDividida;
+	}
+
+
+
+	public void diminuirQtdePessoas() {
+		this.qtdePessoas = this.qtdePessoas - 1;
 	}
 	
-	public int getQtde_despesas() {
+	public int getQtdeDespesas() {
 
-		return qtde_despesas;
+		return qtdeDespesas;
 	}
 
-	public void aumentar_qtde_despesas() {
+	public void aumentarQtdeDespesas() {
 
-		this.qtde_despesas++;
+		this.qtdeDespesas++;
 	}
 
-	public int getQtde_pessoas() {
+	public int getQtdePessoas() {
 
-		return qtde_pessoas;
+		return qtdePessoas;
 	}
 
-	public void setQtde_pessoas(int qtde_pessoas) {
+	public void setQtdePessoas(int qtdePessoas) {
 
-		this.qtde_pessoas = qtde_pessoas;
+		this.qtdePessoas = qtdePessoas;
 	}
 
 	public ArrayList<Pessoa> getPessoas() {
@@ -68,14 +82,14 @@ public class Grupo {
 		this.despesas = despesas;
 	}
 
-	public Pessoa getNova_pessoa() {
+	public Pessoa getNovaPessoa() {
 
-		return nova_pessoa;
+		return novaPessoa;
 	}
 
-	public void setNova_pessoa(Pessoa nova_pessoa) {
+	public void setNovaPessoa(Pessoa novaPessoa) {
 
-		this.nova_pessoa = nova_pessoa;
+		this.novaPessoa = novaPessoa;
 	}
 
 	public String getNome() {
@@ -98,20 +112,20 @@ public class Grupo {
 		this.id = id;
 	}
 
-	public int getMax_pessoas() {
+	public int getMaxPessoas() {
 
-		return max_pessoas;
+		return maxPessoas;
 	}
 
-	public void setMax_pessoas(int max_pessoas) {
-		this.max_pessoas = max_pessoas;
+	public void setMaxPessoas(int maxPessoas) {
+		this.maxPessoas = maxPessoas;
 	}
 
-	public boolean add_pessoa() {
-		if (qtde_pessoas < max_pessoas) {
+	public boolean addPessoa() {
+		if (qtdePessoas < maxPessoas) {
 
-			pessoas.add(this.nova_pessoa);
-			qtde_pessoas++;
+			pessoas.add(this.novaPessoa);
+			qtdePessoas++;
 			return false;
 		} else {
 			JOptionPane.showMessageDialog(null, "O grupo escolhido está cheio", 
@@ -121,32 +135,33 @@ public class Grupo {
 
 	}
 
-	public void definir_saldos() {
-		for (int i = 0; i < qtde_pessoas; i++) {
-			pessoas.get(i).setSaldo(pessoas.get(i).getTotal_despesa() - this.despesa_dividida);
+	public void definirSaldos() {
+		for (int i = 0; i < qtdePessoas; i++) {
+			pessoas.get(i).setSaldo(pessoas.get(i).getTotalDespesa() - this.despesaDividida);
 		}
 	}
 
-	public void dividir_despesas() {
-		this.despesa_dividida = 0.0;
+	public void dividirDespesas() {
+		this.despesaDividida = 0.0;
 		
-		for (int i = 0; i < qtde_pessoas; i++) {
-			this.despesa_dividida = this.despesa_dividida + pessoas.get(i).getTotal_despesa();
+		for (int i = 0; i < qtdePessoas; i++) {
+			this.despesaDividida = this.despesaDividida + pessoas.get(i).getTotalDespesa();
 		}
 
-		this.despesa_dividida = (this.despesa_dividida) / qtde_pessoas;
+		this.despesaDividida = (this.despesaDividida) / qtdePessoas;
 
 	}
 
-	public String[] mostrar_dividas() {
-		String dividas[] = new String[qtde_pessoas];
-		int j = 0;
-		for (int i = 0; i < qtde_pessoas; i++) {
+	public String[] mostrarDividas() {
+		String dividas[] = new String[qtdePessoas + 1];
+		dividas[0] = ("A despesa dividida é de R$ " + format("%.2f" , this.despesaDividida));
+		int j = 1;
+		for (int i = 0; i < qtdePessoas; i++) {
 			if (pessoas.get(i).getSaldo() < 0) {
-				dividas[j] = (pessoas.get(i).getNome() + " deve ao grupo" + "R$" + format("%.2f", abs(pessoas.get(i).getSaldo())));
+				dividas[j] = (pessoas.get(i).getNome() + " deve ao grupo " + "R$ " + format("%.2f", abs(pessoas.get(i).getSaldo())));
 				j++;
 			} else {
-				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome() + " R$" + format("%.2f", abs(pessoas.get(i).getSaldo())));
+				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome() + " R$ " + format("%.2f", abs(pessoas.get(i).getSaldo())));
 				j++;
 			}
 		}

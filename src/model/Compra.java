@@ -2,14 +2,14 @@ package model;
 public class Compra extends Despesa {
 
 	private String itens;
-	private String nome_mercado;
+	private String nomeMercado;
 
 	public Compra(String nome_mercado, double valor, String data, int id_pagador, int id_grupo, String itens) {
-		this.nome_mercado = nome_mercado;
+		this.nomeMercado = nome_mercado;
 		this.valor = valor;
 		this.data = data;
-		this.id_pagador = id_pagador;
-		this.id_grupo = id_grupo;
+		this.idPagador = id_pagador;
+		this.idGrupo = id_grupo;
 		this.itens = itens;
 	}
 
@@ -21,12 +21,12 @@ public class Compra extends Despesa {
 		this.itens = itens;
 	}
 
-	public String getNome_mercado() {
-		return nome_mercado;
+	public String getNomeMercado() {
+		return nomeMercado;
 	}
 
-	public void setNome_mercado(String nome_mercado) {
-		this.nome_mercado = nome_mercado;
+	public void setNome_mercado(String nomeMercado) {
+		this.nomeMercado = nomeMercado;
 	}
 	
 	

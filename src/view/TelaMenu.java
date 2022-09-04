@@ -9,70 +9,70 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
-import model.model_database.Database;
+import database.Database;
 
 public class TelaMenu extends JFrame implements ActionListener {
 
-	private final JLabel label_titulo = new JLabel("Despesas entre amigos");
-	private final JButton add_grupo = new JButton("Cadastrar Grupo");
-	private final JButton add_pessoa = new JButton("Cadastrar Pessoa");
-	private final JButton add_compra = new JButton("Adicionar Compra");
-	private final JButton add_imovel = new JButton("Adicionar Imovel");
-	private final JButton mostrar_divida = new JButton("Mostrar Divida");
-	private final JButton mostrar_grupos_cadastros = new JButton("Grupos cadastrados");
-	private final JButton mostrar_pessoas_cadastradas = new JButton("Pessoas cadastradas");
+	private final JLabel labelTitulo = new JLabel("Despesas entre amigos");
+	private final JButton addGrupo = new JButton("Cadastrar Grupo");
+	private final JButton addPessoa = new JButton("Cadastrar Pessoa");
+	private final JButton addCompra = new JButton("Adicionar Compra");
+	private final JButton addImovel = new JButton("Adicionar Imovel");
+	private final JButton mostrarDivida = new JButton("Mostrar Dividas");
+	private final JButton listagemGrupos = new JButton("Grupos cadastrados");
+	private final JButton listagemPessoas = new JButton("Pessoas cadastradas");
 
 	public TelaMenu() {
 		super("Divisão de Despesas entre amigos");
 
-		label_titulo.setFont(new Font(("Verdana"), Font.PLAIN, 25));
-		label_titulo.setBounds(120, 10, 300, 40);
+		labelTitulo.setFont(new Font(("Verdana"), Font.PLAIN, 25));
+		labelTitulo.setBounds(120, 10, 300, 40);
 
-		add_grupo.setBounds(160, 70, 180, 30);
-		add_grupo.setBackground(new Color(108, 112, 139, 255));
-		add_grupo.setForeground(new Color(222, 222, 245));
-		add_grupo.addActionListener(this);
+		addGrupo.setBounds(160, 70, 180, 30);
+		addGrupo.setBackground(new Color(108, 112, 139, 255));
+		addGrupo.setForeground(new Color(222, 222, 245));
+		addGrupo.addActionListener(this);
 
-		add_pessoa.setBounds(160, 110, 180, 30);
-		add_pessoa.setBackground(new Color(108, 112, 139));
-		add_pessoa.setForeground(new Color(222, 222, 245));
-		add_pessoa.addActionListener(this);
+		addPessoa.setBounds(160, 110, 180, 30);
+		addPessoa.setBackground(new Color(108, 112, 139));
+		addPessoa.setForeground(new Color(222, 222, 245));
+		addPessoa.addActionListener(this);
 
-		add_compra.setBounds(160, 150, 180, 30);
-		add_compra.setBackground(new Color(108, 112, 139));
-		add_compra.setForeground(new Color(222, 222, 245));
-		add_compra.addActionListener(this);
+		addCompra.setBounds(160, 150, 180, 30);
+		addCompra.setBackground(new Color(108, 112, 139));
+		addCompra.setForeground(new Color(222, 222, 245));
+		addCompra.addActionListener(this);
 
-		add_imovel.setBounds(160, 190, 180, 30);
-		add_imovel.setBackground(new Color(108, 112, 139));
-		add_imovel.setForeground(new Color(222, 222, 245));
-		add_imovel.addActionListener(this);
+		addImovel.setBounds(160, 190, 180, 30);
+		addImovel.setBackground(new Color(108, 112, 139));
+		addImovel.setForeground(new Color(222, 222, 245));
+		addImovel.addActionListener(this);
 
-		mostrar_divida.setBounds(160, 230, 180, 30);
-		mostrar_divida.setBackground(new Color(108, 112, 139));
-		mostrar_divida.setForeground(new Color(222, 222, 245));
-		mostrar_divida.addActionListener(this);
+		mostrarDivida.setBounds(160, 230, 180, 30);
+		mostrarDivida.setBackground(new Color(108, 112, 139));
+		mostrarDivida.setForeground(new Color(222, 222, 245));
+		mostrarDivida.addActionListener(this);
 
-		mostrar_grupos_cadastros.setBounds(160, 270, 180, 30);
-		mostrar_grupos_cadastros.setBackground(new Color(108, 112, 139));
-		mostrar_grupos_cadastros.setForeground(new Color(222, 222, 245));
-		mostrar_grupos_cadastros.addActionListener(this);
+		listagemGrupos.setBounds(160, 270, 180, 30);
+		listagemGrupos.setBackground(new Color(108, 112, 139));
+		listagemGrupos.setForeground(new Color(222, 222, 245));
+		listagemGrupos.addActionListener(this);
 
-		mostrar_pessoas_cadastradas.setBounds(160, 310, 180, 30);
-		mostrar_pessoas_cadastradas.setBackground(new Color(108, 112, 139));
-		mostrar_pessoas_cadastradas.setForeground(new Color(222, 222, 245));
-		mostrar_pessoas_cadastradas.addActionListener(this);
+		listagemPessoas.setBounds(160, 310, 180, 30);
+		listagemPessoas.setBackground(new Color(108, 112, 139));
+		listagemPessoas.setForeground(new Color(222, 222, 245));
+		listagemPessoas.addActionListener(this);
 
 		setLayout(null);
 
-		add(label_titulo);
-		add(add_grupo);
-		add(add_pessoa);
-		add(add_compra);
-		add(add_imovel);
-		add(mostrar_divida);
-		add(mostrar_pessoas_cadastradas);
-		add(mostrar_grupos_cadastros);
+		add(labelTitulo);
+		add(addGrupo);
+		add(addPessoa);
+		add(addCompra);
+		add(addImovel);
+		add(mostrarDivida);
+		add(listagemPessoas);
+		add(listagemGrupos);
 
 		setSize(520, 420);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -85,32 +85,32 @@ public class TelaMenu extends JFrame implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if (e.getSource() == add_grupo) {
+		if (e.getSource() == addGrupo) {
 			new TelaAddGrupo();
 		}
-		if (e.getSource() == add_pessoa) {
+		if (e.getSource() == addPessoa) {
 			new TelaAddPessoa();
 		}
-		if (e.getSource() == add_compra) {
+		if (e.getSource() == addCompra) {
 			new TelaAddCompra();
 		}
-		if (e.getSource() == add_imovel) {
+		if (e.getSource() == addImovel) {
 			new TelaAddImovel();
 		}
-		if (e.getSource() == mostrar_divida) {
+		if (e.getSource() == mostrarDivida) {
 			new TelaMostrarDividas();
 		}
-		if (e.getSource() == mostrar_grupos_cadastros) {
+		if (e.getSource() == listagemGrupos) {
 			new TelaListagemGrupos().mostrarDados();
 		}
-		if (e.getSource() == mostrar_pessoas_cadastradas){
+		if (e.getSource() == listagemPessoas){
 			new TelaListagemPessoas(0);
 		}
 		dispose();
 	}
 
 	public static void main(String[] args) {
-		Database.pre_cadastrar_grupos();
+		Database.preCadastrarGrupos();
 		new TelaMenu();
 	}
 }

@@ -8,21 +8,16 @@ import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
-import controller.ControleGrupo;
-import model.model_database.*;
+import database.Database;
 
 public class TelaMostrarDividas extends JFrame implements ActionListener, ListSelectionListener {
 
     private  final JLabel titulo = new JLabel("Cadastre as seguintes informações");
     private  final JLabel labelId = new JLabel("ID do grupo: ");
     private  final JButton consultar = new JButton("Consultar");
-    private JList<String> listaDividas;
-    
-   
-
-    private JTextField id_grupo = new JTextField();
     private  final  JButton voltar = new JButton("Voltar");
-
+    private JList<String> listaDividas;
+    private JTextField idGrupo = new JTextField();
 
     public TelaMostrarDividas(){
         super("Mostrar dividas");
@@ -32,7 +27,7 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
 
 
         labelId.setBounds(40, 70, 420, 30);
-        id_grupo.setBounds(130, 70, 360, 30);
+        idGrupo.setBounds(130, 70, 360, 30);
 
 
         voltar.setBounds(60, 290, 180, 30);
@@ -49,7 +44,7 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
         setLayout(null);
         add(titulo);
         add(labelId);
-        add(id_grupo);
+        add(idGrupo);
         add(voltar);
         add(consultar);
 
@@ -77,25 +72,27 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
             dispose();
         }
         else if(e.getSource() == consultar) {
-	        String id_grupoString = id_grupo.getText();
+	        String idGrupoString = idGrupo.getText();
 	        	
 	        try {
-	        	int id_grupoInt = Integer.parseInt(id_grupoString);
+	        	int idGrupoInt = Integer.parseInt(idGrupoString);
 	    
-	        	for(int i = 0; i < Database.getQtde_grupos(); i++) {
-	        		if((Database.getGrupos().get(i).getId() == id_grupoInt) && (Database.getGrupos().get(i).getQtde_pessoas() > 0)) {
-	        			Database.getGrupos().get(i).dividir_despesas();
-	        			Database.getGrupos().get(i).definir_saldos();
-	        			String dividas[] = new String[Database.getGrupos().get(i).getQtde_pessoas()];
-	        			dividas = Database.getGrupos().get(i).mostrar_dividas();
+	        	for(int i = 0; i < Database.getQtdeGrupos(); i++) {
+	        		if((Database.getGrupos().get(i).getId() == idGrupoInt) && (Database.getGrupos().get(i).getQtdePessoas() > 0)) {
+	        			
+	        			Database.getGrupos().get(i).dividirDespesas();
+	        			Database.getGrupos().get(i).definirSaldos();
+	        			String dividas[] = new String[Database.getGrupos().get(i).getQtdePessoas() + 1];
+	        			dividas = Database.getGrupos().get(i).mostrarDividas();
 	        			new TelaMostrarDividas().mostrarDados(i, dividas);
 	        			System.out.println("Foi");
 	        			dispose();
 	        			break;
+	        			
 	        		}
-	        		else if(i == (Database.getQtde_grupos() - 1)) {
+	        		else if(i == (Database.getQtdeGrupos() - 1)) {
 	        			JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o ID inserido ou o grupo esta vazio", 
-								"Ops!", JOptionPane.PLAIN_MESSAGE);
+													  "Ops!", JOptionPane.PLAIN_MESSAGE);
 	        		}
 	        	}
 	        	
@@ -103,7 +100,7 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
 	        } 
 	        catch(NumberFormatException exception){
 	        	JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", 
-	            								"Erro", JOptionPane.PLAIN_MESSAGE);
+	            							  "Erro", JOptionPane.PLAIN_MESSAGE);
 	        }
         }
 

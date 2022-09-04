@@ -3,18 +3,18 @@ public abstract class Despesa {
 
 	protected double valor;
 	protected String data;
-	protected int id_pagador;
-	protected int id_grupo;
+	protected int idPagador;
+	protected int idGrupo;
 
 
-	public int getId_pagador() {
-		return id_pagador;
+	public int getIdPagador() {
+		return idPagador;
 	}
 
 
 
-	public void setId_pagador(int id_pagador) {
-		this.id_pagador = id_pagador;
+	public void setIdPagador(int idPagador) {
+		this.idPagador = idPagador;
 	}
 
 
