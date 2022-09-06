@@ -11,6 +11,15 @@ import javax.swing.JLabel;
 
 import database.Database;
 
+/**
+ * Classe Tela Menu faz com que o usuario veja e interaja com as funcionalidades
+ * do programa.
+ * 
+ * @author Ana Beatriz, Leonardo
+ * @since 2022
+ * @version 1.0
+ *
+ */
 public class TelaMenu extends JFrame implements ActionListener {
 
 	private final JLabel labelTitulo = new JLabel("Despesas entre amigos");
@@ -21,6 +30,12 @@ public class TelaMenu extends JFrame implements ActionListener {
 	private final JButton mostrarDivida = new JButton("Mostrar Dividas");
 	private final JButton listagemGrupos = new JButton("Grupos cadastrados");
 	private final JButton listagemPessoas = new JButton("Pessoas cadastradas");
+
+	/**
+	 * Construtor do Menu é responsavel por determinar a posição de cada botao, da
+	 * tela, as cores dos botoes e torna-los visiveis para o usuario.
+	 * 
+	 */
 
 	public TelaMenu() {
 		super("Divisão de Despesas entre amigos");
@@ -83,6 +98,12 @@ public class TelaMenu extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Metodo que da funcionalidade aos botoes, adicionar grupo, adicionar pessoa,
+	 * adicionar compra, adicionar imovel, mostrar divida, lista de pessoas e lista
+	 * de pessoas onde, ao clicar nos botoes abre uma tela para a respectiva
+	 * funcionalidade.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == addGrupo) {
@@ -103,12 +124,17 @@ public class TelaMenu extends JFrame implements ActionListener {
 		if (e.getSource() == listagemGrupos) {
 			new TelaListagemGrupos().mostrarDados();
 		}
-		if (e.getSource() == listagemPessoas){
+		if (e.getSource() == listagemPessoas) {
 			new TelaListagemPessoas(0);
 		}
 		dispose();
 	}
 
+	/**
+	 * Metodo responsavel pela inicialização do programa.
+	 * 
+	 * @param args String padrao do Java.
+	 */
 	public static void main(String[] args) {
 		Database.preCadastrarGrupos();
 		new TelaMenu();

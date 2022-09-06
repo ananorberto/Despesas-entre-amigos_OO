@@ -1,32 +1,50 @@
 package view;
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import controller.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
+import controller.ControleDespesa;
+
+/**
+ * Classe TelaAddCompra faz com que o usuario cadastre uma nova compra por meio
+ * da interface grafica.
+ * 
+ * @author Ana Beatriz, Leonardo
+ * @since 2022
+ * @version 1.0
+ *
+ */
 public class TelaAddCompra extends JFrame implements ActionListener {
 
-    private final  JLabel titulo = new JLabel("Cadastre as seguintes informações");
-    private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
+	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
+	private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
 	private final JTextField idGrupo = new JTextField();
-    private final JLabel labelId = new JLabel("ID do Pagador: ");
-    private final JTextField idPagador = new JTextField();
-    private final JLabel labelMercado = new JLabel("Nome do Mercado: ");
-    private final JTextField nomeMercado = new JTextField();
-    private final JLabel labelItens = new JLabel("Itens da compra: ");
+	private final JLabel labelId = new JLabel("ID do Pagador: ");
+	private final JTextField idPagador = new JTextField();
+	private final JLabel labelMercado = new JLabel("Nome do Mercado: ");
+	private final JTextField nomeMercado = new JTextField();
+	private final JLabel labelItens = new JLabel("Itens da compra: ");
 	private final JTextField itens = new JTextField();
-    private final JLabel labelValor= new JLabel("Valor da compra: ");
-    private final JTextField valor = new JTextField();
-    private final JLabel labelData= new JLabel("Data da compra: ");
-    private final JTextField data = new JTextField();
-    private final JButton cadastrar = new JButton("Cadastrar");
-    private final JButton voltar = new JButton("Voltar");
+	private final JLabel labelValor = new JLabel("Valor da compra: ");
+	private final JTextField valor = new JTextField();
+	private final JLabel labelData = new JLabel("Data da compra: ");
+	private final JTextField data = new JTextField();
+	private final JButton cadastrar = new JButton("Cadastrar");
+	private final JButton voltar = new JButton("Voltar");
 
-
-    public TelaAddCompra(){
-    	super("cadastrar compra");
+	/**
+	 * Construtor responsavel por determinar a posição de cada botao, da tela, as
+	 * cores dos botoes e torna-los visiveis para o usuario.
+	 */
+	public TelaAddCompra() {
+		super("cadastrar compra");
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
 		titulo.setBounds(90, 10, 400, 40);
 
@@ -56,51 +74,56 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 		cadastrar.setBounds(260, 330, 180, 30);
 		cadastrar.setBackground(new Color(108, 112, 139));
 		cadastrar.setForeground(new Color(222, 222, 245));
-        cadastrar.addActionListener(this);
-        
-        setLayout(null);
-        add(titulo);
-        add(labelMercado);
-        add(nomeMercado);
-        add(labelId);
-        add(idPagador);
-        add(labelIdGrupo);
+		cadastrar.addActionListener(this);
+
+		setLayout(null);
+		add(titulo);
+		add(labelMercado);
+		add(nomeMercado);
+		add(labelId);
+		add(idPagador);
+		add(labelIdGrupo);
 		add(idGrupo);
 		add(labelItens);
 		add(itens);
-        add(labelValor);
-        add(valor);
-        add(cadastrar);
-        add(voltar);
-        add(labelData);
-        add(data);
+		add(labelValor);
+		add(valor);
+		add(cadastrar);
+		add(voltar);
+		add(labelData);
+		add(data);
 
-        setSize(520, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-        setLocationRelativeTo(null);
-        getContentPane().setBackground(new Color(255, 255, 255));
+		setSize(520, 400);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		getContentPane().setBackground(new Color(255, 255, 255));
 
-    }
+	}
 
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == voltar) {
-            TelaMenu menu = new TelaMenu();
-            dispose();
-        }
-        else if(e.getSource() == cadastrar) {
-        	
-        	String nomeMercadoString = nomeMercado.getText();
-            String idPagadorString = idPagador.getText();
-            String idGrupoString = idGrupo.getText();
-            String itensString = itens.getText();
-            String valorString = valor.getText();
-            String dataString = data.getText();            
-            
-            ControleDespesa.cadastrarCompra(nomeMercadoString, idPagadorString, idGrupoString, itensString, 
-            								valorString, dataString);
-           
-        }
-    }
+	/**
+	 * Metodo que da funcionalidade aos botoes voltar (voltando para a tela de Menu)
+	 * e cadastrar (identificando as informacoes digitadas pelo usuario e
+	 * cadastrando em um grupo).
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if (e.getSource() == voltar) {
+			TelaMenu menu = new TelaMenu();
+			dispose();
+		} else if (e.getSource() == cadastrar) {
+
+			String nomeMercadoString = nomeMercado.getText();
+			String idPagadorString = idPagador.getText();
+			String idGrupoString = idGrupo.getText();
+			String itensString = itens.getText();
+			String valorString = valor.getText();
+			String dataString = data.getText();
+
+			ControleDespesa.cadastrarCompra(nomeMercadoString, idPagadorString, idGrupoString, itensString, valorString,
+					dataString);
+
+		}
+	}
 
 }

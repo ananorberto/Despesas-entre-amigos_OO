@@ -10,14 +10,23 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.*;
+import controller.ControleDespesa;
 
+/**
+ * Classe TelaAddImovel faz com que o usuario cadastre as despesas de um imovel
+ * por meio da interface grafica.
+ * 
+ * @author Ana Beatriz, Leonardo
+ * @since 2022
+ * @version 1.0
+ *
+ */
 public class TelaAddImovel extends JFrame implements ActionListener {
 
 	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
-	private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
+	private final JLabel labelIdGrupo = new JLabel("Nome do Grupo: ");
 	private final JTextField idGrupo = new JTextField();
-	private final JLabel labelId = new JLabel("ID do Pagador: ");
+	private final JLabel labelId = new JLabel("CPF do Pagador: ");
 	private JTextField idPagador = new JTextField();
 	private final JLabel labelContaLuz = new JLabel("Valor da Conta de Luz: ");
 	private JTextField contaLuz = new JTextField();
@@ -32,6 +41,10 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 	private final JButton cadastrar = new JButton("Cadastrar");
 	private final JButton voltar = new JButton("Voltar");
 
+	/**
+	 * Construtor responsavel por determinar a posição de cada botao, da tela, as
+	 * cores dos botoes e torna-los visiveis para o usuario.
+	 */
 	public TelaAddImovel() {
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
 		titulo.setBounds(90, 10, 400, 40);
@@ -95,26 +108,29 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Metodo que da funcionalidade aos botoes voltar (voltando para a tela de Menu)
+	 * e cadastrar (identificando as informacoes digitadas pelo usuario e
+	 * cadastrando as despesas de um imovel em um grupo).
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
 			TelaMenu menu = new TelaMenu();
 			dispose();
-		}
-		else if(e.getSource() == cadastrar) {
-			 
-			String enderecoString = endereco.getText(); 
-			String contaLuzString = contaLuz.getText(); 
+		} else if (e.getSource() == cadastrar) {
+
+			String enderecoString = endereco.getText();
+			String contaLuzString = contaLuz.getText();
 			String contaAguaString = contaAgua.getText();
 			String aluguelString = aluguel.getText();
 			String dataString = data.getText();
 			String idPagadorString = idPagador.getText();
 			String idGrupoString = idGrupo.getText();
-			
-			ControleDespesa.cadastrarImovel(enderecoString, contaLuzString, contaAguaString, aluguelString, 
-											dataString, idPagadorString, idGrupoString);
-			
-			
+
+			ControleDespesa.cadastrarImovel(enderecoString, contaLuzString, contaAguaString, aluguelString, dataString,
+					idPagadorString, idGrupoString);
+
 		}
 	}
 }

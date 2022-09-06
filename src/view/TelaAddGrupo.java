@@ -10,8 +10,17 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import controller.*;
+import controller.ControleGrupo;
 
+/**
+ * Classe TelaAddGrupo faz com que o usuario cadastre um novo grupo por meio da
+ * interface grafica.
+ * 
+ * @author Ana Beatriz, Leonardo
+ * @since 2022
+ * @version 1.0
+ *
+ */
 public class TelaAddGrupo extends JFrame implements ActionListener {
 
 	private final JLabel labelNome = new JLabel("Nome: ");
@@ -23,6 +32,10 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 	private final JButton cadastrar = new JButton("Cadastrar");
 	private final JButton voltar = new JButton("Voltar");
 
+	/**
+	 * Construtor responsavel por determinar a posição de cada botao da tela, as
+	 * cores dos botoes e torna-los visiveis para o usuario.
+	 */
 	public TelaAddGrupo() {
 		super("Cadastrar grupo");
 		JLabel label_titulo = new JLabel("Cadastre as seguintes informações");
@@ -68,6 +81,11 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 
 	}
 
+	/**
+	 * Metodo que da funcionalidade aos botoes voltar (voltando para a tela de Menu)
+	 * e cadastrar (identificando as informacoes digitadas pelo usuario e
+	 * cadastrando um novo grupo).
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
@@ -77,10 +95,9 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 			String nomeString = nome.getText();
 			String idString = idGrupo.getText();
 			String maxPessoasString = maxPessoas.getText();
-			
+
 			ControleGrupo.cadastrarGrupo(nomeString, idString, maxPessoasString);
-			
+
 		}
 	}
-
 }
