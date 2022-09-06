@@ -36,9 +36,9 @@ public class ControleGrupo {
 	 * Metodo responsavel por cadastrar um grupo e verificar se ja existe um grupo
 	 * com o mesmo ID.
 	 * 
-	 * @param nomeString       String Retorna nome do grupo.
-	 * @param idString         String Retorna ID do grupo.
-	 * @param maxPessoasString String Retorna quantidade maxima de pessoas no grupo
+	 * @param nomeString String Retorna nome do grupo.
+	 * @param idString   String Retorna ID do grupo.
+	 * @param maxPessoas String Retorna quantidade maxima de pessoas no grupo
 	 */
 
 	public static void cadastrarGrupo(String nomeString, String idString, String maxPessoasString) {
@@ -49,7 +49,10 @@ public class ControleGrupo {
 			int maxPessoasInt = Integer.parseInt(maxPessoasString);
 
 			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-				if (Database.getGrupos().get(i).getId() == idInt) {
+				if (nomeString.equals(Database.getGrupos().get(i).getNome())) {
+					naoRepete = false;
+					break;
+				} else if (Database.getGrupos().get(i).getId() == idInt) {
 					naoRepete = false;
 					break;
 				}
@@ -64,7 +67,7 @@ public class ControleGrupo {
 				JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
 						JOptionPane.PLAIN_MESSAGE);
 			} else {
-				JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse ID", "ID repetido",
+				JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse Nome ou ID", "ID ou Nome repetido",
 						JOptionPane.PLAIN_MESSAGE);
 
 			}

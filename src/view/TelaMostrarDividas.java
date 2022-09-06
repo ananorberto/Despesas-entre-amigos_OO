@@ -29,11 +29,11 @@ import database.Database;
 public class TelaMostrarDividas extends JFrame implements ActionListener, ListSelectionListener {
 
 	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
-	private final JLabel labelId = new JLabel("ID do grupo: ");
+	private final JLabel labelNomeGrupo = new JLabel("Nome do grupo: ");
 	private final JButton consultar = new JButton("Consultar");
 	private final JButton voltar = new JButton("Voltar");
 	private JList<String> listaDividas;
-	private JTextField idGrupo = new JTextField();
+	private JTextField nomeGrupo = new JTextField();
 
 	/**
 	 * Construtor responsavel por determinar a posição de cada botao da tela, as
@@ -45,8 +45,8 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
 		titulo.setBounds(90, 10, 400, 40);
 
-		labelId.setBounds(40, 70, 420, 30);
-		idGrupo.setBounds(130, 70, 360, 30);
+		labelNomeGrupo.setBounds(40, 70, 420, 30);
+		nomeGrupo.setBounds(160, 70, 320, 30);
 
 		voltar.setBounds(60, 290, 180, 30);
 		voltar.setBackground(new Color(108, 112, 139));
@@ -60,8 +60,8 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
 
 		setLayout(null);
 		add(titulo);
-		add(labelId);
-		add(idGrupo);
+		add(labelNomeGrupo);
+		add(nomeGrupo);
 		add(voltar);
 		add(consultar);
 
@@ -101,13 +101,13 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		} else if (e.getSource() == consultar) {
-			String idGrupoString = idGrupo.getText();
+			String nomeGrupoString = nomeGrupo.getText();
 
 			try {
-				int idGrupoInt = Integer.parseInt(idGrupoString);
+				// int idGrupoInt = Integer.parseInt(idGrupoString);
 
 				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-					if ((Database.getGrupos().get(i).getId() == idGrupoInt)
+					if ((nomeGrupoString.equals(Database.getGrupos().get(i).getNome()))
 							&& (Database.getGrupos().get(i).getQtdePessoas() > 0)) {
 
 						Database.getGrupos().get(i).dividirDespesas();

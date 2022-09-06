@@ -28,8 +28,8 @@ import database.Database;
 public class TelaListagemPessoas extends JFrame implements ActionListener, ListSelectionListener {
 
 	private JList<String> listaPessoasCadastradas;
-	private JLabel labelIdGrupo = new JLabel("Nome do Grupo: ");
-	private JTextField idGrupo = new JTextField();
+	private JLabel labelNomeGrupo = new JLabel("Nome do Grupo: ");
+	private JTextField nomeGrupo = new JTextField();
 	private String listaNomes[];
 	private JButton voltar = new JButton("Voltar");
 	private JButton buscar = new JButton("Buscar");
@@ -47,11 +47,11 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
 
 		this.posicaoGrupo = pos;
 
-		labelIdGrupo.setBounds(30, 20, 150, 25);
-		add(labelIdGrupo);
+		labelNomeGrupo.setBounds(30, 20, 150, 25);
+		add(labelNomeGrupo);
 
-		idGrupo.setBounds(180, 20, 180, 25);
-		add(idGrupo);
+		nomeGrupo.setBounds(180, 20, 180, 25);
+		add(nomeGrupo);
 
 		buscar.setBounds(200, 290, 180, 30);
 		buscar.setBackground(new Color(108, 112, 139));
@@ -97,11 +97,11 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
 			new TelaMenu();
 			dispose();
 		} else if (e.getSource() == buscar) {
-			String id_grupoString = idGrupo.getText();
+			String nomeString = nomeGrupo.getText();
 			try {
-				int id_grupoInt = Integer.parseInt(id_grupoString);
+				// int id_grupoInt = Integer.parseInt(id_grupoString);
 				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-					if (Database.getGrupos().get(i).getId() == id_grupoInt) {
+					if (nomeString.equals(Database.getGrupos().get(i).getNome())) {
 
 						this.posicaoGrupo = Database.getGrupos().indexOf(Database.getGrupos().get(i));
 						listaNomes = ControlePessoas.pegarNomePessoas(this.posicaoGrupo);
@@ -109,8 +109,8 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
 						dispose();
 						break;
 					} else if (i == (Database.getQtdeGrupos() - 1)) {
-						JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o ID inserido",
-								"ID nao encontrado", JOptionPane.PLAIN_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o Nome inserido",
+								"Nome nao encontrado", JOptionPane.PLAIN_MESSAGE);
 					}
 				}
 
