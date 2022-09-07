@@ -10,7 +10,7 @@ package model;
  */
 public class Pessoa {
 
-	private int cpf;
+	private String cpf;
 	private String nome;
 	private int id;
 	private double totalDespesa = 0;
@@ -24,7 +24,7 @@ public class Pessoa {
 	 * @param id   int Recebe o ID de uma pessoa.
 	 */
 
-	public Pessoa(int cpf, String nome, int id) {
+	public Pessoa(String cpf, String nome, int id) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.id = id;
@@ -42,7 +42,7 @@ public class Pessoa {
 		this.totalDespesa = this.totalDespesa + valor_despesa;
 	}
 
-	public int getCpf() {
+	public String getCpf() {
 		return cpf;
 	}
 
@@ -62,7 +62,7 @@ public class Pessoa {
 		return saldo;
 	}
 
-	public void setCpf(int cpf) {
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 

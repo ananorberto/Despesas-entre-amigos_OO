@@ -26,7 +26,7 @@ public class Compra extends Despesa {
 	 * @param itens        String Recebe os itens que a pessoa comprou.
 	 */
 
-	public Compra(String nome_mercado, double valor, String data, int cpfPagador, String nomeGrupo, String itens) {
+	public Compra(String nome_mercado, double valor, String data, String cpfPagador, String nomeGrupo, String itens) {
 		this.nomeMercado = nome_mercado;
 		this.valor = valor;
 		this.data = data;

@@ -36,13 +36,17 @@ public class ControleGrupo {
 	 * Metodo responsavel por cadastrar um grupo e verificar se ja existe um grupo
 	 * com o mesmo ID.
 	 * 
-	 * @param nomeGrupoString String Retorna nome do grupo.
-	 * @param idString        String Retorna ID do grupo.
-	 * @param maxPessoas      String Retorna quantidade maxima de pessoas no grupo
+	 * @param nomeGrupoString String  Retorna nome do grupo.
+	 * @param idString        String  Retorna ID do grupo.
+	 * @param maxPessoas      String  Retorna quantidade maxima de pessoas no grupo
+	 * 
+	 * @return resultado      boolean Retorna false se houver erro na realização do cadastro, 
+	 * e true se o cadastro for efetuado com sucesso.
 	 */
 
-	public static void cadastrarGrupo(String nomeGrupoString, String idString, String maxPessoasString) {
+	public static boolean cadastrarGrupo(String nomeGrupoString, String idString, String maxPessoasString) {
 		boolean naoRepete = true;
+		boolean resultado = false;
 
 		try {
 			int idInt = Integer.parseInt(idString);
@@ -51,7 +55,8 @@ public class ControleGrupo {
 			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
 				if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
 					naoRepete = false;
-				} else if (Database.getGrupos().get(i).getId() == idInt) {
+				} 
+				else if (Database.getGrupos().get(i).getId() == idInt) {
 					naoRepete = false;
 					break;
 				}
@@ -65,6 +70,7 @@ public class ControleGrupo {
 
 				JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
 						JOptionPane.PLAIN_MESSAGE);
+				resultado = true;
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse Nome ou ID", "ID ou Nome repetido",
@@ -75,5 +81,6 @@ public class ControleGrupo {
 			JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 
 		}
+		return resultado;
 	}
 }

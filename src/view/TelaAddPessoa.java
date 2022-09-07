@@ -100,6 +100,7 @@ public class TelaAddPessoa extends JFrame implements ActionListener {
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		} else if (e.getSource() == cadastrar) {
+			
 			String nomeString = nome.getText();
 			String idPessoaString = idPessoa.getText();
 			String cpfString = cpf.getText();

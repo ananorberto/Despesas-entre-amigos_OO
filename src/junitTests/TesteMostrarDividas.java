@@ -12,17 +12,18 @@ import model.Grupo;
 import model.Imovel;
 import model.Pessoa;
 
-public class TestesUnitarios {
+public class TesteMostrarDividas {
 
 	public void cadastrarInfo() {
 		// Cadastra as informacoes de teste
 		Grupo grupoTeste = new Grupo(3, 100, "grupo teste");
-		Pessoa pessoa1 = new Pessoa(000000000, "Mario", 111);
-		Pessoa pessoa2 = new Pessoa(111111111, "Andre", 222);
-		Compra compra = new Compra("Atacadao da massa", 50.30, "15/02/2022", 111, "grupo1", "pao, ovo");
-		Imovel imovel = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", 222, "grupo1");
+		Pessoa pessoa1 = new Pessoa("000000000", "Mario", 111);
+		Pessoa pessoa2 = new Pessoa("111111111", "Andre", 222);
+		Compra compra = new Compra("Atacadao da massa", 50.30, "15/02/2022", "000000000", "grupo1", "pao, ovo");
+		Imovel imovel = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", "111111111", "grupo1");
 
 		Database.getGrupos().add(grupoTeste);
+		Database.aumentarQtdeGrupos();
 		Database.getGrupos().get(0).setNovaPessoa(pessoa1);
 		Database.getGrupos().get(0).addPessoa();
 		Database.getGrupos().get(0).setNovaPessoa(pessoa2);
@@ -68,7 +69,7 @@ public class TestesUnitarios {
 	}
 
 	@Test
-	public void testeMostrarDividas() {
+	public void testeMostrarDividasString() {
 		cadastrarInfo();
 
 		// Calcula a despesa dividida do grupo teste

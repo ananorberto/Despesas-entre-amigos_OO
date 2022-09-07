@@ -102,7 +102,7 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 	/**
 	 * Metodo responsavel por dar funcionalidade aos botoes voltar (voltando para a
 	 * tela de listagem de pessoas), salvar (salvando os novos valores atribuidos a
-	 * pessoa) e excluir.
+	 * pessoa) e excluir (excluindo a pessoa consultada).
 	 */
 
 	@Override
@@ -114,17 +114,40 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 			String valorNomeString = valorNome.getText();
 			String valorCpfString = valorCpf.getText();
 			String valorTotalDespesaString = valorTotalDespesa.getText();
+			boolean cpfCerto = false;
+			boolean naoRepete = true;
 
 			try {
 				double valorTotalDespesaDouble = Double.parseDouble(valorTotalDespesaString);
-				int valorCpfInt = Integer.parseInt(valorCpfString);
 
-				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setNome(valorNomeString);
-				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setCpf(valorCpfInt);
-				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa)
-						.somarTotalDespesa(valorTotalDespesaDouble);
-				JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);
-
+				if(valorCpfString.matches("^[0-9]*$") && valorCpfString.length() == 11) {
+					cpfCerto = true;
+				}
+				
+				for(int i = 0; i < Database.getGrupos().get(posicaoGrupo).getQtdeDespesas(); i++) {
+					if(i == posicaoPessoa) {
+						continue;
+					}
+					else if(valorCpfString.equals(Database.getGrupos().get(posicaoGrupo).getPessoas().get(i).getCpf())) {
+						naoRepete = false;
+					}
+				}
+				
+				
+				if(cpfCerto == true && naoRepete == true) {
+					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setNome(valorNomeString);
+					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setCpf(valorCpfString);
+					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).somarTotalDespesa(valorTotalDespesaDouble);
+				
+					JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);
+				}
+				else if(cpfCerto == false){
+					JOptionPane.showMessageDialog(null, "O CPF inserido é invalido", "Erro", JOptionPane.PLAIN_MESSAGE);
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Já existe uma pessoa com esse CPF nesse grupo", 
+												  "Erro", JOptionPane.PLAIN_MESSAGE);
+				}
 			} catch (NumberFormatException exception) {
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 			}

@@ -26,20 +26,20 @@ public class Database {
 	private static Grupo g2 = new Grupo(3, 101, "grupo2");
 	private static Grupo g3 = new Grupo(3, 102, "grupo3");
 
-	private static Pessoa p1_1 = new Pessoa(000000000, "Joao", 111);
-	private static Pessoa p1_2 = new Pessoa(111111111, "Jose", 222);
-	private static Pessoa p2_1 = new Pessoa(222222222, "Maria", 333);
-	private static Pessoa p2_2 = new Pessoa(333333333, "Ana", 444);
-	private static Pessoa p3_1 = new Pessoa(444444444, "Luiza", 555);
-	private static Pessoa p3_2 = new Pessoa(555555555, "Pedro", 666);
+	private static Pessoa p1_1 = new Pessoa("00000000000", "Joao", 111);
+	private static Pessoa p1_2 = new Pessoa("11111111111", "Jose", 222);
+	private static Pessoa p2_1 = new Pessoa("22222222222", "Maria", 333);
+	private static Pessoa p2_2 = new Pessoa("33333333333", "Ana", 444);
+	private static Pessoa p3_1 = new Pessoa("44444444444", "Luiza", 555);
+	private static Pessoa p3_2 = new Pessoa("55555555555", "Pedro", 666);
 
-	private static Compra c1 = new Compra("Atacadao da massa", 50.30, "15/02/2022", 111, "grupo1", "pao, ovo");
-	private static Compra c2 = new Compra("Atacadao da massa", 50.30, "15/02/2022", 333, "grupo2", "pao, ovo");
-	private static Compra c3 = new Compra("Atacadao da massa", 50.30, "15/02/2022", 555, "grupo3", "pao, ovo");
+	private static Compra c1 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "00000000000", "grupo1", "pao, ovo");
+	private static Compra c2 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "22222222222", "grupo2", "pao, ovo");
+	private static Compra c3 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "44444444444", "grupo3", "pao, ovo");
 
-	private static Imovel i1 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", 222, "grupo1");
-	private static Imovel i2 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", 444, "grupo2");
-	private static Imovel i3 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", 666, "grupo3");
+	private static Imovel i1 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", "11111111111", "grupo1");
+	private static Imovel i2 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", "33333333333", "grupo2");
+	private static Imovel i3 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", "55555555555", "grupo3");
 
 	public Database() {
 	}

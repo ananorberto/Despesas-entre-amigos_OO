@@ -93,30 +93,48 @@ public class TelaEditarGrupo extends JFrame implements ActionListener {
 		if (src == voltar) {
 			new TelaListagemGrupos().mostrarDados();
 			dispose();
-		} else if (src == salvar) {
+		} 
+		else if (src == salvar) {
 			try {
 				String nomeString = valorNome.getText();
 				String maxPessoasString = valorMaxPessoas.getText();
+				boolean naoRepete = true;
+				
+				for(int i = 0; i < Database.getQtdeGrupos(); i++) {
+					if(i == posicao) {
+						continue;
+					}
+					else if(nomeString.equals(Database.getGrupos().get(i).getNome())) {
+						naoRepete = false;
+					}
+				}
 
 				int maxPessoasInt = Integer.parseInt(maxPessoasString);
 
-				if (maxPessoasInt >= Database.getGrupos().get(posicao).getMaxPessoas()) {
+				if ((maxPessoasInt >= Database.getGrupos().get(posicao).getMaxPessoas()) && (naoRepete == true)) {
 					Database.getGrupos().get(posicao).setNome(nomeString);
 					Database.getGrupos().get(posicao).setMaxPessoas(maxPessoasInt);
 					JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);
 					new TelaListagemGrupos().mostrarDados();
 					dispose();
 
-				} else {
+				} 
+				else if(naoRepete == false) {
+					JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse nome", "Erro", JOptionPane.PLAIN_MESSAGE);
+				}
+				else {
 					JOptionPane.showMessageDialog(null, " Nao foi possivel salvar,"
-							+ " pois o maximo de pessoas so pode ser maior " + "ou igual ao valor anterior", "Erro",
-							JOptionPane.PLAIN_MESSAGE);
+												  + " pois o maximo de pessoas so pode ser maior " 
+												  + "ou igual ao valor anterior", "Erro",
+												  JOptionPane.PLAIN_MESSAGE);
 				}
 
-			} catch (NumberFormatException exception) {
+			} 
+			catch (NumberFormatException exception) {
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 			}
-		} else if (src == excluir) {
+		} 
+		else if (src == excluir) {
 			Database.getGrupos().remove(posicao);
 			Database.diminuirQtdeGrupos();
 			JOptionPane.showMessageDialog(null, "Grupo removido", "Deletar", JOptionPane.PLAIN_MESSAGE);

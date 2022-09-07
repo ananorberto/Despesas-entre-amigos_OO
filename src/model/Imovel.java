@@ -32,7 +32,7 @@ public class Imovel extends Despesa {
 	 */
 
 	public Imovel(String endereco, double valorContaLuz, double valorContaAgua, double aluguel, String data,
-			int cpfPagadorInt, String nomeGrupo) {
+			String cpfPagador, String nomeGrupo) {
 		this.endereco = endereco;
 		this.valorContaLuz = valorContaLuz;
 		this.valorContaAgua = valorContaAgua;
