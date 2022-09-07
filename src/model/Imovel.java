@@ -26,20 +26,20 @@ public class Imovel extends Despesa {
 	 * @param valorContaAgua double Recebe o valor da conta de agua.
 	 * @param aluguel        double Recebe o valor do aluguel.
 	 * @param data           String Recebe a data em que a pessoa fez o pagamento.
-	 * @param idPagador      int Localiza o ID da pessoa que fez o pagamento.
-	 * @param idGrupo        int Localiza o grupo no qual os gastos serao
+	 * @param cpfPagador     int Localiza o CPF da pessoa que fez o pagamento.
+	 * @param nomeGrupo      String Localiza o grupo no qual os gastos serao
 	 *                       cadastrados.
 	 */
 
 	public Imovel(String endereco, double valorContaLuz, double valorContaAgua, double aluguel, String data,
-			int idPagador, int idGrupo) {
+			int cpfPagadorInt, String nomeGrupo) {
 		this.endereco = endereco;
 		this.valorContaLuz = valorContaLuz;
 		this.valorContaAgua = valorContaAgua;
 		this.aluguel = aluguel;
 		this.data = data;
-		this.idPagador = idPagador;
-		this.idGrupo = idGrupo;
+		this.cpfPagador = cpfPagador;
+		this.nomeGrupo = nomeGrupo;
 	}
 
 	/**

@@ -15,29 +15,28 @@ public class ControleDespesa {
 	 * Metodo responsavel por cadastrar uma despesa do tipo compra em um grupo.
 	 * 
 	 * @param nomeMercadoString String Recebe nome do mercado.
-	 * @param idPagadorString   String Recebe o ID do pagador.
-	 * @param idGrupoString     String Recebe o ID do grupo.
+	 * @param cpfPagadorString  String Recebe o CPF do pagador.
+	 * @param nomeGrupoString   String Recebe o Nome do grupo.
 	 * @param itensString       String Recebe os itens da compra
 	 * @param valorString       String Recebe o valor da compra.
 	 * @param dataString        String Recebe a data da comrpa.
 	 */
-	public static void cadastrarCompra(String nomeMercadoString, String idPagadorString, String idGrupoString,
+	public static void cadastrarCompra(String nomeMercadoString, String cpfPagadorString, String nomeGrupoString,
 			String itensString, String valorString, String dataString) {
 		try {
 			boolean acabou = false;
-			int idPagadorInt = Integer.parseInt(idPagadorString);
-			int idGrupoInt = Integer.parseInt(idGrupoString);
+			int cpfPagadorInt = Integer.parseInt(cpfPagadorString);
 			double valorDouble = Double.parseDouble(valorString);
 
 			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-				if (Database.getGrupos().get(i).getId() == idGrupoInt) {
+				if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
 					// Achou o grupo
 					for (int j = 0; j < Database.getGrupos().get(i).getQtdePessoas(); j++) {
-						if (Database.getGrupos().get(i).getPessoas().get(j).getId() == idPagadorInt) {
+						if (Database.getGrupos().get(i).getPessoas().get(j).getCpf() == cpfPagadorInt) {
 							// Achou a pessoa
 							acabou = true;
-							Compra novaCompra = new Compra(nomeMercadoString, valorDouble, dataString, idPagadorInt,
-									idGrupoInt, itensString);
+							Compra novaCompra = new Compra(nomeMercadoString, valorDouble, dataString, cpfPagadorInt,
+									nomeGrupoString, itensString);
 							Database.getGrupos().get(i).getDespesas().add(novaCompra);
 							Database.getGrupos().get(i).aumentarQtdeDespesas();
 							Database.getGrupos().get(i).getPessoas().get(j).somarTotalDespesa(valorDouble);
@@ -84,31 +83,30 @@ public class ControleDespesa {
 	 * @param contaAguaString  String Recebe o valor da conta de agua.
 	 * @param aluguelString    String Recebe o valor do aluguel.
 	 * @param dataString       String Recebe a data em que a pessoa fez o pagamento.
-	 * @param cpfPagadorString String Recebe o ID da pessoa que pagou a despesa.
-	 * @param NomeGrupoString  String Recebe o ID do grupo que sera cadastrada a
+	 * @param cpfPagadorString String Recebe o CPF da pessoa que pagou a despesa.
+	 * @param nomeGrupoString  String Recebe o Nome do grupo que sera cadastrada a
 	 *                         despesa.
 	 */
 
 	public static void cadastrarImovel(String enderecoString, String contaLuzString, String contaAguaString,
-			String aluguelString, String dataString, String idPagadorString, String idGrupoString) {
+			String aluguelString, String dataString, String cpfPagadorString, String nomeGrupoString) {
 
 		try {
 			boolean acabou = false;
-			int idPagadorInt = Integer.parseInt(idPagadorString);
-			int idGrupoInt = Integer.parseInt(idGrupoString);
+			int cpfPagadorInt = Integer.parseInt(cpfPagadorString);
 			double contaLuzDouble = Double.parseDouble(contaLuzString);
 			double contaAguaDouble = Double.parseDouble(contaAguaString);
 			double aluguelDouble = Double.parseDouble(aluguelString);
 
 			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-				if (Database.getGrupos().get(i).getId() == idGrupoInt) {
+				if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
 					// Achou o grupo
 					for (int j = 0; j < Database.getGrupos().get(i).getQtdePessoas(); j++) {
-						if (Database.getGrupos().get(i).getPessoas().get(j).getId() == idPagadorInt) {
+						if (Database.getGrupos().get(i).getPessoas().get(j).getCpf() == cpfPagadorInt) {
 							// Achou a pessoa
 							acabou = true;
 							Imovel novoImovel = new Imovel(enderecoString, contaLuzDouble, contaAguaDouble,
-									aluguelDouble, dataString, idPagadorInt, idGrupoInt);
+									aluguelDouble, dataString, cpfPagadorInt, nomeGrupoString);
 
 							novoImovel.somar_gastos();
 
@@ -120,12 +118,15 @@ public class ControleDespesa {
 									JOptionPane.PLAIN_MESSAGE);
 
 							break;
+
 						} else if (j == (Database.getGrupos().get(i).getQtdeDespesas() - 1)) {
 							// Nao achou a pessoa
 							JOptionPane.showMessageDialog(null,
 									"Nao encontramos uma pessoa ou um grupo com os IDs inseridos",
 									"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 							acabou = true;
+
+							break;
 						}
 
 					}

@@ -49,18 +49,19 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 
 		valorNome = new JTextField(Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getNome(),
 				200);
-		valorCpf = new JTextField(Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getCpf(), 200);
+		valorCpf = new JTextField(
+				String.valueOf(Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getCpf()));
 		valorTotalDespesa = new JTextField(String.valueOf(
 				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getTotalDespesa()), 200);
 
 		labelNome.setBounds(30, 20, 150, 25);
-		valorNome.setBounds(180, 20, 180, 25);
+		valorNome.setBounds(80, 20, 280, 25);
 
 		labelCpf.setBounds(30, 50, 180, 25);
-		valorCpf.setBounds(180, 50, 180, 25);
+		valorCpf.setBounds(70, 50, 290, 25);
 
-		labelTotalDespesa.setBounds(30, 80, 180, 25);
-		valorTotalDespesa.setBounds(180, 80, 180, 25);
+		labelTotalDespesa.setBounds(40, 80, 190, 25);
+		valorTotalDespesa.setBounds(220, 80, 140, 25);
 
 		salvar.setBounds(130, 175, 115, 30);
 		salvar.setBackground(new Color(108, 112, 139));
@@ -116,9 +117,10 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 
 			try {
 				double valorTotalDespesaDouble = Double.parseDouble(valorTotalDespesaString);
+				int valorCpfInt = Integer.parseInt(valorCpfString);
 
 				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setNome(valorNomeString);
-				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setCpf(valorCpfString);
+				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setCpf(valorCpfInt);
 				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa)
 						.somarTotalDespesa(valorTotalDespesaDouble);
 				JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);

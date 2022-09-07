@@ -37,18 +37,18 @@ public class ControlePessoas {
 	 * Metodo responsavel por cadastrar uma pessoa no grupo, verificar se o ID
 	 * inserido repete e/ou existe ou nao.
 	 * 
-	 * @param nomeString     String Cadastra o nome de uma pessoa.
-	 * @param idPessoaString String Cadastra o ID de uma pessoa.
-	 * @param cpfString      String Cadastra o CPF de uma pessoa
-	 * @param idGrupoString  String Cadastra pessoa no grupo.
+	 * @param nomeString      String Cadastra o nome de uma pessoa.
+	 * @param idPessoaString  String Cadastra o ID de uma pessoa.
+	 * @param cpfString       String Cadastra o CPF de uma pessoa
+	 * @param nomeGrupoString String Cadastra pessoa no grupo.
 	 */
 	public static void cadastrarPessoa(String nomeString, String idPessoaString, String cpfString,
-			String idGrupoString) {
+			String nomeGrupoString) {
 		try {
 			boolean naoRepete = true;
 			boolean grupoCheio;
 			int idPessoaInt = Integer.parseInt(idPessoaString);
-			int idGrupoInt = Integer.parseInt(idGrupoString);
+			int cpfInt = Integer.parseInt(cpfString);
 
 			// Repeticao de id de usuario
 			for (int j = 0; j < Database.getQtdeGrupos(); j++) {
@@ -57,7 +57,7 @@ public class ControlePessoas {
 				}
 
 				for (int k = 0; k < Database.getGrupos().get(j).getQtdePessoas(); k++) {
-					if (Database.getGrupos().get(j).getPessoas().get(k).getId() == idPessoaInt) {
+					if (nomeGrupoString.equals(Database.getGrupos().get(j).getPessoas().get(k).getNome())) {
 						naoRepete = false;
 						break;
 					}
@@ -69,8 +69,8 @@ public class ControlePessoas {
 
 			if (naoRepete == true) {
 				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-					if (Database.getGrupos().get(i).getId() == idGrupoInt) {
-						Pessoa novaPessoa = new Pessoa(cpfString, nomeString, idPessoaInt);
+					if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
+						Pessoa novaPessoa = new Pessoa(cpfInt, nomeString, idPessoaInt);
 
 						Database.getGrupos().get(i).setNovaPessoa(novaPessoa);
 						grupoCheio = Database.getGrupos().get(i).addPessoa();
@@ -92,7 +92,8 @@ public class ControlePessoas {
 			}
 
 		} catch (NumberFormatException exception) {
-			JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog(null, "O CPF e o ID devem conter apenas numeros", "Erro",
+					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 

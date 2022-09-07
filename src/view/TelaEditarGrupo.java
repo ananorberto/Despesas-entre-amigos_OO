@@ -46,7 +46,7 @@ public class TelaEditarGrupo extends JFrame implements ActionListener {
 		valorMaxPessoas = new JTextField(String.valueOf(Database.getGrupos().get(posicao).getMaxPessoas()), 200);
 
 		labelNome.setBounds(30, 20, 150, 25);
-		valorNome.setBounds(180, 20, 180, 25);
+		valorNome.setBounds(80, 20, 280, 25);
 		labelMaxPessoas.setBounds(30, 50, 150, 25);
 		valorMaxPessoas.setBounds(180, 50, 180, 25);
 
@@ -104,6 +104,8 @@ public class TelaEditarGrupo extends JFrame implements ActionListener {
 					Database.getGrupos().get(posicao).setNome(nomeString);
 					Database.getGrupos().get(posicao).setMaxPessoas(maxPessoasInt);
 					JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);
+					new TelaListagemGrupos().mostrarDados();
+					dispose();
 
 				} else {
 					JOptionPane.showMessageDialog(null, " Nao foi possivel salvar,"

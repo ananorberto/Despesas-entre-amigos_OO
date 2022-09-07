@@ -28,8 +28,8 @@ public class TelaAddPessoa extends JFrame implements ActionListener {
 	private final JTextField nome = new JTextField();
 	private final JLabel labelId = new JLabel("ID: ");
 	private final JTextField idPessoa = new JTextField();
-	private final JLabel labelIdGrupo = new JLabel("ID Grupo: ");
-	private final JTextField idGrupo = new JTextField();
+	private final JLabel labelNomeGrupo = new JLabel("Nome do Grupo: ");
+	private final JTextField nomeGrupo = new JTextField();
 	private final JLabel labelCPF = new JLabel("CPF: ");
 	private final JTextField cpf = new JTextField();
 	private final JButton cadastrar = new JButton("Cadastrar");
@@ -51,8 +51,8 @@ public class TelaAddPessoa extends JFrame implements ActionListener {
 		labelId.setBounds(50, 110, 420, 30);
 		idPessoa.setBounds(80, 110, 420, 30);
 
-		labelIdGrupo.setBounds(50, 150, 420, 30);
-		idGrupo.setBounds(120, 150, 380, 30);
+		labelNomeGrupo.setBounds(50, 150, 420, 30);
+		nomeGrupo.setBounds(170, 150, 330, 30);
 
 		labelCPF.setBounds(50, 190, 420, 30);
 		cpf.setBounds(90, 190, 410, 30);
@@ -77,8 +77,8 @@ public class TelaAddPessoa extends JFrame implements ActionListener {
 		add(cpf);
 		add(cadastrar);
 		add(voltar);
-		add(labelIdGrupo);
-		add(idGrupo);
+		add(labelNomeGrupo);
+		add(nomeGrupo);
 
 		setSize(530, 340);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,9 +103,9 @@ public class TelaAddPessoa extends JFrame implements ActionListener {
 			String nomeString = nome.getText();
 			String idPessoaString = idPessoa.getText();
 			String cpfString = cpf.getText();
-			String idGrupoString = idGrupo.getText();
+			String nomeGrupoString = nomeGrupo.getText();
 
-			ControlePessoas.cadastrarPessoa(nomeString, idPessoaString, cpfString, idGrupoString);
+			ControlePessoas.cadastrarPessoa(nomeString, idPessoaString, cpfString, nomeGrupoString);
 
 		}
 	}

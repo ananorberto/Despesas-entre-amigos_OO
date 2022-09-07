@@ -24,10 +24,10 @@ import controller.ControleDespesa;
 public class TelaAddImovel extends JFrame implements ActionListener {
 
 	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
-	private final JLabel labelIdGrupo = new JLabel("Nome do Grupo: ");
-	private final JTextField idGrupo = new JTextField();
-	private final JLabel labelId = new JLabel("CPF do Pagador: ");
-	private JTextField idPagador = new JTextField();
+	private final JLabel labelNomeGrupo = new JLabel("Nome do Grupo: ");
+	private final JTextField nomeGrupo = new JTextField();
+	private final JLabel labelCpf = new JLabel("CPF do Pagador: ");
+	private JTextField cpfPagador = new JTextField();
 	private final JLabel labelContaLuz = new JLabel("Valor da Conta de Luz: ");
 	private JTextField contaLuz = new JTextField();
 	private final JLabel labelContaAgua = new JLabel("Valor da Conta de Agua: ");
@@ -46,6 +46,8 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 	 * cores dos botoes e torna-los visiveis para o usuario.
 	 */
 	public TelaAddImovel() {
+		super("Cadastrar despesas do Imovel");
+
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
 		titulo.setBounds(90, 10, 400, 40);
 
@@ -59,11 +61,11 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 		labelAluguel.setBounds(50, 150, 420, 30);
 		aluguel.setBounds(230, 150, 260, 30);
 
-		labelId.setBounds(50, 190, 420, 30);
-		idPagador.setBounds(160, 190, 330, 30);
+		labelCpf.setBounds(50, 190, 420, 30);
+		cpfPagador.setBounds(170, 190, 320, 30);
 
-		labelIdGrupo.setBounds(50, 230, 420, 30);
-		idGrupo.setBounds(160, 230, 330, 30);
+		labelNomeGrupo.setBounds(50, 230, 420, 30);
+		nomeGrupo.setBounds(170, 230, 320, 30);
 
 		labelEndereco.setBounds(50, 270, 420, 30);
 		endereco.setBounds(130, 270, 360, 30);
@@ -87,10 +89,10 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 		add(contaLuz);
 		add(labelContaAgua);
 		add(contaAgua);
-		add(labelId);
-		add(idPagador);
-		add(labelIdGrupo);
-		add(idGrupo);
+		add(labelCpf);
+		add(cpfPagador);
+		add(labelNomeGrupo);
+		add(nomeGrupo);
 		add(labelEndereco);
 		add(endereco);
 		add(cadastrar);
@@ -125,11 +127,11 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 			String contaAguaString = contaAgua.getText();
 			String aluguelString = aluguel.getText();
 			String dataString = data.getText();
-			String idPagadorString = idPagador.getText();
-			String idGrupoString = idGrupo.getText();
+			String cpfPagadorString = cpfPagador.getText();
+			String nomeGrupoString = nomeGrupo.getText();
 
 			ControleDespesa.cadastrarImovel(enderecoString, contaLuzString, contaAguaString, aluguelString, dataString,
-					idPagadorString, idGrupoString);
+					cpfPagadorString, nomeGrupoString);
 
 		}
 	}

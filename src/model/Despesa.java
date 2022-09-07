@@ -13,15 +13,15 @@ public abstract class Despesa {
 
 	protected double valor;
 	protected String data;
-	protected int idPagador;
-	protected int idGrupo;
+	protected int cpfPagador;
+	protected String nomeGrupo;
 
 	public int getIdPagador() {
-		return idPagador;
+		return cpfPagador;
 	}
 
 	public void setIdPagador(int idPagador) {
-		this.idPagador = idPagador;
+		this.cpfPagador = idPagador;
 	}
 
 	public void setValor(double valor) {

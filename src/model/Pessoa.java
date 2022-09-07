@@ -10,7 +10,7 @@ package model;
  */
 public class Pessoa {
 
-	private String cpf;
+	private int cpf;
 	private String nome;
 	private int id;
 	private double totalDespesa = 0;
@@ -19,12 +19,12 @@ public class Pessoa {
 	/**
 	 * Construtor responsavel por cadastrar o CPF, nome e ID de uma pessoa.
 	 * 
-	 * @param cpf  String Recebe o CPF de uma pessoa.
+	 * @param cpf  int Recebe o CPF de uma pessoa.
 	 * @param nome String Recebe o nome de uma pessoa.
 	 * @param id   int Recebe o ID de uma pessoa.
 	 */
 
-	public Pessoa(String cpf, String nome, int id) {
+	public Pessoa(int cpf, String nome, int id) {
 		this.cpf = cpf;
 		this.nome = nome;
 		this.id = id;
@@ -42,7 +42,7 @@ public class Pessoa {
 		this.totalDespesa = this.totalDespesa + valor_despesa;
 	}
 
-	public String getCpf() {
+	public int getCpf() {
 		return cpf;
 	}
 
@@ -62,7 +62,7 @@ public class Pessoa {
 		return saldo;
 	}
 
-	public void setCpf(String cpf) {
+	public void setCpf(int cpf) {
 		this.cpf = cpf;
 	}
 

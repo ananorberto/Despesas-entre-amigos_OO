@@ -24,10 +24,10 @@ import controller.ControleDespesa;
 public class TelaAddCompra extends JFrame implements ActionListener {
 
 	private final JLabel titulo = new JLabel("Cadastre as seguintes informações");
-	private final JLabel labelIdGrupo = new JLabel("ID do Grupo: ");
-	private final JTextField idGrupo = new JTextField();
-	private final JLabel labelId = new JLabel("ID do Pagador: ");
-	private final JTextField idPagador = new JTextField();
+	private final JLabel labelNomeGrupo = new JLabel("Nome do Grupo: ");
+	private final JTextField nomeGrupo = new JTextField();
+	private final JLabel labelCpf = new JLabel("CPF do Pagador: ");
+	private final JTextField cpfPagador = new JTextField();
 	private final JLabel labelMercado = new JLabel("Nome do Mercado: ");
 	private final JTextField nomeMercado = new JTextField();
 	private final JLabel labelItens = new JLabel("Itens da compra: ");
@@ -44,18 +44,18 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 	 * cores dos botoes e torna-los visiveis para o usuario.
 	 */
 	public TelaAddCompra() {
-		super("cadastrar compra");
+		super("Cadastrar compra");
 		titulo.setFont(new Font(("Verdana"), Font.PLAIN, 20));
 		titulo.setBounds(90, 10, 400, 40);
 
 		labelMercado.setBounds(50, 70, 420, 30);
 		nomeMercado.setBounds(190, 70, 300, 30);
 
-		labelId.setBounds(50, 110, 420, 30);
-		idPagador.setBounds(160, 110, 330, 30);
+		labelCpf.setBounds(50, 110, 420, 30);
+		cpfPagador.setBounds(170, 110, 320, 30);
 
-		labelIdGrupo.setBounds(50, 150, 420, 30);
-		idGrupo.setBounds(160, 150, 330, 30);
+		labelNomeGrupo.setBounds(50, 150, 420, 30);
+		nomeGrupo.setBounds(170, 150, 320, 30);
 
 		labelItens.setBounds(50, 190, 420, 30);
 		itens.setBounds(175, 190, 315, 30);
@@ -80,10 +80,10 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 		add(titulo);
 		add(labelMercado);
 		add(nomeMercado);
-		add(labelId);
-		add(idPagador);
-		add(labelIdGrupo);
-		add(idGrupo);
+		add(labelCpf);
+		add(cpfPagador);
+		add(labelNomeGrupo);
+		add(nomeGrupo);
 		add(labelItens);
 		add(itens);
 		add(labelValor);
@@ -93,7 +93,7 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 		add(labelData);
 		add(data);
 
-		setSize(520, 400);
+		setSize(520, 430);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
 		setLocationRelativeTo(null);
@@ -114,14 +114,14 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 		} else if (e.getSource() == cadastrar) {
 
 			String nomeMercadoString = nomeMercado.getText();
-			String idPagadorString = idPagador.getText();
-			String idGrupoString = idGrupo.getText();
+			String cpfPagadorString = cpfPagador.getText();
+			String idGrupoString = nomeGrupo.getText();
 			String itensString = itens.getText();
 			String valorString = valor.getText();
 			String dataString = data.getText();
 
-			ControleDespesa.cadastrarCompra(nomeMercadoString, idPagadorString, idGrupoString, itensString, valorString,
-					dataString);
+			ControleDespesa.cadastrarCompra(nomeMercadoString, cpfPagadorString, idGrupoString, itensString,
+					valorString, dataString);
 
 		}
 	}

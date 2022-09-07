@@ -17,10 +17,10 @@ public class TestesUnitarios {
 	public void cadastrarInfo() {
 		// Cadastra as informacoes de teste
 		Grupo grupoTeste = new Grupo(3, 100, "grupo teste");
-		Pessoa pessoa1 = new Pessoa("00000000000", "Mario", 111);
-		Pessoa pessoa2 = new Pessoa("11111111111", "Andre", 222);
-		Compra compra = new Compra("Atacadao da massa", 50.30, "15/02/2022", 111, 100, "pao, ovo");
-		Imovel imovel = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", 222, 100);
+		Pessoa pessoa1 = new Pessoa(000000000, "Mario", 111);
+		Pessoa pessoa2 = new Pessoa(111111111, "Andre", 222);
+		Compra compra = new Compra("Atacadao da massa", 50.30, "15/02/2022", 111, "grupo1", "pao, ovo");
+		Imovel imovel = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", 222, "grupo1");
 
 		Database.getGrupos().add(grupoTeste);
 		Database.getGrupos().get(0).setNovaPessoa(pessoa1);

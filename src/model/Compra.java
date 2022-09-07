@@ -21,17 +21,17 @@ public class Compra extends Despesa {
 	 * @param nome_mercado String Recebera o nome do mercado que o usuario colocar.
 	 * @param valor        double Recebe o valor da compra.
 	 * @param data         String Recebe a data em que a pessoa fez a compra.
-	 * @param id_pagador   int Localiza o ID da pessoa que fez a compra.
-	 * @param id_grupo     int Localiza o grupo no qual a compra sera cadastrada.
+	 * @param cpfPagador   int Localiza o CPF da pessoa que fez a compra.
+	 * @param nomeGrupoInt String Localiza o grupo no qual a compra sera cadastrada.
 	 * @param itens        String Recebe os itens que a pessoa comprou.
 	 */
 
-	public Compra(String nome_mercado, double valor, String data, int id_pagador, int id_grupo, String itens) {
+	public Compra(String nome_mercado, double valor, String data, int cpfPagador, String nomeGrupo, String itens) {
 		this.nomeMercado = nome_mercado;
 		this.valor = valor;
 		this.data = data;
-		this.idPagador = id_pagador;
-		this.idGrupo = id_grupo;
+		this.cpfPagador = cpfPagador;
+		this.nomeGrupo = nomeGrupo;
 		this.itens = itens;
 	}
 
