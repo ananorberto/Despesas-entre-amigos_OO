@@ -19,20 +19,20 @@ public class ControleDespesa {
 	 * @param nomeGrupoString   String Recebe o Nome do grupo.
 	 * @param itensString       String Recebe os itens da compra
 	 * @param valorString       String Recebe o valor da compra.
-	 * @param dataString        String Recebe a data da comrpa.
+	 * @param dataString        String Recebe a data da compra.
 	 */
 	public static void cadastrarCompra(String nomeMercadoString, String cpfPagadorString, String nomeGrupoString,
-									   String itensString, String valorString, String dataString) {
+			String itensString, String valorString, String dataString) {
 		try {
 			boolean acabou = false;
-			
+
 			double valorDouble = Double.parseDouble(valorString);
 
 			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
 				if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
 					// Achou o grupo
 					for (int j = 0; j < Database.getGrupos().get(i).getQtdePessoas(); j++) {
-						if (Database.getGrupos().get(i).getPessoas().get(j).getCpf() == cpfPagadorString) {
+						if (cpfPagadorString.equals(Database.getGrupos().get(i).getPessoas().get(j).getCpf())) {
 							// Achou a pessoa
 							acabou = true;
 							Compra novaCompra = new Compra(nomeMercadoString, valorDouble, dataString, cpfPagadorString,
@@ -63,7 +63,7 @@ public class ControleDespesa {
 				} else if (i == (Database.getQtdeGrupos() - 1)) {
 					// Nao achou o grupo
 					JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou grupo com o ID inserido",
-												  "Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+							"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 
 				}
 			}
@@ -101,11 +101,11 @@ public class ControleDespesa {
 				if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
 					// Achou o grupo
 					for (int j = 0; j < Database.getGrupos().get(i).getQtdePessoas(); j++) {
-						if (Database.getGrupos().get(i).getPessoas().get(j).getCpf() == cpfPagadorString) {
+						if (cpfPagadorString.equals(Database.getGrupos().get(i).getPessoas().get(j).getCpf())) {
 							// Achou a pessoa
 							acabou = true;
 							Imovel novoImovel = new Imovel(enderecoString, contaLuzDouble, contaAguaDouble,
-														   aluguelDouble, dataString, cpfPagadorString, nomeGrupoString);
+									aluguelDouble, dataString, cpfPagadorString, nomeGrupoString);
 
 							novoImovel.somar_gastos();
 
@@ -114,12 +114,11 @@ public class ControleDespesa {
 							Database.getGrupos().get(i).getPessoas().get(j).somarTotalDespesa(novoImovel.getValor());
 
 							JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
-														  JOptionPane.PLAIN_MESSAGE);
+									JOptionPane.PLAIN_MESSAGE);
 
 							break;
 
-						} 
-						else if (j == (Database.getGrupos().get(i).getQtdePessoas() - 1)) {
+						} else if (j == (Database.getGrupos().get(i).getQtdePessoas() - 1)) {
 							// Nao achou a pessoa
 							JOptionPane.showMessageDialog(null,
 									"Nao encontramos uma pessoa ou um grupo com os IDs inseridos",
@@ -138,7 +137,7 @@ public class ControleDespesa {
 				} else if (i == (Database.getQtdeGrupos() - 1)) {
 					// Nao achou o grupo
 					JOptionPane.showMessageDialog(null, "Nao encontramos uma pessoa ou um grupo com os IDs inseridos",
-												  "Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
+							"Grupo ou pessoa nao encontrada", JOptionPane.PLAIN_MESSAGE);
 				}
 			}
 

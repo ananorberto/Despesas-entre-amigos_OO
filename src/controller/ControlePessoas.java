@@ -37,13 +37,13 @@ public class ControlePessoas {
 	 * Metodo responsavel por cadastrar uma pessoa no grupo, verificar se o ID
 	 * inserido repete e/ou existe ou nao.
 	 * 
-	 * @param nomeString      String  Cadastra o nome de uma pessoa.
-	 * @param idPessoaString  String  Cadastra o ID de uma pessoa.
-	 * @param cpfString       String  Cadastra o CPF de uma pessoa
-	 * @param nomeGrupoString String  Cadastra pessoa no grupo.
+	 * @param nomeString      String Cadastra o nome de uma pessoa.
+	 * @param idPessoaString  String Cadastra o ID de uma pessoa.
+	 * @param cpfString       String Cadastra o CPF de uma pessoa
+	 * @param nomeGrupoString String Cadastra pessoa no grupo.
 	 * 
-	 * @return resultado      boolean retorna false se o cadastro não foi efetuado, 
-	 * e true caso tenha sido efetuado com sucesso.
+	 * @return resultado boolean retorna false se o cadastro não foi efetuado, e
+	 *         true caso tenha sido efetuado com sucesso.
 	 */
 	public static boolean cadastrarPessoa(String nomeString, String idPessoaString, String cpfString,
 			String nomeGrupoString) {
@@ -54,30 +54,28 @@ public class ControlePessoas {
 			boolean cpfCerto = false;
 			int idPessoaInt = Integer.parseInt(idPessoaString);
 			String nome0 = Database.getGrupos().get(0).getNome();
-			
-			if(cpfString.matches("^[0-9]*$") && cpfString.length() == 11) {
+
+			if (cpfString.matches("^[0-9]*$") && cpfString.length() == 11) {
 				cpfCerto = true;
 			}
-			
 
-			
 			// Repeticao de id e cpf de usuario
 			for (int j = 0; j < Database.getQtdeGrupos(); j++) {
 				if (Database.getGrupos().get(j).getQtdePessoas() == 0) {
 					continue;
 				}
-				if(nomeGrupoString.equals(Database.getGrupos().get(j).getNome())) {
+				if (nomeGrupoString.equals(Database.getGrupos().get(j).getNome())) {
 					for (int k = 0; k < Database.getGrupos().get(j).getQtdePessoas(); k++) {
-						if (cpfString.equals(Database.getGrupos().get(j).getPessoas().get(k).getCpf())|| 
-							(Database.getGrupos().get(j).getPessoas().get(k).getId() == idPessoaInt)) {
-							
+						if (cpfString.equals(Database.getGrupos().get(j).getPessoas().get(k).getCpf())
+								|| (Database.getGrupos().get(j).getPessoas().get(k).getId() == idPessoaInt)) {
+
 							naoRepete = false;
 							break;
 						}
 					}
 				}
-				
-					if (naoRepete == false) {
+
+				if (naoRepete == false) {
 					break;
 				}
 			}
@@ -98,31 +96,27 @@ public class ControlePessoas {
 
 						break;
 					} else if (i == (Database.getQtdeGrupos() - 1)) {
-						JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o nome inserido",
-													  "Erro", JOptionPane.PLAIN_MESSAGE);
-						
-						
+						JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o nome inserido", "Erro",
+								JOptionPane.PLAIN_MESSAGE);
+
 					}
 				}
-			} 
-			else if(cpfCerto == false) {
-				JOptionPane.showMessageDialog(null, "O CPF inserido não é válido", "Erro",
-											  JOptionPane.PLAIN_MESSAGE);
-				
+			} else if (cpfCerto == false) {
+				JOptionPane.showMessageDialog(null, "O CPF inserido não é válido", "Erro", JOptionPane.PLAIN_MESSAGE);
+
 			}
-			
+
 			else {
 				JOptionPane.showMessageDialog(null, "Ja existe um usuario com esse CPF ou ID nesse grupo", "Erro",
 						JOptionPane.PLAIN_MESSAGE);
-				
+
 			}
 
 		} catch (NumberFormatException exception) {
-			JOptionPane.showMessageDialog(null, "o ID deve conter apenas numeros", "Erro",
-					JOptionPane.PLAIN_MESSAGE);
-			
+			JOptionPane.showMessageDialog(null, "o ID deve conter apenas numeros", "Erro", JOptionPane.PLAIN_MESSAGE);
+
 		}
-		
+
 		return resultado;
 	}
 

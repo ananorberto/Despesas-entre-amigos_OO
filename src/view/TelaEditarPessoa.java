@@ -1,5 +1,7 @@
 package view;
 
+import static java.lang.String.format;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,8 +53,10 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 				200);
 		valorCpf = new JTextField(
 				String.valueOf(Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getCpf()));
-		valorTotalDespesa = new JTextField(String.valueOf(
-				Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getTotalDespesa()), 200);
+		valorTotalDespesa = new JTextField(
+				String.valueOf(format("%.2f",
+						Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).getTotalDespesa())),
+				200);
 
 		labelNome.setBounds(30, 20, 150, 25);
 		valorNome.setBounds(80, 20, 280, 25);
@@ -120,33 +124,31 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 			try {
 				double valorTotalDespesaDouble = Double.parseDouble(valorTotalDespesaString);
 
-				if(valorCpfString.matches("^[0-9]*$") && valorCpfString.length() == 11) {
+				if (valorCpfString.matches("^[0-9]*$") && valorCpfString.length() == 11) {
 					cpfCerto = true;
 				}
-				
-				for(int i = 0; i < Database.getGrupos().get(posicaoGrupo).getQtdeDespesas(); i++) {
-					if(i == posicaoPessoa) {
+
+				for (int i = 0; i < Database.getGrupos().get(posicaoGrupo).getQtdeDespesas(); i++) {
+					if (i == posicaoPessoa) {
 						continue;
-					}
-					else if(valorCpfString.equals(Database.getGrupos().get(posicaoGrupo).getPessoas().get(i).getCpf())) {
+					} else if (valorCpfString
+							.equals(Database.getGrupos().get(posicaoGrupo).getPessoas().get(i).getCpf())) {
 						naoRepete = false;
 					}
 				}
-				
-				
-				if(cpfCerto == true && naoRepete == true) {
+
+				if (cpfCerto == true && naoRepete == true) {
 					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setNome(valorNomeString);
 					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setCpf(valorCpfString);
-					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).somarTotalDespesa(valorTotalDespesaDouble);
-				
+					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa)
+							.somarTotalDespesa(valorTotalDespesaDouble);
+
 					JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);
-				}
-				else if(cpfCerto == false){
+				} else if (cpfCerto == false) {
 					JOptionPane.showMessageDialog(null, "O CPF inserido é invalido", "Erro", JOptionPane.PLAIN_MESSAGE);
-				}
-				else {
-					JOptionPane.showMessageDialog(null, "Já existe uma pessoa com esse CPF nesse grupo", 
-												  "Erro", JOptionPane.PLAIN_MESSAGE);
+				} else {
+					JOptionPane.showMessageDialog(null, "Já existe uma pessoa com esse CPF nesse grupo", "Erro",
+							JOptionPane.PLAIN_MESSAGE);
 				}
 			} catch (NumberFormatException exception) {
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);

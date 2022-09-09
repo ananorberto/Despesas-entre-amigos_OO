@@ -52,7 +52,7 @@ public class Grupo {
 	}
 
 	/**
-	 * Metodo responsavel por aumentar a quantidade de pessoas do grupo.
+	 * Metodo responsavel por aumentar a quantidade de despesas do grupo.
 	 */
 	public void aumentarQtdeDespesas() {
 
