@@ -91,20 +91,21 @@ public class TelaEditarGrupo extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		Object src = e.getSource();
 		if (src == voltar) {
+			// Volta para a lista de Grupos
 			new TelaListagemGrupos().mostrarDados();
 			dispose();
-		} 
-		else if (src == salvar) {
+		} else if (src == salvar) {
 			try {
+				// Tenta salvar as novas informacoes do grupo
 				String nomeString = valorNome.getText();
 				String maxPessoasString = valorMaxPessoas.getText();
 				boolean naoRepete = true;
-				
-				for(int i = 0; i < Database.getQtdeGrupos(); i++) {
-					if(i == posicao) {
+
+				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
+					if (i == posicao) {
 						continue;
-					}
-					else if(nomeString.equals(Database.getGrupos().get(i).getNome())) {
+					} else if (nomeString.equals(Database.getGrupos().get(i).getNome())) {
+						// Verifica se ja existe um grupo com esse nome
 						naoRepete = false;
 					}
 				}
@@ -112,29 +113,29 @@ public class TelaEditarGrupo extends JFrame implements ActionListener {
 				int maxPessoasInt = Integer.parseInt(maxPessoasString);
 
 				if ((maxPessoasInt >= Database.getGrupos().get(posicao).getMaxPessoas()) && (naoRepete == true)) {
+					// Se o maximo de pessoas nao é menor que o anterior e nao repete o nome do
+					// grupo
 					Database.getGrupos().get(posicao).setNome(nomeString);
 					Database.getGrupos().get(posicao).setMaxPessoas(maxPessoasInt);
 					JOptionPane.showMessageDialog(null, "Salvo com sucesso", "Editar", JOptionPane.PLAIN_MESSAGE);
 					new TelaListagemGrupos().mostrarDados();
 					dispose();
 
-				} 
-				else if(naoRepete == false) {
-					JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse nome", "Erro", JOptionPane.PLAIN_MESSAGE);
-				}
-				else {
+				} else if (naoRepete == false) {
+					JOptionPane.showMessageDialog(null, "Ja existe um grupo com esse nome", "Erro",
+							JOptionPane.PLAIN_MESSAGE);
+				} else {
 					JOptionPane.showMessageDialog(null, " Nao foi possivel salvar,"
-												  + " pois o maximo de pessoas so pode ser maior " 
-												  + "ou igual ao valor anterior", "Erro",
-												  JOptionPane.PLAIN_MESSAGE);
+							+ " pois o maximo de pessoas so pode ser maior " + "ou igual ao valor anterior", "Erro",
+							JOptionPane.PLAIN_MESSAGE);
 				}
 
-			} 
-			catch (NumberFormatException exception) {
+			} catch (NumberFormatException exception) {
+				// Se o maximo de pessoas nao for inteiro, ocorre um erro
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 			}
-		} 
-		else if (src == excluir) {
+		} else if (src == excluir) {
+			// Exclui o grupo
 			Database.getGrupos().remove(posicao);
 			Database.diminuirQtdeGrupos();
 			JOptionPane.showMessageDialog(null, "Grupo removido", "Deletar", JOptionPane.PLAIN_MESSAGE);

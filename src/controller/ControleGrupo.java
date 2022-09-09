@@ -36,12 +36,12 @@ public class ControleGrupo {
 	 * Metodo responsavel por cadastrar um grupo e verificar se ja existe um grupo
 	 * com o mesmo ID.
 	 * 
-	 * @param nomeGrupoString String  Retorna nome do grupo.
-	 * @param idString        String  Retorna ID do grupo.
-	 * @param maxPessoas      String  Retorna quantidade maxima de pessoas no grupo
+	 * @param nomeGrupoString String Retorna nome do grupo.
+	 * @param idString        String Retorna ID do grupo.
+	 * @param maxPessoas      String Retorna quantidade maxima de pessoas no grupo
 	 * 
-	 * @return resultado      boolean Retorna false se houver erro na realização do cadastro, 
-	 * e true se o cadastro for efetuado com sucesso.
+	 * @return resultado boolean Retorna false se houver erro na realização do
+	 *         cadastro, e true se o cadastro for efetuado com sucesso.
 	 */
 
 	public static boolean cadastrarGrupo(String nomeGrupoString, String idString, String maxPessoasString) {
@@ -54,15 +54,16 @@ public class ControleGrupo {
 
 			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
 				if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
+					// Verifica se ha algum grupo com nome repetido
 					naoRepete = false;
-				} 
-				else if (Database.getGrupos().get(i).getId() == idInt) {
+				} else if (Database.getGrupos().get(i).getId() == idInt) {
 					naoRepete = false;
 					break;
 				}
 			}
 
 			if (naoRepete == true) {
+				// se nao ha grupos cadastrados com esse nome, o cadastro ocorre
 				Grupo novoGrupo = new Grupo(maxPessoasInt, idInt, nomeGrupoString);
 
 				Database.getGrupos().add(novoGrupo);
@@ -78,6 +79,7 @@ public class ControleGrupo {
 
 			}
 		} catch (NumberFormatException exception) {
+			// Se o id ou o maximo de pessoas nao for um inteiro, ocorre um erro
 			JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 
 		}

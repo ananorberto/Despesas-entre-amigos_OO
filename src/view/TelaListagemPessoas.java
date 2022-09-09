@@ -94,28 +94,27 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
+			// Volta para a tela de menu
 			new TelaMenu();
 			dispose();
 		} else if (e.getSource() == buscar) {
+			// Busca o nome do grupo digitado
 			String nomeString = nomeGrupo.getText();
-			try {
-				// int id_grupoInt = Integer.parseInt(id_grupoString);
-				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
-					if (nomeString.equals(Database.getGrupos().get(i).getNome())) {
 
-						this.posicaoGrupo = Database.getGrupos().indexOf(Database.getGrupos().get(i));
-						listaNomes = ControlePessoas.pegarNomePessoas(this.posicaoGrupo);
-						new TelaListagemPessoas(this.posicaoGrupo).mostrarDados(listaNomes);
-						dispose();
-						break;
-					} else if (i == (Database.getQtdeGrupos() - 1)) {
-						JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o Nome inserido",
-								"Nome nao encontrado", JOptionPane.PLAIN_MESSAGE);
-					}
+			for (int i = 0; i < Database.getQtdeGrupos(); i++) {
+				if (nomeString.equals(Database.getGrupos().get(i).getNome())) {
+					// Achou o nome do grupo digitado
+					this.posicaoGrupo = Database.getGrupos().indexOf(Database.getGrupos().get(i));
+					listaNomes = ControlePessoas.pegarNomePessoas(this.posicaoGrupo);
+					// Pega o nome das pessoas cadastradas nesse grupo
+					new TelaListagemPessoas(this.posicaoGrupo).mostrarDados(listaNomes);
+					// Recarrega a tela com a lista de pessoas cadastradas
+					dispose();
+					break;
+				} else if (i == (Database.getQtdeGrupos() - 1)) {
+					JOptionPane.showMessageDialog(null, "Nao encontramos um grupo com o Nome inserido",
+							"Nome nao encontrado", JOptionPane.PLAIN_MESSAGE);
 				}
-
-			} catch (NumberFormatException exception) {
-				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 			}
 		}
 	}
@@ -128,6 +127,7 @@ public class TelaListagemPessoas extends JFrame implements ActionListener, ListS
 		Object src = e.getSource();
 
 		if (e.getValueIsAdjusting() && src == listaPessoasCadastradas) {
+			// Mostra as informacoes da pessoa selecionada
 			new TelaEditarPessoa(this.posicaoGrupo, listaPessoasCadastradas.getSelectedIndex());
 			dispose();
 		}

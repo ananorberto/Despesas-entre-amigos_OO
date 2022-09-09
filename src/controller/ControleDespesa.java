@@ -6,6 +6,14 @@ import database.Database;
 import model.Compra;
 import model.Imovel;
 
+/**
+ * Classe responsavel por cadastrar uma despesa do tipo grupo e imovel.
+ * 
+ * @author Leonardo, Ana Beatriz
+ * @since 2022
+ * @version 1.0
+ */
+
 public class ControleDespesa {
 
 	public ControleDespesa() {
@@ -69,6 +77,7 @@ public class ControleDespesa {
 			}
 
 		} catch (NumberFormatException exception) {
+			// se o valor nao for digitado corretamente como um double ocorre um erro
 			JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 
 		}

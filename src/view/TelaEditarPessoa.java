@@ -112,9 +112,11 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
+			// volta para a lista de pessoas
 			new TelaListagemPessoas(0);
 			dispose();
 		} else if (e.getSource() == salvar) {
+			// Tenta salvar as novas informacoes
 			String valorNomeString = valorNome.getText();
 			String valorCpfString = valorCpf.getText();
 			String valorTotalDespesaString = valorTotalDespesa.getText();
@@ -125,6 +127,7 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 				double valorTotalDespesaDouble = Double.parseDouble(valorTotalDespesaString);
 
 				if (valorCpfString.matches("^[0-9]*$") && valorCpfString.length() == 11) {
+					// Verifica se o cpf possui apenas numeros e 11 digitos
 					cpfCerto = true;
 				}
 
@@ -133,11 +136,14 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 						continue;
 					} else if (valorCpfString
 							.equals(Database.getGrupos().get(posicaoGrupo).getPessoas().get(i).getCpf())) {
+
+						// Verifica se o cpf repete neste grupo
 						naoRepete = false;
 					}
 				}
 
 				if (cpfCerto == true && naoRepete == true) {
+					// Cadastra se o cpf estiver correto e não repete
 					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setNome(valorNomeString);
 					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa).setCpf(valorCpfString);
 					Database.getGrupos().get(posicaoGrupo).getPessoas().get(posicaoPessoa)
@@ -151,10 +157,12 @@ public class TelaEditarPessoa extends JFrame implements ActionListener {
 							JOptionPane.PLAIN_MESSAGE);
 				}
 			} catch (NumberFormatException exception) {
+				// Verifica se o novo total de despesas é um double
 				JOptionPane.showMessageDialog(null, "Algo de errado nao esta certo", "Erro", JOptionPane.PLAIN_MESSAGE);
 			}
 
 		} else if (e.getSource() == excluir) {
+			// Exclui a pessoa
 			Database.getGrupos().get(posicaoGrupo).getPessoas().remove(posicaoPessoa);
 			Database.getGrupos().get(posicaoGrupo).diminuirQtdePessoas();
 			JOptionPane.showMessageDialog(null, "Pessoa removida", "Deletar", JOptionPane.PLAIN_MESSAGE);

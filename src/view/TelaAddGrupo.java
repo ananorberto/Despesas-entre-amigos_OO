@@ -19,6 +19,8 @@ import controller.ControleGrupo;
  * @author Ana Beatriz, Leonardo
  * @since 2022
  * @version 1.0
+ * 
+ * 
  *
  */
 public class TelaAddGrupo extends JFrame implements ActionListener {
@@ -89,9 +91,11 @@ public class TelaAddGrupo extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
+			// Volta para o menu
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		} else if (e.getSource() == cadastrar) {
+			// Tenta cadastrar um grupo
 			String nomeString = nome.getText();
 			String idString = idGrupo.getText();
 			String maxPessoasString = maxPessoas.getText();

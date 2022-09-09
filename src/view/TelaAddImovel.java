@@ -118,10 +118,11 @@ public class TelaAddImovel extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
+			// Volta para o menu
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		} else if (e.getSource() == cadastrar) {
-
+			// Tenta cadastrar um imovel
 			String enderecoString = endereco.getText();
 			String contaLuzString = contaLuz.getText();
 			String contaAguaString = contaAgua.getText();

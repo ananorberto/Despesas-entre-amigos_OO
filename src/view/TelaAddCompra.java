@@ -109,10 +109,11 @@ public class TelaAddCompra extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
+			// Volta para o menu
 			TelaMenu menu = new TelaMenu();
 			dispose();
 		} else if (e.getSource() == cadastrar) {
-
+			// Tenta cadastrar a compra
 			String nomeMercadoString = nomeMercado.getText();
 			String cpfPagadorString = cpfPagador.getText();
 			String idGrupoString = nomeGrupo.getText();

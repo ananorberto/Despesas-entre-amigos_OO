@@ -33,9 +33,12 @@ public class Database {
 	private static Pessoa p3_1 = new Pessoa("44444444444", "Luiza", 555);
 	private static Pessoa p3_2 = new Pessoa("55555555555", "Pedro", 666);
 
-	private static Compra c1 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "00000000000", "grupo1", "pao, ovo");
-	private static Compra c2 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "22222222222", "grupo2", "pao, ovo");
-	private static Compra c3 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "44444444444", "grupo3", "pao, ovo");
+	private static Compra c1 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "00000000000", "grupo1",
+			"pao, ovo");
+	private static Compra c2 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "22222222222", "grupo2",
+			"pao, ovo");
+	private static Compra c3 = new Compra("Atacadao da massa", 50.30, "15/02/2022", "44444444444", "grupo3",
+			"pao, ovo");
 
 	private static Imovel i1 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", "11111111111", "grupo1");
 	private static Imovel i2 = new Imovel("Brasilia", 15.30, 25.80, 32.40, "03/03/2022", "33333333333", "grupo2");
@@ -74,25 +77,27 @@ public class Database {
 	 * Metodo responsavel por armazenar grupos pre-cadastrados.
 	 */
 	public static void preCadastrarGrupos() {
+		// Adiciona os grupos 1,2 e 3 ao ArrayList GRUPOS
 		GRUPOS.add(g1);
 		GRUPOS.add(g2);
 		GRUPOS.add(g3);
-
+		// Cadastra as pessoas Joao e Jose no grupo1
 		GRUPOS.get(0).setNovaPessoa(p1_1);
 		GRUPOS.get(0).addPessoa();
 		GRUPOS.get(0).setNovaPessoa(p1_2);
 		GRUPOS.get(0).addPessoa();
-
+		// Cadastra Maria e Ana no grupo2
 		GRUPOS.get(1).setNovaPessoa(p2_1);
 		GRUPOS.get(1).addPessoa();
 		GRUPOS.get(1).setNovaPessoa(p2_2);
 		GRUPOS.get(1).addPessoa();
-
+		// Cadastra Luiza e Pedro no grupo3
 		GRUPOS.get(2).setNovaPessoa(p3_1);
 		GRUPOS.get(2).addPessoa();
 		GRUPOS.get(2).setNovaPessoa(p3_2);
 		GRUPOS.get(2).addPessoa();
 
+		// Cadastra as despesas nos grupos criados
 		GRUPOS.get(0).getDespesas().add(c1);
 		GRUPOS.get(0).getPessoas().get(0).somarTotalDespesa(c1.getValor());
 		GRUPOS.get(0).aumentarQtdeDespesas();

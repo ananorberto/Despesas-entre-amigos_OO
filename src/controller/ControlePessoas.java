@@ -8,7 +8,7 @@ import model.Pessoa;
 /**
  * Classe responsavel por cadastrar uma pessoa
  * 
- * @author Leonardo,
+ * @author Leonardo
  * @since 2022
  * @version 1.0
  */
@@ -53,13 +53,13 @@ public class ControlePessoas {
 			boolean grupoCheio;
 			boolean cpfCerto = false;
 			int idPessoaInt = Integer.parseInt(idPessoaString);
-			String nome0 = Database.getGrupos().get(0).getNome();
 
+			// Verifica se o cpf tem apenas numeros e exatamente 11 digitos
 			if (cpfString.matches("^[0-9]*$") && cpfString.length() == 11) {
 				cpfCerto = true;
 			}
 
-			// Repeticao de id e cpf de usuario
+			// Verifica se há repeticao de id ou cpf de pessoa
 			for (int j = 0; j < Database.getQtdeGrupos(); j++) {
 				if (Database.getGrupos().get(j).getQtdePessoas() == 0) {
 					continue;
@@ -70,6 +70,7 @@ public class ControlePessoas {
 								|| (Database.getGrupos().get(j).getPessoas().get(k).getId() == idPessoaInt)) {
 
 							naoRepete = false;
+
 							break;
 						}
 					}
@@ -79,16 +80,20 @@ public class ControlePessoas {
 					break;
 				}
 			}
-
 			if (naoRepete == true && cpfCerto == true) {
+				// se o cpf eta certo e nao há repeticao de id ou cpf, executa o for abaixo
 				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
 					if (nomeGrupoString.equals(Database.getGrupos().get(i).getNome())) {
+						// Encontrou o grupo
+						// Cadastra a pessoa
 						Pessoa novaPessoa = new Pessoa(cpfString, nomeString, idPessoaInt);
 
 						Database.getGrupos().get(i).setNovaPessoa(novaPessoa);
+						// Retorna true se o grupo esta cheio
 						grupoCheio = Database.getGrupos().get(i).addPessoa();
 
 						if (grupoCheio == false) {
+							// Se o grupo nao esta cheio o cadastro foi feito
 							JOptionPane.showMessageDialog(null, "Seu Cadastro foi salvo com sucesso", "Cadastro",
 									JOptionPane.PLAIN_MESSAGE);
 							resultado = true;

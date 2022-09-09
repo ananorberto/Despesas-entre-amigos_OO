@@ -4,10 +4,10 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import controller.ControlePessoas;
 import database.Database;
 import model.Grupo;
 import model.Pessoa;
-import controller.ControlePessoas;
 
 public class TesteCadastrarPessoa {
 
@@ -25,19 +25,22 @@ public class TesteCadastrarPessoa {
 		Database.getGrupos().get(0).addPessoa();
 
 	}
-	
+
 	@Test
 	public void testeCadastro() {
 		cadastrarInfo();
+
+		// Verifica se é possivel cadastrar uma pessoa inserindo as informacoes abaixo
 		String nomeNovaPessoa = "Ana";
 		String idPessoaString = "999";
 		String cpfString = "22222222222";
 		String nomeGrupoString = "grupo teste";
-		
+
+		// retorna true se o cadastro é possivel e false se nao foi possivel
 		boolean resultado = ControlePessoas.cadastrarPessoa(nomeNovaPessoa, idPessoaString, cpfString, nomeGrupoString);
-		
+
 		assertTrue(resultado);
-		
+
 	}
-	
+
 }

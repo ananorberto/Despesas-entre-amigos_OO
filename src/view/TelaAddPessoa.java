@@ -98,9 +98,10 @@ public class TelaAddPessoa extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == voltar) {
 			TelaMenu menu = new TelaMenu();
+			// Volta para o menu
 			dispose();
 		} else if (e.getSource() == cadastrar) {
-			
+			// Tenta cadastrar uma pessoa
 			String nomeString = nome.getText();
 			String idPessoaString = idPessoa.getText();
 			String cpfString = cpf.getText();

@@ -101,9 +101,10 @@ public class Grupo {
 		this.despesaDividida = 0.0;
 
 		for (int i = 0; i < qtdePessoas; i++) {
+			// Soma o gasto de todas as pessoas do grupo
 			this.despesaDividida = this.despesaDividida + pessoas.get(i).getTotalDespesa();
 		}
-
+		// Divide a despesa somada pela quantidade de pessoas
 		this.despesaDividida = (this.despesaDividida) / qtdePessoas;
 
 	}
@@ -116,14 +117,17 @@ public class Grupo {
 
 	public String[] mostrarDividas() {
 		String dividas[] = new String[qtdePessoas + 1];
+		// Define que a primeira posicao do vetor informa a despesa dividida
 		dividas[0] = ("A despesa dividida é de R$ " + format("%.2f", this.despesaDividida));
 		int j = 1;
 		for (int i = 0; i < qtdePessoas; i++) {
 			if (pessoas.get(i).getSaldo() < 0) {
+				// Se o saldo for negativo, a pessoa deve o grupo
 				dividas[j] = (pessoas.get(i).getNome() + " deve ao grupo " + "R$ "
 						+ format("%.2f", abs(pessoas.get(i).getSaldo())));
 				j++;
 			} else {
+				// Se o saldo for positivo, o grupo deve essa pessoa
 				dividas[j] = ("O grupo deve " + pessoas.get(i).getNome() + " R$ "
 						+ format("%.2f", abs(pessoas.get(i).getSaldo())));
 				j++;

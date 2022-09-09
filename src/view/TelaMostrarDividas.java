@@ -104,17 +104,20 @@ public class TelaMostrarDividas extends JFrame implements ActionListener, ListSe
 			String nomeGrupoString = nomeGrupo.getText();
 
 			try {
-				// int idGrupoInt = Integer.parseInt(idGrupoString);
-
 				for (int i = 0; i < Database.getQtdeGrupos(); i++) {
 					if ((nomeGrupoString.equals(Database.getGrupos().get(i).getNome()))
 							&& (Database.getGrupos().get(i).getQtdePessoas() > 0)) {
+						// Se o nome do grupo for encontrado e tiver pelo menos uma pessoa no grupo e
+						// executa as acoes abaixo
 
 						Database.getGrupos().get(i).dividirDespesas();
 						Database.getGrupos().get(i).definirSaldos();
 						String dividas[] = new String[Database.getGrupos().get(i).getQtdePessoas() + 1];
 						dividas = Database.getGrupos().get(i).mostrarDividas();
+						// O vetor dividas recebe as informacoes da despesa dividida e das dividas das
+						// pessoas
 						new TelaMostrarDividas().mostrarDados(i, dividas);
+						// Recarrega a tela com as informacoes do gurpo inserido
 						System.out.println("Foi");
 						dispose();
 						break;

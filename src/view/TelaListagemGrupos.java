@@ -87,6 +87,7 @@ public class TelaListagemGrupos extends JFrame implements ActionListener, ListSe
 		Object src = e.getSource();
 
 		if (e.getValueIsAdjusting() && src == listaGruposCadastrados) {
+			// Mostra as informacoes do grupo selecionado
 			new TelaEditarGrupo(listaGruposCadastrados.getSelectedIndex());
 			dispose();
 		}
