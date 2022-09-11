@@ -1,3 +1,4 @@
+[![Badge License](https://img.shields.io/badge/LICENSE-MIT-7159c1)](https://github.com/ananorberto/TrabalhoOO-v_1/blob/main/LICENSE)
 ![Badge Finalizado](https://img.shields.io/static/v1?label=STATUS&message=FINALIZADO&color=7159c1&style=<STYLE>&logo=<LOGO>)
 ![Badge Release Date](https://img.shields.io/static/v1?label=RELEASE%20DATE&message=SEPTEMBER%202022&color=7159c1&style=<STYLE>&logo=<LOGO>)
 
@@ -13,7 +14,7 @@ Antes de começar, você vai precisar ter instalado em sua máquina o [Eclipse I
 
 ## 📁 Acesso ao projeto
 
-Você deve acessar o [código fonte do projeto](https://github.com/leonardogonmac/Orientacao_a_Objetos_Trabalho_Java) e [baixá-lo](https://github.com/leonardogonmac/Orientacao_a_Objetos_Trabalho_Java/archive/refs/heads/main.zip).
+Você deve acessar o [código fonte do projeto](https://github.com/ananorberto/TrabalhoOO-v_1) e [baixá-lo](https://github.com/ananorberto/TrabalhoOO-v_1/archive/refs/heads/main.zip).
 
 
 ## 🛠️ Abrir e executar o projeto
@@ -32,4 +33,10 @@ Ao terminar de abrir o projeto, execute os seguintes passos:
 - Vá em `Run As` e `1 Java Aplication`.
 
 Após isso, seu programa estará pronto para ser usado.
- 
+
+## Contribuintes
+
+* **Ana Beatriz Norberto** - [ananorberto](https://github.com/ananorberto)
+* **Leonardo Machado** - [leonardogonmac](https://github.com/leonardogonmac)
+
+_________________________________________________________________________________________________________________________________________________
