@@ -1,8 +1,8 @@
 # Auto detect text files and perform LF normalization
-*.js linguist-detectable=false
-*.html linguist-detectable=false
-*.tcl linguist-detectable=false
-*.css linguist-detectable=false
+#*.js linguist-detectable=false
+#*.html linguist-detectable=false
+#*.tcl linguist-detectable=false
+#*.css linguist-detectable=false
 Footer
 © 2022 GitHub, Inc.
 Footer navigation
